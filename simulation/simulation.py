@@ -6,6 +6,8 @@ import json
 import logging
 from enum import Enum
 from typing import List, Dict, Any, Optional, Callable, Tuple, Union
+import base_node
+
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)

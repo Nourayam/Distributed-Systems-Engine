@@ -14,24 +14,24 @@ if TYPE_CHECKING:
     from simulation.simulation import Simulation
 
 class Node(ABC):
-    """
-    Abstract base class for all nodes in the distributed system simulation
     
-    Attributes:
-        node_id: Unique string identifier for the node
-        simulation: Reference to the simulation engine instance
-        inbox: FIFO queue for incoming message events
-        alive: Operational status of the node (True = functional, False = crashed)
-    """
+    # Abstract base class for all nodes in the distributed system simulation
+    
+    # Attributes:
+    #     node_id: Unique string identifier for the node
+    #     simulation: Reference to the simulation engine instance
+    #     inbox: FIFO queue for incoming message events
+    #     alive: Operational status of the node (True = functional, False = crashed)
+    
     
     def __init__(self, node_id: str, simulation: 'Simulation'):
-        """
-        Initialise a node with unique identifier and simulation reference
         
-        Args:
-            node_id: Unique string identifier for the node
-            simulation: Reference to the simulation engine instance
-        """
+        # Initialise a node with unique identifier and simulation reference
+        
+        # Args:
+        #     node_id: Unique string identifier for the node
+        #     simulation: Reference to the simulation engine instance
+        
         self.node_id = node_id
         self.simulation = simulation
         self.inbox: List['Event'] = []
@@ -43,30 +43,30 @@ class Node(ABC):
         self.logger.info("Node initialised and registered")
     
     def __repr__(self) -> str:
-        """Human-readable representation for debugging"""
+        #Human-readable representation for debugging
         return f"<Node {self.node_id} alive={self.alive}>"
     
     @abstractmethod
     def receive_message(self, event: 'Event') -> None:
-        """
-        Handle an incoming message event (abstract method)
         
-        Args:
-            event: Event containing message details in event.data
-        """
+        # Handle an incoming message event (abstract method)
+        
+        # Args:
+        #     event: Event containing message details in event.data
+        
         pass
     
     @abstractmethod
     def tick(self, current_time: float) -> None:
-        """
-        Perform time-based operations (abstract method)
         
-        Called by the simulation engine at each time step. Concrete implementations
-        should handle timeouts, state transitions, and periodic actions here.
+        # Perform time-based operations (abstract method)
         
-        Args:
-            current_time: Current simulation time in seconds
-        """
+        # Called by the simulation engine at each time step. Concrete implementations
+        # should handle timeouts, state transitions, and periodic actions here.
+        
+        # Args:
+        #     current_time: Current simulation time in seconds
+        
         pass
     
     def send_message(
@@ -76,15 +76,15 @@ class Node(ABC):
         payload: Dict[str, Any],
         delay: float = 0.0
     ) -> None:
-        """
-        Send a message to another node with optional delay
         
-        Args:
-            dst_id: Destination node ID
-            message_type: Message category (e.g., 'HEARTBEAT', 'VOTE_REQUEST')
-            payload: Dictionary containing message content
-            delay: Optional transmission delay in simulation seconds
-        """
+        # Send a message to another node with optional delay
+        
+        # Args:
+        #     dst_id: Destination node ID
+        #     message_type: Message category (e.g., 'HEARTBEAT', 'VOTE_REQUEST')
+        #     payload: Dictionary containing message content
+        #     delay: Optional transmission delay in simulation seconds
+        
         # Validate destination exists
         if not self.simulation.node_exists(dst_id):
             self.logger.warning(f"Attempted to send to unknown node: {dst_id}")
@@ -109,7 +109,7 @@ class Node(ABC):
         self.logger.debug(f"Scheduled {message_type} to {dst_id} at {event.timestamp:.2f}")
     
     def process_inbox(self) -> None:
-        """Process all messages in the inbox (FIFO order)"""
+        #Process all messages in the inbox (FIFO order)
         while self.inbox:
             event = self.inbox.pop(0)
             try:
@@ -126,11 +126,11 @@ class Node(ABC):
                 )
     
     def is_alive(self) -> bool:
-        """Check if node is operational (not crashed)"""
+        #Check if node is operational (not crashed)
         return self.alive
     
     def crash(self) -> None:
-        """Mark node as crashed and log the event"""
+        #Mark node as crashed and log the event
         if self.alive:
             self.alive = False
             self.logger.warning("Node crashed!")
@@ -142,7 +142,7 @@ class Node(ABC):
             )
     
     def recover(self) -> None:
-        """Recover node from crashed state"""
+        #Recover node from crashed state
         if not self.alive:
             self.alive = True
             self.logger.info("Node recovered from crash")
@@ -154,15 +154,14 @@ class Node(ABC):
             )
     
     def schedule_timeout(self, delay: float, tag: str, payload: Dict[str, Any] = None) -> None:
-        """
-        Schedule a timeout event for this node
         
-        Args:
-            delay: Timeout duration in simulation seconds
-            tag: Identifier for timeout type
-            payload: Optional additional data
-        """
-        from simulation.simulation_events import Event, EventType
+        # Schedule a timeout event for this node
+        
+        # Args:
+        #     delay: Timeout duration in simulation seconds
+        #     tag: Identifier for timeout type
+        #     payload: Optional additional data
+        
         event = Event(
             timestamp=self.simulation.current_time + delay,
             event_type=EventType.TIMEOUT,
