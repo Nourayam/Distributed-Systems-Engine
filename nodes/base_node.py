@@ -99,7 +99,6 @@ class Node(ABC):
         }
         
         # Create and schedule event
-        from simulation.simulation_events import Event, EventType
         event = Event(
             timestamp=self.simulation.current_time + delay,
             event_type=EventType.MESSAGE_SEND,
