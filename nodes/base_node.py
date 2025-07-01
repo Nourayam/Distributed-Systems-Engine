@@ -1,17 +1,13 @@
-
-# Defines an abstract base Node for discrete-event simulations in distributed systems.
-# Each Node holds a unique ID, references the Simulation engine, and manages an inbox
-# for incoming events. Concrete nodes must implement message handling and time-based logic.
-
-
+from simulation.simulation_events import Event, EventType
+from simulation.simulation import Simulation
 from abc import ABC, abstractmethod
 from typing import List, Dict, Any, TYPE_CHECKING
 import logging
 
-# Avoid circular imports for type checking
-if TYPE_CHECKING:
-    from simulation.simulation_events import Event, EventType
-    from simulation.simulation import Simulation
+
+# Defines an abstract base Node for discrete-event simulations in distributed systems.
+# Each Node holds a unique ID, references the Simulation engine, and manages an inbox
+# for incoming events. Concrete nodes must implement message handling and time-based logic.
 
 class Node(ABC):
     
@@ -180,11 +176,9 @@ if __name__ == "__main__":
     import os
     sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     
-    from simulation.simulation_events import Event, EventType
-    from simulation.simulation import Simulation
     
     class DummySimulation(Simulation):
-        """Mock simulation for testing"""
+        #Mock simulation for testing
         def __init__(self):
             self.current_time = 0.0
             self.nodes = {}
