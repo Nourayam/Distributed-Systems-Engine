@@ -3,8 +3,8 @@ import requests
 API_KEY = "sk-1d543ab9361542a4a0596e6b85fc715e"
 MODEL = "deepseek-chat"
 ENDPOINT = "https://api.deepseek.com/v1/chat/completions"
-PROMPT_FILE = "simulation/simulation_events.py"  
-OUTPUT_FILE = "simulation/simulation_events.py"
+PROMPT_FILE = "nodes/base_node.py"  
+OUTPUT_FILE = "nodes/base_node.py"
 
 # Load the prompt
 with open(PROMPT_FILE, "r", encoding="utf-8") as f:

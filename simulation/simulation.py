@@ -121,7 +121,7 @@ class EventDrivenSimulator:
         self.event_counter = 0
         self.simulation_id = f"sim-{int(time.time())}"
         
-        # Initialize nodes with positions in a circle
+        # Initialise nodes with positions in a circle
         node_count = config['node_count']
         for i in range(node_count):
             angle = 2 * 3.14159 * i / node_count
