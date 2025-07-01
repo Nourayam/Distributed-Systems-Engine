@@ -3,8 +3,8 @@ import requests
 API_KEY = "sk-1d543ab9361542a4a0596e6b85fc715e"
 MODEL = "deepseek-chat"
 ENDPOINT = "https://api.deepseek.com/v1/chat/completions"
-PROMPT_FILE = "messaging/message_queue.py"  
-OUTPUT_FILE = "messaging/message_queue.py"
+PROMPT_FILE = "main.py"  
+OUTPUT_FILE = "main.py"
 
 # Load the prompt
 with open(PROMPT_FILE, "r", encoding="utf-8") as f:
