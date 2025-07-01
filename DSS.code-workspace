@@ -8,6 +8,30 @@
 		},
 		{
 			"path": ".."
+		},
+		{
+			"path": ".venv"
+		},
+		{
+			"path": "failure"
+		},
+		{
+			"path": "logging"
+		},
+		{
+			"path": "messaging"
+		},
+		{
+			"path": "nodes"
+		},
+		{
+			"path": "schemas"
+		},
+		{
+			"path": "simulation"
+		},
+		{
+			"path": "tests"
 		}
 	],
 	"settings": {}
