@@ -1,44 +1,51 @@
 import requests
-import json
 
 API_KEY = "sk-1d543ab9361542a4a0596e6b85fc715e"
+MODEL = "deepseek-chat"
+ENDPOINT = "https://api.deepseek.com/v1/chat/completions"
+PROMPT_FILE = "simulation/simulation_events.py"  
+OUTPUT_FILE = "simulation/simulation_events.py"
 
-PROMPT_FILE = "Prompts/01_architecture-utf8.txt"
+# Load the prompt
+with open(PROMPT_FILE, "r", encoding="utf-8") as f:
+    user_prompt = f.read()
 
+# Compose the payload
+payload = {
+    "model": MODEL,
+    "temperature": 0.2,
+    "messages": [
+        {
+            "role": "system",
+            "content": "You are a helpful assistant that always replies in English and writes clean, idiomatic Python code with clear inline comments and docstrings when relevant."
+        },
+        {
+            "role": "user",
+            "content": user_prompt
+        }
+    ]
+}
 
-MODEL = "deepseek-coder"
+headers = {
+    "Authorization": f"Bearer {API_KEY}",
+    "Content-Type": "application/json"
+}
 
-def read_prompt(path):
-    with open(path, "r", encoding="utf-8") as file:
-        return file.read()
+print("📨 Sending prompt to DeepSeek...\n")
+response = requests.post(ENDPOINT, headers=headers, json=payload)
 
-def send_prompt(prompt):
-    url = "https://api.deepseek.com/v1/chat/completions"
-    headers = {
-        "Authorization": f"Bearer {API_KEY}",
-        "Content-Type": "application/json"
-    }
-    data = {
-        "model": MODEL,
-        "messages": [
-            {"role": "user", "content": prompt}
-        ],
-        "temperature": 0.3
-    }
+if response.status_code == 200:
+    result = response.json()["choices"][0]["message"]["content"]
     
-    response = requests.post(url, headers=headers, json=data)
-    if response.status_code == 200:
-        return response.json()["choices"][0]["message"]["content"]
-    else:
-        print("🚨 API Error:", response.status_code)
-        print(response.text)
-        return None
+    # Display result
+    print("🧠 DeepSeek Response:\n")
+    print(result)
 
-if __name__ == "__main__":
-    prompt_text = read_prompt(PROMPT_FILE)
-    print("📨 Sending prompt to DeepSeek...\n")
-    result = send_prompt(prompt_text)
-    
-    if result:
-        print("🧠 DeepSeek Response:\n")
-        print(result)
+    # Optional: Write to file
+    with open(OUTPUT_FILE, "w", encoding="utf-8") as out:
+        out.write(result)
+    print(f"\n✅ Saved to {OUTPUT_FILE}")
+
+else:
+    print(f"❌ Error {response.status_code}:\n")
+    print(response.text)
