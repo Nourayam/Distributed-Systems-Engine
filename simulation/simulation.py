@@ -25,7 +25,7 @@ class NodeState(Enum):
 
 
 class SimulationEvent:
-    """Represents an event in the simulation timeline."""
+    #Represents an event in the simulation timeline
     __slots__ = ('event_type', 'timestamp', 'data', 'callback')
 
     def __init__(
@@ -45,7 +45,7 @@ class SimulationEvent:
 
 
 class NetworkMessage:
-    """Represents a message sent between nodes."""
+   #Represents a message sent between nodes 
     __slots__ = ('msg_id', 'msg_type', 'sender', 'receiver', 'payload', 'sent_time')
 
     def __init__(
@@ -66,7 +66,7 @@ class NetworkMessage:
 
 
 class EventDrivenSimulator:
-    """Main simulation engine for the distributed system."""
+   #Main simulation engine for the distributed system 
 
     def __init__(self, config: Dict[str, Any], state_callback: Optional[Callable] = None):
         self.clock = 0.0
@@ -86,8 +86,8 @@ class EventDrivenSimulator:
         self.event_counter = 0
         self.simulation_id = f"sim-{int(time.time())}"
 
-        # Initialize nodes
-        self._initialize_nodes(config['node_count'])
+        # Initialise nodes
+        self._initialise_nodes(config['node_count'])
 
         # Log simulation start
         self.log_event('SIMULATION_START', {
@@ -95,8 +95,8 @@ class EventDrivenSimulator:
             'config': config
         })
 
-    def _initialize_nodes(self, node_count: int) -> None:
-        """Initialize nodes in a circular arrangement."""
+    def _initialise_nodes(self, node_count: int) -> None:
+       #Initialise nodes in a circular arrangement 
         node_class = self.config.get('node_class', Node)
         for i in range(node_count):
             angle = 2 * math.pi * i / node_count
@@ -107,43 +107,41 @@ class EventDrivenSimulator:
             self.nodes[i].position = (x, y)
 
     def register_node(self, node: Node) -> None:
-        """Register a node with the simulation.
+       #Register a node with the simulation.
         
-        Args:
-            node: Node instance to register
-        """
+        # Args:
+        #     node: Node instance to register
+       
         if node.node_id not in self.nodes:
             self.nodes[int(node.node_id)] = node
 
     def node_exists(self, node_id: str) -> bool:
-        """Check if a node exists in the simulation.
+       #Check if a node exists in the simulation.
         
-        Args:
-            node_id: ID of node to check
+        # Args:
+        #     node_id: ID of node to check
             
-        Returns:
-            bool: True if node exists, False otherwise
-        """
+        # Returns:
+        #     bool: True if node exists, False otherwise
         return int(node_id) in self.nodes
 
     def schedule_event(self, event: SimulationEvent) -> None:
-        """Schedule an event for future processing.
+       #Schedule an event for future processing.
         
-        Args:
-            event: SimulationEvent to schedule
-        """
+        # Args:
+        #     event: SimulationEvent to schedule
         heapq.heappush(self.event_queue, event)
 
     def log_event(self, event_type: str, data: Dict[str, Any]) -> Dict[str, Any]:
-        """Log an event to the simulation log.
+       #Log an event to the simulation log.
         
-        Args:
-            event_type: Type of event
-            data: Event data
+        # Args:
+        #     event_type: Type of event
+        #     data: Event data
             
-        Returns:
-            Dict: The logged event record
-        """
+        # Returns:
+        #     Dict: The logged event record
+
         self.event_counter += 1
         event_record = {
             'id': f"evt-{self.event_counter}",
@@ -155,20 +153,20 @@ class EventDrivenSimulator:
         return event_record
 
     def generate_message_id(self) -> str:
-        """Generate a unique message ID.
+       #Generate a unique message ID.
         
-        Returns:
-            str: Unique message ID
-        """
+        # Returns:
+        #     str: Unique message ID
+
         self.message_counter += 1
         return f"msg-{self.message_counter}-{int(time.time())}"
 
     def send_message(self, message: NetworkMessage) -> None:
-        """Send a message with potential delay or drop.
+       #Send a message with potential delay or drop.
         
-        Args:
-            message: NetworkMessage to send
-        """
+        # Args:
+        #     message: NetworkMessage to send
+
         if random.random() < self.message_drop_rate:
             self.log_event('MESSAGE_DROP', {
                 'message_id': message.msg_id,
@@ -196,11 +194,11 @@ class EventDrivenSimulator:
         })
 
     def process_event(self, event: SimulationEvent) -> None:
-        """Process a simulation event.
+       #Process a simulation event.
         
-        Args:
-            event: SimulationEvent to process
-        """
+    #     Args:
+    #         event: SimulationEvent to process
+
         handler_name = f"handle_{event.event_type.lower()}"
         if hasattr(self, handler_name):
             getattr(self, handler_name)(event)
@@ -210,11 +208,11 @@ class EventDrivenSimulator:
             logger.warning(f"No handler for event type: {event.event_type}")
 
     def handle_node_crash(self, event: SimulationEvent) -> None:
-        """Handle node crash event.
+       #Handle node crash event.
         
-        Args:
-            event: Crash event to process
-        """
+        # Args:
+        #     event: Crash event to process
+
         node_id = event.data['node_id']
         node = self.nodes[node_id]
         if node.is_alive():
@@ -225,11 +223,11 @@ class EventDrivenSimulator:
             })
     
     def handle_node_recover(self, event: SimulationEvent) -> None:
-        """Handle node recovery event.
+       #Handle node recovery event.
         
-        Args:
-            event: Recovery event to process
-        """
+        # Args:
+        #     event: Recovery event to process
+
         node_id = event.data['node_id']
         node = self.nodes[node_id]
         if not node.is_alive():
@@ -240,11 +238,11 @@ class EventDrivenSimulator:
             })
     
     def handle_partition_start(self, event: SimulationEvent) -> None:
-        """Handle network partition start event.
+       #Handle network partition start event.
         
-        Args:
-            event: Partition start event
-        """
+        # Args:
+        #     event: Partition start event
+
         partition_id = event.data['partition_id']
         node_ids = event.data['node_ids']
         self.partitions[partition_id] = node_ids
@@ -262,11 +260,11 @@ class EventDrivenSimulator:
                 })
     
     def handle_partition_end(self, event: SimulationEvent) -> None:
-        """Handle network partition end event.
+       #Handle network partition end event.
         
-        Args:
-            event: Partition end event
-        """
+        # Args:
+        #     event: Partition end event
+
         partition_id = event.data['partition_id']
         if partition_id not in self.partitions:
             return
@@ -286,11 +284,11 @@ class EventDrivenSimulator:
         del self.partitions[partition_id]
     
     def handle_timeout(self, event: SimulationEvent) -> None:
-        """Handle timeout event.
+       #Handle timeout event.
         
-        Args:
-            event: Timeout event to process
-        """
+        # Args:
+        #     event: Timeout event to process
+
         node_id = event.data['node_id']
         timeout_type = event.data['timeout_type']
         node = self.nodes[node_id]
@@ -311,11 +309,11 @@ class EventDrivenSimulator:
         node.process_inbox()
     
     def get_current_state(self) -> Dict[str, Any]:
-        """Return current simulation state as JSON-serializable dict.
+       #Return current simulation state as JSON-serialisable dict.
         
-        Returns:
-            Dict: Current simulation state
-        """
+        # Returns:
+        #     Dict: Current simulation state
+
         node_states = []
         for node_id, node in self.nodes.items():
             state = {
@@ -368,17 +366,17 @@ class EventDrivenSimulator:
         }
     
     def update_frontend(self) -> None:
-        """Send current state to frontend via callback."""
+       #Send current state to frontend via callback 
         if self.state_callback:
             state = self.get_current_state()
             self.state_callback(state)
     
     def run(self, max_time: float = 100.0) -> None:
-        """Run the simulation until max_time is reached.
+       #Run the simulation until max_time is reached.
         
-        Args:
-            max_time: Maximum simulation time to run
-        """
+        # Args:
+        #     max_time: Maximum simulation time to run
+
         self.running = True
         start_real = time.time()
         last_update = 0.0
@@ -404,17 +402,17 @@ class EventDrivenSimulator:
         self.update_frontend()
     
     def pause(self) -> None:
-        """Pause the simulation."""
+       #Pause the simulation 
         self.running = False
     
     def resume(self) -> None:
-        """Resume a paused simulation."""
+       #Resume a paused simulation 
         if not self.running:
             self.running = True
             self.run()
     
     def step(self) -> None:
-        """Execute the next event."""
+       #Execute the next event 
         if self.event_queue:
             event = heapq.heappop(self.event_queue)
             self.clock = event.timestamp
@@ -422,14 +420,14 @@ class EventDrivenSimulator:
             self.update_frontend()
     
     def inject_message(self, sender: int, receiver: int, msg_type: str, payload: Dict[str, Any]) -> None:
-        """Inject a custom message into the system.
+       #Inject a custom message into the system.
         
-        Args:
-            sender: Sender node ID
-            receiver: Receiver node ID
-            msg_type: Message type
-            payload: Message payload
-        """
+        # Args:
+        #     sender: Sender node ID
+        #     receiver: Receiver node ID
+        #     msg_type: Message type
+        #     payload: Message payload
+
         msg_id = self.generate_message_id()
         message = NetworkMessage(
             msg_id=msg_id,
@@ -442,12 +440,12 @@ class EventDrivenSimulator:
         self.send_message(message)
     
     def inject_failure(self, failure_type: str, **kwargs) -> None:
-        """Inject a failure into the system.
+       #Inject a failure into the system.
         
-        Args:
-            failure_type: Type of failure ('crash' or 'partition')
-            **kwargs: Additional failure parameters
-        """
+        # Args:
+        #     failure_type: Type of failure ('crash' or 'partition')
+        #     **kwargs: Additional failure parameters
+
         if failure_type == 'crash':
             node_id = kwargs['node_id']
             recovery_time = kwargs.get('recovery_time')
@@ -462,28 +460,28 @@ class EventDrivenSimulator:
 
 
 class SimulationServer:
-    """WebSocket server for simulation visualization."""
+   #WebSocket server for simulation visualisation 
     
     def __init__(self, config: Dict[str, Any]):
         self.simulator = EventDrivenSimulator(config, self.state_callback)
         self.clients: Set[Any] = set()
         
     def state_callback(self, state: Dict[str, Any]) -> None:
-        """Broadcast state updates to all connected clients.
+       #Broadcast state updates to all connected clients.
         
-        Args:
-            state: Current simulation state
-        """
+        # Args:
+        #     state: Current simulation state
+
         message = json.dumps({'type': 'state_update', 'data': state})
         for client in self.clients:
             client.send(message)
     
     def add_client(self, client: Any) -> None:
-        """Add a new client to the server.
+       #Add a new client to the server.
         
-        Args:
-            client: Client connection to add
-        """
+        # Args:
+        #     client: Client connection to add
+
         self.clients.add(client)
         client.send(json.dumps({
             'type': 'full_state',
@@ -491,11 +489,11 @@ class SimulationServer:
         }))
     
     def remove_client(self, client: Any) -> None:
-        """Remove a client from the server.
+       #Remove a client from the server.
         
-        Args:
-            client: Client connection to remove
-        """
+        # Args:
+        #     client: Client connection to remove
+        
         self.clients.discard(client)
 
 

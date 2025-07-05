@@ -4,19 +4,19 @@ import logging
 import random
 from typing import Any, Dict, List, Optional
 
-from ..base_node import Node
+from base_node import Node
 from ..simulation.simulation_events import Event, EventType
 
 
 class RaftState(Enum):
-    """Possible states for a Raft node."""
+    #Possible states for a Raft node
     FOLLOWER = auto()
     CANDIDATE = auto()
     LEADER = auto()
 
 
 class RaftNode(Node):
-    """Implementation of a node using the Raft consensus algorithm."""
+    #Implementation of a node using the Raft consensus algorithm
 
     # Constants in seconds
     ELECTION_TIMEOUT_MIN = 0.15
@@ -24,7 +24,7 @@ class RaftNode(Node):
     HEARTBEAT_INTERVAL = 0.05
 
     def __init__(self, node_id: str, simulation):
-        """Initialize a Raft node."""
+        #Initialise a Raft node
         super().__init__(node_id, simulation)
 
         # Persistent state
@@ -49,11 +49,11 @@ class RaftNode(Node):
         self.schedule_timeout(self.election_timeout, "election")
 
     def _random_election_timeout(self) -> float:
-        """Generate random election timeout within configured bounds."""
+        #Generate random election timeout within configured bounds
         return random.uniform(self.ELECTION_TIMEOUT_MIN, self.ELECTION_TIMEOUT_MAX)
 
     def become_follower(self, term: int) -> None:
-        """Transition to follower state."""
+        #Transition to follower state
         assert term >= self.current_term, "Term cannot decrease"
         self.current_term = term
         self.state = RaftState.FOLLOWER
@@ -148,7 +148,7 @@ class RaftNode(Node):
             self._handle_append_entries_response(data['src'], data)
     
     def tick(self, current_time: float) -> None:
-        """Handle time-based operations."""
+        #Handle time-based operations
         # Check for election timeout
         if (current_time - self.last_heartbeat_time) > self.election_timeout:
             if self.state != RaftState.LEADER:
@@ -323,6 +323,3 @@ class RaftNode(Node):
             }
             self.log.append(entry)
             self._send_heartbeats()  # Replicate immediately
-
-
-#please clean up any import issues

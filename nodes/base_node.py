@@ -23,19 +23,19 @@ class Node(ABC):
         
         # Register node with simulation engine
         self.simulation.register_node(self)
-        self.logger.info("Node initialized and registered")
+        self.logger.info("Node initialised and registered")
     
     def __repr__(self) -> str:
         return f"<Node {self.node_id} alive={self.alive}>"
     
     @abstractmethod
     def receive_message(self, event: 'Event') -> None:
-        """Handle an incoming message event (abstract method)."""
+       #Handle an incoming message event (abstract method) 
         pass
     
     @abstractmethod
     def tick(self, current_time: float) -> None:
-        """Perform time-based operations (abstract method)."""
+       #Perform time-based operations (abstract method) 
         pass
     
     def send_message(

@@ -14,7 +14,7 @@ from simulation.simulation import EventDrivenSimulator
 from nodes.raft_node import RaftNode
 
 def main():
-    """Main entry point for the Raft simulator."""
+   #Main entry point for the Raft simulator 
     parser = argparse.ArgumentParser(description='Raft consensus simulator')
     parser.add_argument('--max_time', type=float, default=60.0,
                        help='Maximum simulation time in seconds')

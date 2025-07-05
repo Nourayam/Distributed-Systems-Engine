@@ -1,4 +1,4 @@
-I'll analyze the codebase and provide cleaned up versions of the files that need changes. Here are the key issues I found and the fixes:
+I'll analyse the codebase and provide cleaned up versions of the files that need changes. Here are the key issues I found and the fixes:
 
 1. Fixed imports and circular dependencies
 2. Improved type hints and docstrings
@@ -17,16 +17,16 @@ if TYPE_CHECKING:
     from simulation.simulation import Simulation
 
 class Node(ABC):
-    """Abstract base class for all nodes in the distributed system simulation."""
+   #Abstract base class for all nodes in the distributed system simulation 
     
     def __init__(self, node_id: str, simulation: 'Simulation'):
-        """
-        Initialize a node with unique identifier and simulation reference.
+       #
+        Initialise a node with unique identifier and simulation reference.
 
         Args:
             node_id: Unique identifier for this node
             simulation: Reference to the simulation engine
-        """
+       #
         self.node_id = node_id
         self.simulation = simulation
         self.inbox: List['Event'] = []
@@ -35,19 +35,19 @@ class Node(ABC):
         
         # Register node with simulation engine
         self.simulation.register_node(self)
-        self.logger.info("Node initialized and registered")
+        self.logger.info("Node initialised and registered")
     
     def __repr__(self) -> str:
         return f"<Node {self.node_id} alive={self.alive}>"
     
     @abstractmethod
     def receive_message(self, event: 'Event') -> None:
-        """Handle an incoming message event (abstract method)."""
+       #Handle an incoming message event (abstract method) 
         pass
     
     @abstractmethod
     def tick(self, current_time: float) -> None:
-        """Perform time-based operations (abstract method)."""
+       #Perform time-based operations (abstract method) 
         pass
     
     def send_message(
@@ -57,7 +57,7 @@ class Node(ABC):
         payload: Dict[str, Any],
         delay: float = 0.0
     ) -> None:
-        """
+       #
         Send a message to another node with optional delay.
 
         Args:
@@ -65,7 +65,7 @@ class Node(ABC):
             message_type: Type of message being sent
             payload: Message content
             delay: Optional delay before sending (in simulation time)
-        """
+       #
         # Validate destination exists
         if not self.simulation.node_exists(dst_id):
             self.logger.warning(f"Attempted to send to unknown node: {dst_id}")
@@ -90,7 +90,7 @@ class Node(ABC):
         self.logger.debug(f"Scheduled {message_type} to {dst_id} at {event.timestamp:.2f}")
     
     def process_inbox(self) -> None:
-        """Process all messages in the inbox (FIFO order)."""
+       #Process all messages in the inbox (FIFO order) 
         while self.inbox:
             event = self.inbox.pop(0)
             try:
@@ -103,11 +103,11 @@ class Node(ABC):
                 self.logger.error(f"Error processing message: {str(e)}", exc_info=True)
     
     def is_alive(self) -> bool:
-        """Check if node is operational (not crashed)."""
+       #Check if node is operational (not crashed) 
         return self.alive
     
     def crash(self) -> None:
-        """Mark node as crashed and log the event."""
+       #Mark node as crashed and log the event 
         if self.alive:
             self.alive = False
             self.logger.warning("Node crashed!")
@@ -117,7 +117,7 @@ class Node(ABC):
             )
     
     def recover(self) -> None:
-        """Recover node from crashed state."""
+       #Recover node from crashed state 
         if not self.alive:
             self.alive = True
             self.logger.info("Node recovered from crash")
@@ -132,14 +132,14 @@ class Node(ABC):
         tag: str, 
         payload: Dict[str, Any] = None
     ) -> None:
-        """
+       #
         Schedule a timeout event for this node.
 
         Args:
             delay: When the timeout should occur (relative to current time)
             tag: Identifier for this timeout
             payload: Optional additional data
-        """
+       #
         from simulation.simulation_events import Event, EventType
         event = Event(
             timestamp=self.simulation.current_time + delay,
@@ -165,13 +165,13 @@ from nodes.base_node import Node
 from simulation.simulation_events import Event, EventType
 
 class RaftState(Enum):
-    """Possible states for a Raft node."""
+   #Possible states for a Raft node 
     FOLLOWER = auto()
     CANDIDATE = auto()
     LEADER = auto()
 
 class RaftNode(Node):
-    """Implementation of a node using the Raft consensus algorithm."""
+   #Implementation of a node using the Raft consensus algorithm 
     
     # Constants in seconds
     ELECTION_TIMEOUT_MIN = 0.15
@@ -179,7 +179,7 @@ class RaftNode(Node):
     HEARTBEAT_INTERVAL = 0.05
     
     def __init__(self, node_id: str, simulation: 'Simulation'):
-        """Initialize a Raft node."""
+       #Initialise a Raft node 
         super().__init__(node_id, simulation)
         
         # Persistent state
@@ -204,11 +204,11 @@ class RaftNode(Node):
         self.schedule_timeout(self.election_timeout, "election")
     
     def _random_election_timeout(self) -> float:
-        """Generate random election timeout within configured bounds."""
+       #Generate random election timeout within configured bounds 
         return random.uniform(self.ELECTION_TIMEOUT_MIN, self.ELECTION_TIMEOUT_MAX)
     
     def become_follower(self, term: int) -> None:
-        """Transition to follower state."""
+       #Transition to follower state 
         assert term >= self.current_term, "Term cannot decrease"
         self.current_term = term
         self.state = RaftState.FOLLOWER
@@ -216,7 +216,7 @@ class RaftNode(Node):
         self._reset_election_timeout()
     
     def become_candidate(self) -> None:
-        """Transition to candidate state and start election."""
+       #Transition to candidate state and start election 
         self.current_term += 1
         self.state = RaftState.CANDIDATE
         self.voted_for = self.node_id
@@ -243,10 +243,10 @@ class RaftNode(Node):
         self._reset_election_timeout()
     
     def become_leader(self) -> None:
-        """Transition to leader state."""
+       #Transition to leader state 
         self.state = RaftState.LEADER
         
-        # Initialize leader state
+        # Initialise leader state
         next_idx = len(self.log)
         self.next_index = {
             node.node_id: next_idx 
@@ -263,13 +263,13 @@ class RaftNode(Node):
         self._send_heartbeats()
     
     def _reset_election_timeout(self) -> None:
-        """Reset election timeout with new random value."""
+       #Reset election timeout with new random value 
         self.election_timeout = self._random_election_timeout()
         self.last_heartbeat_time = self.simulation.clock
         self.schedule_timeout(self.election_timeout, "election")
     
     def _send_heartbeats(self) -> None:
-        """Send AppendEntries messages to all followers."""
+       #Send AppendEntries messages to all followers 
         for node in self.simulation.nodes.values():
             if node.node_id == self.node_id:
                 continue
@@ -294,7 +294,7 @@ class RaftNode(Node):
             )
     
     def receive_message(self, event: Event) -> None:
-        """Handle incoming messages."""
+       #Handle incoming messages 
         data = event.data
         
         if data['type'] == 'RequestVote':
@@ -307,7 +307,7 @@ class RaftNode(Node):
             self._handle_append_entries_response(data['src'], data)
     
     def tick(self, current_time: float) -> None:
-        """Handle time-based operations."""
+       #Handle time-based operations 
         # Check for election timeout
         if (current_time - self.last_heartbeat_time) > self.election_timeout:
             if self.state != RaftState.LEADER:
@@ -320,13 +320,13 @@ class RaftNode(Node):
                 self.last_heartbeat_time = current_time
     
     def _handle_request_vote(self, candidate_id: str, data: Dict[str, Any]) -> None:
-        """
+       #
         Handle a RequestVote RPC.
 
         Args:
             candidate_id: ID of the candidate requesting the vote
             data: The RequestVote message contents
-        """
+       #
         term = data['term']
         granted = False
         
@@ -353,13 +353,13 @@ class RaftNode(Node):
         )
     
     def _handle_request_vote_response(self, voter_id: str, data: Dict[str, Any]) -> None:
-        """
+       #
         Handle a RequestVoteResponse RPC.
 
         Args:
             voter_id: ID of the voter
             data: The RequestVoteResponse message contents
-        """
+       #
         if self.state != RaftState.CANDIDATE:
             return
         
@@ -380,13 +380,13 @@ class RaftNode(Node):
                 self.become_leader()
     
     def _handle_append_entries(self, leader_id: str, data: Dict[str, Any]) -> None:
-        """
+       #
         Handle an AppendEntries RPC (heartbeat or log replication).
 
         Args:
             leader_id: ID of the leader sending the entries
             data: The AppendEntries message contents
-        """
+       #
         term = data['term']
         success = False
         
@@ -425,13 +425,13 @@ class RaftNode(Node):
         )
     
     def _handle_append_entries_response(self, follower_id: str, data: Dict[str, Any]) -> None:
-        """
+       #
         Handle an AppendEntriesResponse RPC.
 
         Args:
             follower_id: ID of the follower responding
             data: The AppendEntriesResponse message contents
-        """
+       #
         if self.state != RaftState.LEADER:
             return
         
@@ -450,12 +450,12 @@ class RaftNode(Node):
             self._send_heartbeats()  # Will resend AppendEntries with updated nextIndex
     
     def submit_command(self, command: Any) -> None:
-        """
+       #
         Submit a new command to be replicated by Raft (leader only).
 
         Args:
             command: The command to append to the log
-        """
+       #
         if self.state == RaftState.LEADER:
             entry = {
                 'term': self.current_term,
@@ -472,7 +472,7 @@ from typing import Any, Dict, Optional
 
 
 class EventType(Enum):
-    """Types of events that can occur in the simulation."""
+   #Types of events that can occur in the simulation 
     MESSAGE_SEND = auto()    # Message sending event
     MESSAGE_DELIVER = auto() # Message receiving event
     TIMEOUT = auto()         # Timer expiration event
@@ -482,13 +482,13 @@ class EventType(Enum):
 
 @dataclass(order=True)
 class Event:
-    """Represents a simulation event with timestamp and payload."""
+   #Represents a simulation event with timestamp and payload 
     timestamp: float
     event_type: EventType
     data: Dict[str, Any] = None
 
     def __post_init__(self):
-        """Initialize data as empty dict if not provided."""
+       #Initialise data as empty dict if not provided 
         if self.data is None:
             self.data = {}
 

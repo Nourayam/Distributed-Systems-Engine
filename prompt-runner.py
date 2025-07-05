@@ -28,10 +28,10 @@ def load_files(file_paths):
 code_context = load_files(INPUT_FILES)
 
 # === ✍️ Custom Refactoring Prompt ===
-refactor_prompt = f"""
+refactor_prompt = f 
 You are an expert software engineer reviewing a multi-file Python project built for distributed system simulation.
 
-Your task is to refactor and productionize the codebase. Specifically:
+Your task is to refactor and productionise the codebase. Specifically:
 
 
 
@@ -59,7 +59,7 @@ Your task is to refactor and productionize the codebase. Specifically:
 Below is the complete codebase. Reply with the fully updated and polished versions of **only** the files that were changed. Use clear `# ==== FILE: path ====` markers to segment your response.
 
 {code_context}
-"""
+ 
 
 # === 📬 Compose Request Payload ===
 payload = {
@@ -80,7 +80,7 @@ payload = {
 }
 
 headers = {
-    "Authorization": f"Bearer {API_KEY}",
+    "Authorisation": f"Bearer {API_KEY}",
     "Content-Type": "application/json"
 }
 

@@ -1,4 +1,4 @@
-I'll help refactor and productionize the simulation.py file. Since you haven't provided the actual codebase content, I'll create a comprehensive, production-ready version of simulation.py based on typical distributed system simulation needs.
+I'll help refactor and productionise the simulation.py file. Since you haven't provided the actual codebase content, I'll create a comprehensive, production-ready version of simulation.py based on typical distributed system simulation needs.
 
 Here's what I'll include:
 1. Proper package structure and imports
@@ -8,11 +8,11 @@ Here's what I'll include:
 5. Testable components
 
 # ==== FILE: simulation/simulation.py ====
-"""
+ 
 Main simulation module for distributed system simulation.
 
 Handles core simulation logic, event scheduling, and component coordination.
-"""
+ 
 
 from __future__ import annotations
 import heapq
@@ -28,7 +28,7 @@ logger = logging.getLogger(__name__)
 
 
 class EventType(Enum):
-    """Types of events in the simulation."""
+   #Types of events in the simulation 
     MESSAGE = auto()
     NODE_FAILURE = auto()
     NETWORK_DELAY = auto()
@@ -37,7 +37,7 @@ class EventType(Enum):
 
 @dataclass(order=True)
 class Event:
-    """Represents a discrete event in the simulation."""
+   #Represents a discrete event in the simulation 
     time: float
     event_type: EventType = field(compare=False)
     handler: Callable[[], Any] = field(compare=False)
@@ -45,25 +45,25 @@ class Event:
 
 
 class SimulationClock:
-    """Manages simulation time and time-related operations."""
+   #Manages simulation time and time-related operations 
     
     def __init__(self, initial_time: float = 0.0):
         self._current_time = initial_time
     
     @property
     def now(self) -> float:
-        """Get current simulation time."""
+       #Get current simulation time 
         return self._current_time
     
     def advance(self, delta: float) -> None:
-        """Advance simulation time by delta."""
+       #Advance simulation time by delta 
         if delta < 0:
             raise ValueError("Time delta cannot be negative")
         self._current_time += delta
 
 
 class SimulationEngine:
-    """Core simulation engine managing events and time."""
+   #Core simulation engine managing events and time 
     
     def __init__(self):
         self.clock = SimulationClock()
@@ -76,13 +76,13 @@ class SimulationEngine:
         }
     
     def schedule_event(self, event: Event) -> None:
-        """Schedule a new event in the simulation."""
+       #Schedule a new event in the simulation 
         if event.time < self.clock.now:
             raise ValueError("Cannot schedule event in the past")
         heapq.heappush(self._event_queue, event)
     
     def run(self, max_time: Optional[float] = None) -> None:
-        """Run the simulation until no events remain or max_time is reached."""
+       #Run the simulation until no events remain or max_time is reached 
         self._running = True
         logger.info("Simulation starting")
         
@@ -100,7 +100,7 @@ class SimulationEngine:
         self._log_statistics()
     
     def _process_event(self, event: Event) -> None:
-        """Process a single simulation event."""
+       #Process a single simulation event 
         try:
             event.handler()
             self._stats['events_processed'] += 1
@@ -114,16 +114,16 @@ class SimulationEngine:
             logger.error(f"Error processing event: {e}", exc_info=True)
     
     def stop(self) -> None:
-        """Gracefully stop the simulation."""
+       #Gracefully stop the simulation 
         self._running = False
     
     def _log_statistics(self) -> None:
-        """Log simulation statistics."""
+       #Log simulation statistics 
         stats_str = "\n".join(f"{k}: {v}" for k, v in self._stats.items())
         logger.info(f"Simulation Statistics:\n{stats_str}")
     
     def reset(self) -> None:
-        """Reset the simulation to initial state."""
+       #Reset the simulation to initial state 
         self.clock = SimulationClock()
         self._event_queue = []
         self._running = False
@@ -131,7 +131,7 @@ class SimulationEngine:
 
 
 class DistributedNode:
-    """Base class for nodes in the distributed system."""
+   #Base class for nodes in the distributed system 
     
     def __init__(self, node_id: str, simulation: SimulationEngine):
         self.node_id = node_id
@@ -139,7 +139,7 @@ class DistributedNode:
         self.failed = False
     
     def send_message(self, target_node: DistributedNode, message: Dict[str, Any], delay: float = 0.0) -> None:
-        """Send a message to another node with optional network delay."""
+       #Send a message to another node with optional network delay 
         if self.failed:
             logger.warning(f"Node {self.node_id} is failed and cannot send messages")
             return
@@ -159,12 +159,12 @@ class DistributedNode:
         self.simulation.schedule_event(event)
     
     def receive_message(self, sender: DistributedNode, message: Dict[str, Any]) -> None:
-        """Handle incoming message from another node."""
+       #Handle incoming message from another node 
         logger.info(f"Node {self.node_id} received message from {sender.node_id}: {message}")
         # To be implemented by subclasses
     
     def fail(self) -> None:
-        """Simulate node failure."""
+       #Simulate node failure 
         self.failed = True
         logger.warning(f"Node {self.node_id} failed")
         
@@ -178,7 +178,7 @@ class DistributedNode:
 
 
 def example_simulation() -> None:
-    """Example usage of the simulation framework."""
+   #Example usage of the simulation framework 
     sim = SimulationEngine()
     
     # Create nodes
@@ -219,9 +219,9 @@ Key improvements made:
 
 TODOs for future improvement:
 1. Add proper configuration management
-2. Implement serialization for simulation state
+2. Implement serialisation for simulation state
 3. Add more comprehensive metrics collection
-4. Implement visualization capabilities
+4. Implement visualisation capabilities
 5. Add network topology modeling
 6. Implement proper test suite
 
