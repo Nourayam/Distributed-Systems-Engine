@@ -1,76 +1,73 @@
 from __future__ import annotations
-from typing import Dict, List, Optional, Any
-import random
-import time
 from enum import Enum, auto
-import sys
-import os
+import logging
+import random
+from typing import Any, Dict, List, Optional
 
-# Add project root to path
-project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-if project_root not in sys.path:
-    sys.path.append(project_root)
+from ..base_node import Node
+from ..simulation.simulation_events import Event, EventType
 
-# Import after path fix
-from nodes.base_node import Node
-from simulation.simulation_events import Event, EventType
 
 class RaftState(Enum):
+    """Possible states for a Raft node."""
     FOLLOWER = auto()
     CANDIDATE = auto()
     LEADER = auto()
 
+
 class RaftNode(Node):
+    """Implementation of a node using the Raft consensus algorithm."""
+
     # Constants in seconds
     ELECTION_TIMEOUT_MIN = 0.15
     ELECTION_TIMEOUT_MAX = 0.30
     HEARTBEAT_INTERVAL = 0.05
-    
+
     def __init__(self, node_id: str, simulation):
-        """Initialize a Raft node"""
-        # Get peers from simulation
-        peers = [str(nid) for nid in simulation.nodes if str(nid) != node_id]
+        """Initialize a Raft node."""
         super().__init__(node_id, simulation)
-        
+
         # Persistent state
         self.current_term: int = 0
         self.voted_for: Optional[str] = None
         self.log: List[Dict[str, Any]] = []
-        
+
         # Volatile state
         self.commit_index: int = 0
         self.last_applied: int = 0
         self.state: RaftState = RaftState.FOLLOWER
-        
+
         # Leader state
         self.next_index: Dict[str, int] = {}
         self.match_index: Dict[str, int] = {}
-        
+
         # Timeout tracking
         self.election_timeout: float = self._random_election_timeout()
         self.last_heartbeat_time: float = simulation.clock
-        
+
         # Schedule initial timeout
         self.schedule_timeout(self.election_timeout, "election")
-    
+
     def _random_election_timeout(self) -> float:
+        """Generate random election timeout within configured bounds."""
         return random.uniform(self.ELECTION_TIMEOUT_MIN, self.ELECTION_TIMEOUT_MAX)
-    
+
     def become_follower(self, term: int) -> None:
-        """Transition to follower state"""
+        """Transition to follower state."""
         assert term >= self.current_term, "Term cannot decrease"
         self.current_term = term
         self.state = RaftState.FOLLOWER
         self.voted_for = None
         self._reset_election_timeout()
-    
+
+
     def become_candidate(self) -> None:
-        """Transition to candidate state and start election"""
+        #Transition to candidate state and start election
         self.current_term += 1
         self.state = RaftState.CANDIDATE
         self.voted_for = self.node_id
         
-        # Request votes
+        # Request votes from all peers
         last_log_index = len(self.log) - 1
         last_log_term = self.log[-1]['term'] if self.log else 0
         
@@ -92,10 +89,10 @@ class RaftNode(Node):
         self._reset_election_timeout()
     
     def become_leader(self) -> None:
-        """Transition to leader state"""
+        #Transition to leader state
         self.state = RaftState.LEADER
         
-        # Initialize leader state
+        # Initialise leader state
         next_idx = len(self.log)
         self.next_index = {
             str(node_id): next_idx 
@@ -107,13 +104,13 @@ class RaftNode(Node):
         self._send_heartbeats()
     
     def _reset_election_timeout(self) -> None:
-        """Reset election timeout"""
+        #Reset election timeout with new random value
         self.election_timeout = self._random_election_timeout()
         self.last_heartbeat_time = self.simulation.clock
         self.schedule_timeout(self.election_timeout, "election")
     
     def _send_heartbeats(self) -> None:
-        """Send AppendEntries to all followers"""
+        #Send AppendEntries messages to all followers
         for node in self.simulation.nodes.values():
             if node.node_id == self.node_id:
                 continue
@@ -138,20 +135,20 @@ class RaftNode(Node):
             )
     
     def receive_message(self, event: Event) -> None:
-        """Handle incoming messages"""
+        #Handle incoming messages
         data = event.data
         
         if data['type'] == 'RequestVote':
-            self._handle_request_vote(event.data['src'], data)
+            self._handle_request_vote(data['src'], data)
         elif data['type'] == 'RequestVoteResponse':
-            self._handle_request_vote_response(event.data['src'], data)
+            self._handle_request_vote_response(data['src'], data)
         elif data['type'] == 'AppendEntries':
-            self._handle_append_entries(event.data['src'], data)
+            self._handle_append_entries(data['src'], data)
         elif data['type'] == 'AppendEntriesResponse':
-            self._handle_append_entries_response(event.data['src'], data)
+            self._handle_append_entries_response(data['src'], data)
     
     def tick(self, current_time: float) -> None:
-        """Handle time-based operations"""
+        """Handle time-based operations."""
         # Check for election timeout
         if (current_time - self.last_heartbeat_time) > self.election_timeout:
             if self.state != RaftState.LEADER:
@@ -159,7 +156,6 @@ class RaftNode(Node):
         
         # Send heartbeats if leader
         if self.state == RaftState.LEADER:
-            # Send heartbeats at fixed interval
             if current_time - self.last_heartbeat_time >= self.HEARTBEAT_INTERVAL:
                 self._send_heartbeats()
                 self.last_heartbeat_time = current_time
@@ -327,3 +323,6 @@ class RaftNode(Node):
             }
             self.log.append(entry)
             self._send_heartbeats()  # Replicate immediately
+
+
+#please clean up any import issues
