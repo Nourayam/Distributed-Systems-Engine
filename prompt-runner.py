@@ -8,10 +8,10 @@ ENDPOINT = "https://api.deepseek.com/v1/chat/completions"
 
 # === 🗂️ Project Files to Submit ===
 INPUT_FILES = [
-    "simulation/config.py",
+    "failure/failure_injector.py",
 ]
 
-OUTPUT_FILE = "simulation/config.py"
+OUTPUT_FILE = "failure/failure_injector.py"
 
 # === 📦 Load Code from Files ===
 def load_files(file_paths):

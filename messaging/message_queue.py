@@ -4,7 +4,7 @@ import random
 from typing import Dict, Any, TypedDict
 
 from ..simulation.simulation_events import Event, EventType
-from ..simulation.simulation import Simulation
+from ..simulation import Simulation
 from config import Config
 
 

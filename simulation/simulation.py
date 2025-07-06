@@ -71,7 +71,7 @@ class EventDrivenSimulator:
     def __init__(self, config: Dict[str, Any], state_callback: Optional[Callable] = None):
         self.clock = 0.0
         self.event_queue: List[SimulationEvent] = []
-        self.nodes: Dict[int, Node] = {}
+        self.nodes: Dict[int, Nodes] = {}
         self.config = config
         self.message_drop_rate = config.get('message_drop_rate', 0.1)
         self.min_latency = config.get('min_latency', 0.1)
@@ -493,7 +493,6 @@ class SimulationServer:
         
         # Args:
         #     client: Client connection to remove
-        
         self.clients.discard(client)
 
 

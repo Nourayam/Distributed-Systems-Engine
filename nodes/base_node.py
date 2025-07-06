@@ -6,7 +6,7 @@ if TYPE_CHECKING:
     from ..simulation.simulation_events import Event, EventType
     from ..simulation.simulation import Simulation
 
-class Node(ABC):
+class Nodes(ABC):
     # Abstract base class for all nodes in the distributed system simulation.
     def __init__(self, node_id: str, simulation: 'Simulation'):
     #Initialise a node with unique identifier and simulation reference.
