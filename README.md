@@ -2,23 +2,24 @@
 #RAFT DSS — A Production-Grade Distributed Systems Engine
 
 **Problem**
-Understanding distributed consensus algorithms like RAFT requires hands-on experimentation with leader election, log replication, and network partition scenarios—but most educational resources offer only theoretical explanations.
+ - Understanding distributed consensus algorithms like RAFT requires hands-on experimentation with leader election, log replication, and network partition scenarios—but most educational resources offer only theoretical explanations.
 Real-world distributed systems engineers need practical experience with fault-tolerance, message-passing semantics, and consensus behaviour under realistic network conditions.
 
 **Solution**
+
 This RAFT simulator provides a comprehensive, event-driven environment for exploring distributed consensus from the ground up:
 
-Pure Python Implementation: RAFT consensus algorithm built from scratch with full state machine semantics
-Realistic Network Simulation: configurable latency, packet loss, and partition injection
-High-Performance Event Engine: processes thousands of consensus events per second with microsecond precision
-Production-Grade Architecture: modular design supporting algorithm swapping and extensibility
+ - Pure Python Implementation: RAFT consensus algorithm built from scratch with full state machine semantics
+ - Realistic Network Simulation: configurable latency, packet loss, and partition injection
+ - High-Performance Event Engine: processes thousands of consensus events per second with microsecond precision
+ - Production-Grade Architecture: modular design supporting algorithm swapping and extensibility
 
 **Core Features**
 
-Complete RAFT Implementation: leader election, log replication, term management, and follower synchronisation
-Network Fault Injection: message drops, delays, duplicates, and network partitions with statistical modelling
-Event-Driven Simulation: priority-queue scheduling with deterministic replay and comprehensive logging
-Configurable Cluster Topologies: support for 3–100+ node clusters with dynamic failure scenarios
+ - Complete RAFT Implementation: leader election, log replication, term management, and follower synchronisation
+ - Network Fault Injection: message drops, delays, duplicates, and network partitions with statistical modelling
+ - Event-Driven Simulation: priority-queue scheduling with deterministic replay and comprehensive logging
+ - Configurable Cluster Topologies: support for 3–100+ node clusters with dynamic failure scenarios
 Rich Observability: detailed state tracking, message tracing, and consensus timeline reconstruction
 Chaos Engineering: automated failure injection patterns including rolling failures and split-brain scenarios
 
