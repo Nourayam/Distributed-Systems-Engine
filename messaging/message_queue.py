@@ -1,24 +1,22 @@
+from __future__ import annotations
+
 import random
-from typing import Dict, Any
-from simulation.simulation_events import Event, EventType
-from simulation.simulation import Simulation
+from typing import Dict, Any, TypedDict
+
+from ..simulation.simulation_events import Event, EventType
+from ..simulation.simulation import Simulation
 from config import Config
 
 
-class MessageQueue:
-    #A message queue that simulates network communication with latency and packet drops.
-    # Attributes:
-    #     config: The simulation configuration containing network parameters.
-    #     simulation: The simulation instance where events will be scheduled.
+class MessageData(TypedDict):
+    src: str
+    dst: str 
+    type: str
+    payload: Dict[str, Any]
 
-    
-    def __init__(self, config: Config, simulation: Simulation):
-        # Initialise the message queue with configuration and simulation reference.
-        
-        # Args:
-        #     config: Configuration object containing network parameters like drop rate and latency.
-        #     simulation: The simulation instance where events will be scheduled.
-        
+
+class MessageQueue:
+    def __init__(self, config: Config, simulation: Simulation) -> None:
         self.config = config
         self.simulation = simulation
 
@@ -30,37 +28,38 @@ class MessageQueue:
         payload: Dict[str, Any],
         current_time: float
     ) -> None:
-        #Send a message from source to destination with potential latency and drops.
-        
-        # Args:
-        #     src: Identifier of the message sender.
-        #     dst: Identifier of the message receiver.
-        #     message_type: Type/category of the message.
-        #     payload: Dictionary containing the message content.
-        #     current_time: The simulation time when the message is sent.
-    
-        # Create the message data structure
-        data = {
+        # Create message structure
+        data: MessageData = {
             'src': src,
             'dst': dst,
             'type': message_type,
             'payload': payload
         }
+
+        # Log send event
+        self._log_send_event(current_time, data)
         
-        # Always log the send event (for tracking purposes)
-        send_event = Event(EventType.SEND, current_time, data)
-        self.simulation.schedule_event(send_event)
-        
-        # Check if the message should be dropped
-        if random.random() < self.config.drop_rate:
-            drop_event = Event(EventType.MESSAGE_DROPPED, current_time, data)
-            self.simulation.schedule_event(drop_event)
+        # Randomly drop message based on config
+        if self._should_drop_message():
+            self._log_drop_event(current_time, data)
             return
         
-        # Calculate random network latency and delivery time
+        # Schedule delivery with random latency
+        self._schedule_delivery(current_time, data)
+
+    def _should_drop_message(self) -> bool:
+        return random.random() < self.config.drop_rate
+
+    def _log_send_event(self, timestamp: float, data: MessageData) -> None:
+        send_event = Event(EventType.SEND, timestamp, data)
+        self.simulation.schedule_event(send_event)
+
+    def _log_drop_event(self, timestamp: float, data: MessageData) -> None:
+        drop_event = Event(EventType.MESSAGE_DROPPED, timestamp, data)
+        self.simulation.schedule_event(drop_event)
+
+    def _schedule_delivery(self, send_time: float, data: MessageData) -> None:
         latency = random.uniform(self.config.min_latency, self.config.max_latency)
-        delivery_time = current_time + latency
-        
-        # Schedule the message delivery event
+        delivery_time = send_time + latency
         delivery_event = Event(EventType.MESSAGE_RECEIVED, delivery_time, data)
         self.simulation.schedule_event(delivery_event)

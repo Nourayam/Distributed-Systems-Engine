@@ -8,10 +8,10 @@ ENDPOINT = "https://api.deepseek.com/v1/chat/completions"
 
 # === 🗂️ Project Files to Submit ===
 INPUT_FILES = [
-    "nodes/raft_node.py"
+    "simulation/config.py",
 ]
 
-OUTPUT_FILE = "nodes/raft_node.py"
+OUTPUT_FILE = "simulation/config.py"
 
 # === 📦 Load Code from Files ===
 def load_files(file_paths):
@@ -28,14 +28,12 @@ def load_files(file_paths):
 code_context = load_files(INPUT_FILES)
 
 # === ✍️ Custom Refactoring Prompt ===
-refactor_prompt = f 
+refactor_prompt = f"""
 You are an expert software engineer reviewing a multi-file Python project built for distributed system simulation.
 
-Your task is to refactor and productionise the codebase. Specifically:
+Your task is to refactor and productionize the codebase. Specifically:
 
-
-
-1. **Fix Imports, simulation just won't work for no good reason**:
+1. **Fix Imports VERY URGENT PLEASE**:
    - Resolve missing or broken import statements
    - Ensure all modules can be loaded as packages (`__init__.py` if needed)
 
@@ -54,12 +52,14 @@ Your task is to refactor and productionise the codebase. Specifically:
    - Leave TODOs or recommendations for any deeper architectural improvements
    - Avoid breaking existing high-level functionality
 
+5. you only use hashtags for comments not docstrings, important!!   
+
 ---
 
 Below is the complete codebase. Reply with the fully updated and polished versions of **only** the files that were changed. Use clear `# ==== FILE: path ====` markers to segment your response.
 
 {code_context}
- 
+"""
 
 # === 📬 Compose Request Payload ===
 payload = {
@@ -80,7 +80,7 @@ payload = {
 }
 
 headers = {
-    "Authorisation": f"Bearer {API_KEY}",
+    "Authorization": f"Bearer {API_KEY}",
     "Content-Type": "application/json"
 }
 
