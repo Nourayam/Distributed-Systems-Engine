@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from enum import Enum, auto
 from typing import Any, Dict, Optional
 
@@ -18,14 +18,10 @@ class EventType(Enum):
 @dataclass(order=True)
 class Event:
     """Represents a simulation event with timestamp and payload."""
-    event_type: EventType
     timestamp: float
-    data: Dict[str, Any] = None
-
-    def __post_init__(self):
-        """Initialize data as empty dict if not provided"""
-        if self.data is None:
-            self.data = {}
+    # Use field(compare=False) to exclude from comparison
+    event_type: EventType = field(compare=False)
+    data: Dict[str, Any] = field(default_factory=dict, compare=False)
     
     def __str__(self) -> str:
         return f"Event({self.event_type.name} at {self.timestamp:.3f})"
