@@ -70,31 +70,33 @@ class Simulation:
         self.event_log.append(log_entry)
         self.logger.debug(f"Logged event: {event_type}")
 
+    
     def process_event(self, event: Event) -> None:
-    """Process a single event."""
-    try:
-        if event.event_type == EventType.MESSAGE_RECEIVED:
-            self._handle_message_received(event)
-        elif event.event_type == EventType.TIMEOUT:
-            self._handle_timeout(event)
-        elif event.event_type == EventType.ELECTION_TIMEOUT:
-            self._handle_election_timeout(event)
-        elif event.event_type == EventType.HEARTBEAT_TIMEOUT:
-            self._handle_heartbeat_timeout(event)
-        elif event.event_type == EventType.NODE_CRASH:
-            self._handle_node_crash(event)
-        elif event.event_type == EventType.NODE_RECOVER:
-            self._handle_node_recover(event)
-        elif event.event_type == EventType.MESSAGE_SEND:
-            # These are logging events - no action needed
-            self.logger.debug(f"Message sent: {event.data.get('type', 'unknown')} from {event.data.get('src')} to {event.data.get('dst')}")
-        elif event.event_type == EventType.MESSAGE_DROPPED:
-            # These are logging events - no action needed  
-            self.logger.debug(f"Message dropped: {event.data.get('type', 'unknown')} from {event.data.get('src')} to {event.data.get('dst')}")
-        else:
-            self.logger.warning(f"Unhandled event type: {event.event_type}")
-    except Exception as e:
-        self.logger.error(f"Error processing event {event}: {e}", exc_info=True)
+        #Process a single event
+        try:
+            if event.event_type == EventType.MESSAGE_RECEIVED:
+                self._handle_message_received(event)
+            elif event.event_type == EventType.TIMEOUT:
+                self._handle_timeout(event)
+            elif event.event_type == EventType.ELECTION_TIMEOUT:
+                self._handle_election_timeout(event)
+            elif event.event_type == EventType.HEARTBEAT_TIMEOUT:
+                self._handle_heartbeat_timeout(event)
+            elif event.event_type == EventType.NODE_CRASH:
+                self._handle_node_crash(event)
+            elif event.event_type == EventType.NODE_RECOVER:
+                self._handle_node_recover(event)
+            elif event.event_type == EventType.MESSAGE_SEND:
+                # These are logging events - no action needed
+                self.logger.debug(f"Message sent: {event.data.get('type', 'unknown')} from {event.data.get('src')} to {event.data.get('dst')}")
+            elif event.event_type == EventType.MESSAGE_DROPPED:
+                # These are logging events - no action needed  
+                self.logger.debug(f"Message dropped: {event.data.get('type', 'unknown')} from {event.data.get('src')} to {event.data.get('dst')}")
+            else:
+                self.logger.warning(f"Unhandled event type: {event.event_type}")
+        except Exception as e:
+            self.logger.error(f"Error processing event {event}: {e}", exc_info=True)
+
 
     def _handle_message_received(self, event: Event) -> None:
         """Handle message delivery to target node."""
