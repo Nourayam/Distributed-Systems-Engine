@@ -76,11 +76,11 @@ class MessageQueue:
 
     def _log_drop_event(self, timestamp: float, data: MessageData) -> None:
         """Log message drop event."""
-        self.logger.warning(f"Dropping {data['type']} from {data['src']} to {data['dst']}")
+        self.logger.debug(f"Dropping {data['type']} from {data['src']} to {data['dst']}")  # Changed from warning
         drop_event = Event(
             timestamp=timestamp,
             event_type=EventType.MESSAGE_DROPPED,
-            data=dict(data)  # Convert TypedDict to regular dict
+            data=dict(data)
         )
         self.simulation.schedule_event(drop_event)
 

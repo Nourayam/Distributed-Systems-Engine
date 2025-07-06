@@ -37,6 +37,40 @@ def create_simulation_config(args) -> Config:
     return config
 
 
+
+def inject_test_commands(sim: Simulation) -> None:
+    """Inject some test commands to demonstrate log replication"""
+    import time
+    
+    # Wait a bit for leader election to stabilize
+    def delayed_commands():
+        # Find current leader
+        leaders = [node for node in sim.nodes.values() 
+                  if hasattr(node, 'state') and node.state.name == 'LEADER']
+        
+        if leaders:
+            leader = leaders[0]
+            # Submit some test commands
+            commands = [
+                {"operation": "set", "key": "x", "value": 1},
+                {"operation": "set", "key": "y", "value": 2},
+                {"operation": "increment", "key": "x"}
+            ]
+            
+            for i, cmd in enumerate(commands):
+                leader.submit_command(cmd)
+                print(f"Submitted command {i+1}: {cmd}")
+    
+    # Schedule command injection after 5 seconds of simulation time
+    from simulation.simulation_events import Event, EventType
+    command_event = Event(
+        timestamp=5.0,
+        event_type=EventType.TIMEOUT,
+        data={'callback': delayed_commands}
+    )
+    sim.schedule_event(command_event)
+
+
 def inject_chaos_scenarios(sim: Simulation, injector: FailureInjector, args) -> None:
     """Inject chaos testing scenarios based on arguments"""
     if not args.chaos:
@@ -98,15 +132,23 @@ def print_simulation_results(sim: Simulation) -> None:
         print(f"Leader log size: {len(leader.log)}")
         print(f"Leader commit index: {leader.commit_index}")
     
-    # Event summary
-    print(f"\nTotal events processed: {len(sim.event_log)}")
+    # Event summary - FIX: Use the correct counter
+    statistics = sim.get_statistics()
+    print(f"\nSimulation Statistics:")
+    print(f"Events processed: {statistics['total_events']}")
     print(f"Simulation time: {sim.current_time:.2f} seconds")
+    print(f"Node states: {statistics['node_states']}")
+    print(f"Alive nodes: {statistics['alive_nodes']}/{statistics['node_count']}")
     
-    # Show recent events
-    print(f"\nRecent events (last 10):")
-    for event in sim.event_log[-10:]:
-        print(f"  {event['timestamp']:.2f}s: {event['type']}")
-
+    # Show recent significant events only
+    significant_events = [e for e in sim.event_log if e['type'] in 
+                         ['NODE_CRASH', 'NODE_RECOVER', 'LEADER_ELECTED']]
+    if significant_events:
+        print(f"\nSignificant events:")
+        for event in significant_events[-5:]:  # Last 5 significant events
+            print(f"  {event['timestamp']:.2f}s: {event['type']} - {event['data']}")
+    else:
+        print(f"\nNo significant events recorded (normal operation)")
 
 def main():
     """Main entry point for the Raft simulator"""
@@ -115,8 +157,8 @@ def main():
                        help='Maximum simulation time in seconds')
     parser.add_argument('--nodes', type=int, default=5,
                        help='Number of Raft nodes in the cluster')
-    parser.add_argument('--message_drop_rate', type=float, default=0.1,
-                       help='Message drop rate (0.0 to 1.0)')
+    parser.add_argument('--message_drop_rate', type=float, default=0.02,  # Reduced from 0.1 to reduce all those extra messages
+                   help='Message drop rate (0.0 to 1.0)')
     parser.add_argument('--chaos', action='store_true',
                        help='Enable chaos testing')
     parser.add_argument('--chaos_scenario', type=str,
@@ -133,6 +175,21 @@ def main():
     args = parser.parse_args()
     
     # Setup logging
+    def setup_logging(verbose: bool = False, quiet: bool = False) -> None:
+    """Setup logging configuration"""
+    if quiet:
+        level = logging.WARNING
+    elif verbose:
+        level = logging.DEBUG
+    else:
+        level = logging.INFO
+        
+    logging.basicConfig(
+        level=level,
+        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+        stream=sys.stdout
+    )
+    
     setup_logging(args.verbose)
     logger = logging.getLogger(__name__)
     
