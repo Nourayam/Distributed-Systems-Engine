@@ -25,15 +25,15 @@ Chaos Engineering: automated failure injection patterns including rolling failur
 
 **System Architecture**
 
-The simulator follows a clean event-driven pipeline:
+**The simulator follows a clean event-driven pipeline:**
 
-Simulation Engine (simulation/) — priority-queue event scheduler with microsecond timing
-Node Implementation (nodes/) — RAFT state machines with leader election and log replication
-Message Layer (messaging/) — realistic network simulation with configurable failure modes
-Failure Injection (failure/) — chaos engineering toolkit for testing fault-tolerance
-Configuration (config.py) — centralised tuning for network conditions and cluster behaviour
+ - Simulation Engine (simulation/) — priority-queue event scheduler with microsecond timing
+ - Node Implementation (nodes/) — RAFT state machines with leader election and log replication
+ - Message Layer (messaging/) — realistic network simulation with configurable failure modes
+ - Failure Injection (failure/) — chaos engineering toolkit for testing fault-tolerance
+ - Configuration (config.py) — centralised tuning for network conditions and cluster behaviour
 
-Each layer operates independently, enabling modular testing and algorithm experimentation.
+**Each layer operates independently, enabling modular testing and algorithm experimentation.**
 
 
 **Setup & Running**
@@ -87,9 +87,9 @@ Testing: Comprehensive failure scenarios validate edge cases and recovery patter
 
 **Future Development**
 
-Web Dashboard: React-based visualisation of consensus state and message flows
-Algorithm Extensions: Multi-RAFT, Byzantine fault tolerance, and Paxos implementations
-Performance Benchmarking: comparative analysis across consensus algorithms
+ - Web Dashboard: React-based visualisation of consensus state and message flows
+ - Algorithm Extensions: Multi-RAFT, Byzantine fault tolerance, and Paxos implementations
+ - Performance Benchmarking: comparative analysis across consensus algorithms
 Distributed Deployment: actual network deployment for real-world testing
 
 
