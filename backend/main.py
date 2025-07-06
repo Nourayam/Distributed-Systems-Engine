@@ -135,7 +135,8 @@ def print_simulation_results(sim: Simulation) -> None:
     # Event summary - FIX: Use the correct counter
     statistics = sim.get_statistics()
     print(f"\nSimulation Statistics:")
-    print(f"Events processed: {statistics['total_events']}")
+    print(f"Events processed: {statistics['events_processed']}")  # this is gonna be better to see what's actualliy going thorugh
+    print(f"Events logged: {statistics['total_events']}")
     print(f"Simulation time: {sim.current_time:.2f} seconds")
     print(f"Node states: {statistics['node_states']}")
     print(f"Alive nodes: {statistics['alive_nodes']}/{statistics['node_count']}")
@@ -176,20 +177,20 @@ def main():
     
     # Setup logging
     def setup_logging(verbose: bool = False, quiet: bool = False) -> None:
-    """Setup logging configuration"""
-    if quiet:
-        level = logging.WARNING
-    elif verbose:
-        level = logging.DEBUG
-    else:
-        level = logging.INFO
-        
-    logging.basicConfig(
-        level=level,
-        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-        stream=sys.stdout
+    #Setup logging configuration
+        if quiet:
+            level = logging.WARNING
+        elif verbose:
+            level = logging.DEBUG
+        else:
+            level = logging.INFO
+            
+        logging.basicConfig(
+            level=level,
+            format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+            stream=sys.stdout
     )
-    
+
     setup_logging(args.verbose)
     logger = logging.getLogger(__name__)
     
