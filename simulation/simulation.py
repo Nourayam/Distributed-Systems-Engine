@@ -339,7 +339,7 @@ class Simulation:
             self.logger.warning(f"Unknown failure type: {failure_type}")
 
     def get_statistics(self) -> Dict[str, Any]:
-        """Get simulation statistics."""
+    #Get simulation statistics.
         node_states = {}
         for node_id, node in self.nodes.items():
             if hasattr(node, 'state'):
@@ -348,7 +348,8 @@ class Simulation:
         
         return {
             'simulation_time': self.current_time,
-            'total_events': len(self.event_log),
+            'total_events': len(self.event_log),  # This should work
+            'events_processed': self._event_sequence_counter,  # Add this line for total processed
             'pending_events': len(self.event_queue),
             'node_count': len(self.nodes),
             'node_states': node_states,
