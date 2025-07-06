@@ -1,4 +1,4 @@
-from .base_node import BaseNode
-from .raft_node import RaftNode
+from .base_node import Node
+from .raft_node import RaftNode, RaftState
 
-__all__ = ["BaseNode", "RaftNode"]
+__all__ = ['Node', 'RaftNode', 'RaftState']

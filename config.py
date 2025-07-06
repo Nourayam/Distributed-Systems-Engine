@@ -1,5 +1,6 @@
 from typing import Final
 import random
+from dataclasses import dataclass
 
 # === Simulation Core Parameters ===
 NODE_COUNT: Final[int] = 5
@@ -19,11 +20,27 @@ MESSAGE_DELAY_RANGE: Final[tuple[float, float]] = (0.01, 0.1)  # min/max seconds
 VERBOSE_LOGGING: Final[bool] = True
 DEBUG_MODE: Final[bool] = False
 
-# Initialise random generator with fixed seed for reproducibility
+# Initialize random generator with fixed seed for reproducibility
 random.seed(RANDOM_SEED)
 
-# TODO: Consider moving to environment variables for production deployment
-# TODO: Add validation for parameter ranges (e.g., probabilities between 0-1)
+@dataclass
+class Config:
+    """Configuration class for the simulation."""
+    node_count: int = NODE_COUNT
+    message_drop_rate: float = MESSAGE_LOSS_RATE
+    node_failure_rate: float = NODE_FAILURE_RATE
+    min_latency: float = MESSAGE_DELAY_RANGE[0]
+    max_latency: float = MESSAGE_DELAY_RANGE[1]
+    heartbeat_interval: float = HEARTBEAT_INTERVAL
+    election_timeout_min: float = ELECTION_TIMEOUT_RANGE[0]
+    election_timeout_max: float = ELECTION_TIMEOUT_RANGE[1]
+    verbose_logging: bool = VERBOSE_LOGGING
+    debug_mode: bool = DEBUG_MODE
+    
+    # Add alias for compatibility
+    @property
+    def drop_rate(self) -> float:
+        return self.message_drop_rate
 
 def validate_config() -> None:
     """Validate configuration parameters."""
@@ -35,5 +52,3 @@ def validate_config() -> None:
         raise ValueError("HEARTBEAT_INTERVAL must be between 0 and 10 seconds")
     if not (ELECTION_TIMEOUT_RANGE[0] < ELECTION_TIMEOUT_RANGE[1]):
         raise ValueError("ELECTION_TIMEOUT_RANGE must be a valid range")
-    
-

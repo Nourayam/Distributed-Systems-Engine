@@ -1,4 +1,4 @@
-from .simulation import EventDrivenSimulator
-from .simulation_events import SimulationEvent
+from .simulation import Simulation, EventDrivenSimulator
+from .simulation_events import Event, EventType
 
-__all__ = ["EventDrivenSimulator", "SimulationEvent"]
+__all__ = ['Simulation', 'EventDrivenSimulator', 'Event', 'EventType']

@@ -1,30 +1,34 @@
-from __future__ import annotations
 from enum import Enum, auto
 import logging
 import random
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Set, TYPE_CHECKING
 
-from base_node import Node
-from ..simulation.simulation_events import Event, EventType
+if TYPE_CHECKING:
+    from simulation.simulation_events import Event
+    from simulation.simulation import Simulation
+
+from nodes.base_node import Node
+
+logger = logging.getLogger(__name__)
 
 
 class RaftState(Enum):
-    #Possible states for a Raft node
+    """Possible states for a Raft node"""
     FOLLOWER = auto()
     CANDIDATE = auto()
     LEADER = auto()
 
 
 class RaftNode(Node):
-    #Implementation of a node using the Raft consensus algorithm
+    """Implementation of a node using the Raft consensus algorithm"""
 
     # Constants in seconds
-    ELECTION_TIMEOUT_MIN = 0.15
-    ELECTION_TIMEOUT_MAX = 0.30
-    HEARTBEAT_INTERVAL = 0.05
+    ELECTION_TIMEOUT_MIN = 1.0
+    ELECTION_TIMEOUT_MAX = 2.0
+    HEARTBEAT_INTERVAL = 0.5
 
-    def __init__(self, node_id: str, simulation):
-        #Initialise a Raft node
+    def __init__(self, node_id: str, simulation: 'Simulation'):
+        """Initialize a Raft node"""
         super().__init__(node_id, simulation)
 
         # Persistent state
@@ -41,285 +45,363 @@ class RaftNode(Node):
         self.next_index: Dict[str, int] = {}
         self.match_index: Dict[str, int] = {}
 
+        # Vote tracking
+        self.votes_received: Set[str] = set()
+        self.votes_needed: int = 0
+
         # Timeout tracking
         self.election_timeout: float = self._random_election_timeout()
-        self.last_heartbeat_time: float = simulation.clock
+        self.last_heartbeat_time: float = simulation.current_time
 
-        # Schedule initial timeout
+        # Schedule initial election timeout
         self.schedule_timeout(self.election_timeout, "election")
+        
+        self.logger.info(f"Raft node initialized in {self.state.name} state")
 
     def _random_election_timeout(self) -> float:
-        #Generate random election timeout within configured bounds
+        """Generate random election timeout within configured bounds"""
         return random.uniform(self.ELECTION_TIMEOUT_MIN, self.ELECTION_TIMEOUT_MAX)
 
-    def become_follower(self, term: int) -> None:
-        #Transition to follower state
-        assert term >= self.current_term, "Term cannot decrease"
-        self.current_term = term
-        self.state = RaftState.FOLLOWER
-        self.voted_for = None
-        self._reset_election_timeout()
+    def _get_other_nodes(self) -> List[str]:
+        """Get list of other node IDs"""
+        return [node_id for node_id in self.simulation.nodes.keys() if node_id != self.node_id]
 
+    def become_follower(self, term: int) -> None:
+        """Transition to follower state"""
+        if term > self.current_term:
+            self.current_term = term
+            self.voted_for = None
+            
+        self.state = RaftState.FOLLOWER
+        self.votes_received.clear()
+        self._reset_election_timeout()
+        
+        self.logger.info(f"Became FOLLOWER for term {self.current_term}")
 
     def become_candidate(self) -> None:
-        #Transition to candidate state and start election
+        """Transition to candidate state and start election"""
         self.current_term += 1
         self.state = RaftState.CANDIDATE
         self.voted_for = self.node_id
+        self.votes_received = {self.node_id}  # Vote for self
+        
+        # Calculate votes needed for majority
+        total_nodes = len(self.simulation.nodes)
+        self.votes_needed = (total_nodes // 2) + 1
+        
+        self.logger.info(f"Became CANDIDATE for term {self.current_term}, need {self.votes_needed} votes")
         
         # Request votes from all peers
+        self._request_votes()
+        self._reset_election_timeout()
+
+    def _request_votes(self) -> None:
+        """Send vote requests to all other nodes"""
         last_log_index = len(self.log) - 1
         last_log_term = self.log[-1]['term'] if self.log else 0
         
-        for peer in self.simulation.nodes.values():
-            if peer.node_id == self.node_id:
-                continue
-                
-            self.send_message(
-                peer.node_id,
-                "RequestVote",
-                {
-                    'term': self.current_term,
-                    'candidate_id': self.node_id,
-                    'last_log_index': last_log_index,
-                    'last_log_term': last_log_term
-                }
-            )
-        
-        self._reset_election_timeout()
-    
+        for peer_id in self._get_other_nodes():
+            payload = {
+                'term': self.current_term,
+                'candidate_id': self.node_id,
+                'last_log_index': last_log_index,
+                'last_log_term': last_log_term
+            }
+            self.send_message(peer_id, "RequestVote", payload)
+
     def become_leader(self) -> None:
-        #Transition to leader state
+        """Transition to leader state"""
         self.state = RaftState.LEADER
         
-        # Initialise leader state
+        # Initialize leader state
         next_idx = len(self.log)
-        self.next_index = {
-            str(node_id): next_idx 
-            for node_id in self.simulation.nodes
-        }
-        self.match_index = {str(node_id): 0 for node_id in self.simulation.nodes}
+        self.next_index = {node_id: next_idx for node_id in self._get_other_nodes()}
+        self.match_index = {node_id: 0 for node_id in self._get_other_nodes()}
+        
+        self.logger.info(f"Became LEADER for term {self.current_term}")
         
         # Send initial heartbeats
         self._send_heartbeats()
-    
-    def _reset_election_timeout(self) -> None:
-        #Reset election timeout with new random value
-        self.election_timeout = self._random_election_timeout()
-        self.last_heartbeat_time = self.simulation.clock
-        self.schedule_timeout(self.election_timeout, "election")
-    
-    def _send_heartbeats(self) -> None:
-        #Send AppendEntries messages to all followers
-        for node in self.simulation.nodes.values():
-            if node.node_id == self.node_id:
-                continue
-                
-            # Prepare AppendEntries message
-            next_idx = self.next_index.get(node.node_id, 0)
-            prev_log_index = next_idx - 1
-            prev_log_term = self.log[prev_log_index]['term'] if prev_log_index >= 0 else 0
-            entries = self.log[next_idx:] if next_idx < len(self.log) else []
-            
-            self.send_message(
-                node.node_id,
-                "AppendEntries",
-                {
-                    'term': self.current_term,
-                    'leader_id': self.node_id,
-                    'prev_log_index': prev_log_index,
-                    'prev_log_term': prev_log_term,
-                    'entries': entries,
-                    'leader_commit': self.commit_index
-                }
-            )
-    
-    def receive_message(self, event: Event) -> None:
-        #Handle incoming messages
-        data = event.data
-        
-        if data['type'] == 'RequestVote':
-            self._handle_request_vote(data['src'], data)
-        elif data['type'] == 'RequestVoteResponse':
-            self._handle_request_vote_response(data['src'], data)
-        elif data['type'] == 'AppendEntries':
-            self._handle_append_entries(data['src'], data)
-        elif data['type'] == 'AppendEntriesResponse':
-            self._handle_append_entries_response(data['src'], data)
-    
-    def tick(self, current_time: float) -> None:
-        #Handle time-based operations
-        # Check for election timeout
-        if (current_time - self.last_heartbeat_time) > self.election_timeout:
-            if self.state != RaftState.LEADER:
-                self.become_candidate()
-        
-        # Send heartbeats if leader
-        if self.state == RaftState.LEADER:
-            if current_time - self.last_heartbeat_time >= self.HEARTBEAT_INTERVAL:
-                self._send_heartbeats()
-                self.last_heartbeat_time = current_time
+        self._schedule_heartbeat()
 
-    
-    def _handle_request_vote(self, candidate_id: str, data: Dict[str, Any]) -> None:
+    def _reset_election_timeout(self) -> None:
+        """Reset election timeout with new random value"""
+        self.election_timeout = self._random_election_timeout()
+        self.last_heartbeat_time = self.simulation.current_time
+
+    def _send_heartbeats(self) -> None:
+        """Send AppendEntries messages to all followers"""
+        for peer_id in self._get_other_nodes():
+            self._send_append_entries(peer_id)
+
+    def _send_append_entries(self, peer_id: str) -> None:
+        """Send AppendEntries message to a specific peer"""
+        next_idx = self.next_index.get(peer_id, 0)
+        prev_log_index = next_idx - 1
+        prev_log_term = self.log[prev_log_index]['term'] if prev_log_index >= 0 and prev_log_index < len(self.log) else 0
+        entries = self.log[next_idx:] if next_idx < len(self.log) else []
         
-        # Handle a RequestVote RPC.
-        
-        # Args:
-        #     candidate_id: ID of the candidate requesting the vote
-        #     data: The RequestVote message contents
-        
-        term = data['term']
-        granted = False
-        
-        # Reply False if term < currentTerm
-        if term < self.current_term:
-            pass
-        # If votedFor is null or candidateId, and candidate's log is at least as up-to-date as ours
-        elif (self.voted_for is None or self.voted_for == candidate_id):
-            last_log_index = len(self.log) - 1
-            last_log_term = self.log[-1]['term'] if self.log else 0
-            
-            if (data['last_log_term'] > last_log_term or 
-                (data['last_log_term'] == last_log_term and 
-                 data['last_log_index'] >= last_log_index)):
-                granted = True
-                self.become_follower(term)
-                self.voted_for = candidate_id
-        
-        response = {
-            'type': 'RequestVoteResponse',
+        payload = {
             'term': self.current_term,
-            'vote_granted': granted
+            'leader_id': self.node_id,
+            'prev_log_index': prev_log_index,
+            'prev_log_term': prev_log_term,
+            'entries': entries,
+            'leader_commit': self.commit_index
         }
-        self.send_message(candidate_id, response)
-    
+        
+        self.send_message(peer_id, "AppendEntries", payload)
+
+    def _schedule_heartbeat(self) -> None:
+        """Schedule the next heartbeat"""
+        self.schedule_timeout(self.HEARTBEAT_INTERVAL, "heartbeat")
+
+    def receive_message(self, event: 'Event') -> None:
+        """Handle incoming messages"""
+        if not self.is_alive():
+            return
+            
+        data = event.data
+        message_type = data['type']
+        sender_id = data['src']
+        payload = data['payload']
+        
+        try:
+            if message_type == 'RequestVote':
+                self._handle_request_vote(sender_id, payload)
+            elif message_type == 'RequestVoteResponse':
+                self._handle_request_vote_response(sender_id, payload)
+            elif message_type == 'AppendEntries':
+                self._handle_append_entries(sender_id, payload)
+            elif message_type == 'AppendEntriesResponse':
+                self._handle_append_entries_response(sender_id, payload)
+            else:
+                self.logger.warning(f"Unknown message type: {message_type}")
+        except Exception as e:
+            self.logger.error(f"Error handling {message_type}: {e}", exc_info=True)
+
+    def tick(self, current_time: float) -> None:
+        """Handle time-based operations"""
+        if not self.is_alive():
+            return
+            
+        # Check for election timeout (followers and candidates)
+        if self.state in [RaftState.FOLLOWER, RaftState.CANDIDATE]:
+            if (current_time - self.last_heartbeat_time) >= self.election_timeout:
+                self.logger.debug("Election timeout triggered")
+                self.become_candidate()
+
+    def handle_election_timeout(self) -> None:
+        """Handle election timeout event"""
+        if self.state != RaftState.LEADER:
+            self.logger.debug("Election timeout - starting new election")
+            self.become_candidate()
+
+    def handle_heartbeat_timeout(self) -> None:
+        """Handle heartbeat timeout event"""
+        if self.state == RaftState.LEADER:
+            self._send_heartbeats()
+            self._schedule_heartbeat()
+
+    def _handle_request_vote(self, candidate_id: str, data: Dict[str, Any]) -> None:
+        """Handle a RequestVote RPC"""
+        term = data['term']
+        last_log_index = data['last_log_index']
+        last_log_term = data['last_log_term']
+        
+        vote_granted = False
+        
+        # Update term if candidate's term is higher
+        if term > self.current_term:
+            self.become_follower(term)
+        
+        # Grant vote if conditions are met
+        if (term == self.current_term and 
+            (self.voted_for is None or self.voted_for == candidate_id) and
+            self._is_log_up_to_date(last_log_index, last_log_term)):
+            
+            vote_granted = True
+            self.voted_for = candidate_id
+            self.last_heartbeat_time = self.simulation.current_time
+            self.logger.debug(f"Granted vote to {candidate_id} for term {term}")
+        else:
+            self.logger.debug(f"Denied vote to {candidate_id} for term {term}")
+        
+        # Send response
+        response = {
+            'term': self.current_term,
+            'vote_granted': vote_granted
+        }
+        self.send_message(candidate_id, "RequestVoteResponse", response)
+
     def _handle_request_vote_response(self, voter_id: str, data: Dict[str, Any]) -> None:
-    
-        # Handle a RequestVoteResponse RPC.
-        
-        # Args:
-        #     voter_id: ID of the voter
-        #     data: The RequestVoteResponse message contents
-        
+        """Handle a RequestVoteResponse RPC"""
         if self.state != RaftState.CANDIDATE:
             return
         
         term = data['term']
+        vote_granted = data['vote_granted']
+        
+        # Update term if response has higher term
         if term > self.current_term:
             self.become_follower(term)
             return
         
-        if data['vote_granted']:
-            # Count votes and become leader if majority
-            votes = sum(1 for peer in self.peers 
-                       if self.received_votes.get(peer, False)) + 1  # +1 for self-vote
+        # Count vote if granted
+        if vote_granted and term == self.current_term:
+            self.votes_received.add(voter_id)
+            self.logger.debug(f"Received vote from {voter_id} ({len(self.votes_received)}/{self.votes_needed})")
             
-            if votes > len(self.peers) / 2:
+            # Check if we have majority
+            if len(self.votes_received) >= self.votes_needed:
                 self.become_leader()
-    
+
     def _handle_append_entries(self, leader_id: str, data: Dict[str, Any]) -> None:
-        
-        # Handle an AppendEntries RPC (heartbeat or log replication).
-        
-        # Args:
-        #     leader_id: ID of the leader sending the entries
-        #     data: The AppendEntries message contents
-        
+        """Handle an AppendEntries RPC (heartbeat or log replication)"""
         term = data['term']
+        prev_log_index = data['prev_log_index']
+        prev_log_term = data['prev_log_term']
+        entries = data['entries']
+        leader_commit = data['leader_commit']
+        
         success = False
         
-        if term < self.current_term:
-            pass  # Reply False if term < currentTerm
-        else:
+        # Update term if leader's term is higher
+        if term > self.current_term:
             self.become_follower(term)
-            self._reset_election_timeout()
+        
+        if term == self.current_term:
+            # Valid leader for this term
+            if self.state == RaftState.CANDIDATE:
+                self.become_follower(term)
             
-            # Check if log contains entry at prevLogIndex with term matching prevLogTerm
-            prev_log_index = data['prev_log_index']
-            prev_log_term = data['prev_log_term']
+            self.last_heartbeat_time = self.simulation.current_time
             
-            if (prev_log_index >= len(self.log) or 
-                (prev_log_index >= 0 and self.log[prev_log_index]['term'] != prev_log_term)):
-                pass  # Log inconsistency
-            else:
+            # Log consistency check
+            if self._log_consistency_check(prev_log_index, prev_log_term):
                 success = True
                 
-                # Delete any conflicting entries and append new ones
-                if data['entries']:
-                    self.log = self.log[:prev_log_index + 1] + data['entries']
+                # Append new entries
+                if entries:
+                    # Remove conflicting entries and append new ones
+                    self.log = self.log[:prev_log_index + 1] + entries
+                    self.logger.debug(f"Appended {len(entries)} entries")
                 
-                # Update commit index if leader's commit index is higher
-                if data['leader_commit'] > self.commit_index:
-                    self.commit_index = min(data['leader_commit'], len(self.log) - 1)
+                # Update commit index
+                if leader_commit > self.commit_index:
+                    self.commit_index = min(leader_commit, len(self.log) - 1)
                     self._apply_committed_entries()
         
+        # Send response
         response = {
-            'type': 'AppendEntriesResponse',
             'term': self.current_term,
             'success': success,
-            'match_index': prev_log_index + len(data.get('entries', []))
+            'match_index': prev_log_index + len(entries) if success else 0
         }
-        self.send_message(leader_id, response)
-    
-    def _handle_append_entries_response(self, follower_id: str, data: Dict[str, Any]) -> None:
+        self.send_message(leader_id, "AppendEntriesResponse", response)
 
-        # Handle an AppendEntriesResponse RPC.
-        
-        # Args:
-        #     follower_id: ID of the follower responding
-        #     data: The AppendEntriesResponse message contents
-        
+    def _handle_append_entries_response(self, follower_id: str, data: Dict[str, Any]) -> None:
+        """Handle an AppendEntriesResponse RPC"""
         if self.state != RaftState.LEADER:
             return
         
         term = data['term']
+        success = data['success']
+        match_index = data.get('match_index', 0)
+        
+        # Update term if response has higher term
         if term > self.current_term:
             self.become_follower(term)
             return
         
-        if data['success']:
-            # Update nextIndex and matchIndex for follower
-            self.next_index[follower_id] = data['match_index'] + 1
-            self.match_index[follower_id] = data['match_index']
-            self._update_commit_index()
-        else:
-            # Decrement nextIndex and retry
-            self.next_index[follower_id] = max(0, self.next_index[follower_id] - 1)
-            self._send_heartbeats()  # Will resend AppendEntries with updated nextIndex
-    
-    def _handle_heartbeat_timer(self) -> None:
-        #Handle the heartbeat timer event (send new heartbeats if leader)
-        if self.state == RaftState.LEADER:
-            self._send_heartbeats()
-            self._schedule_heartbeat()
-        else:
-            self._check_election_timeout()
-    
-    def on_event(self, event: Event) -> None:
-    
-        # Handle an incoming event (message or timer).
+        if term == self.current_term:
+            if success:
+                # Update indices for follower
+                self.next_index[follower_id] = match_index + 1
+                self.match_index[follower_id] = match_index
+                self._update_commit_index()
+                self.logger.debug(f"Updated indices for {follower_id}: next={self.next_index[follower_id]}, match={match_index}")
+            else:
+                # Decrement next_index and retry
+                self.next_index[follower_id] = max(0, self.next_index[follower_id] - 1)
+                self.logger.debug(f"Log inconsistency with {follower_id}, decremented next_index to {self.next_index[follower_id]}")
+                # Will retry on next heartbeat
+
+    def _is_log_up_to_date(self, last_log_index: int, last_log_term: int) -> bool:
+        """Check if candidate's log is at least as up-to-date as ours"""
+        if not self.log:
+            return True
         
-        # Args:
-        #     event: The event to handle
+        our_last_term = self.log[-1]['term']
+        our_last_index = len(self.log) - 1
         
-        if event.type == EventType.MESSAGE:
-            self.handle_message(event)
-        elif event.type == EventType.TIMER:
-            if event.data['type'] == 'Heartbeat':
-                self._handle_heartbeat_timer()
-    
-    def submit_command(self, command: Any) -> None:
+        return (last_log_term > our_last_term or 
+                (last_log_term == our_last_term and last_log_index >= our_last_index))
+
+    def _log_consistency_check(self, prev_log_index: int, prev_log_term: int) -> bool:
+        """Check if log is consistent at prev_log_index"""
+        if prev_log_index == -1:
+            return True
         
-        # Submit a new command to be replicated by Raft (leader only).
+        if prev_log_index >= len(self.log):
+            return False
         
-        # Args:
-        #     command: The command to append to the log
+        return self.log[prev_log_index]['term'] == prev_log_term
+
+    def _update_commit_index(self) -> None:
+        """Update commit index based on majority replication"""
+        if self.state != RaftState.LEADER:
+            return
         
-        if self.state == RaftState.LEADER:
-            entry = {
-                'term': self.current_term,
-                'command': command
-            }
-            self.log.append(entry)
-            self._send_heartbeats()  # Replicate immediately
+        # Find highest index replicated on majority
+        for index in range(len(self.log) - 1, self.commit_index, -1):
+            if self.log[index]['term'] == self.current_term:
+                replicated_count = 1  # Leader has it
+                for match_idx in self.match_index.values():
+                    if match_idx >= index:
+                        replicated_count += 1
+                
+                if replicated_count > len(self.simulation.nodes) // 2:
+                    self.commit_index = index
+                    self._apply_committed_entries()
+                    self.logger.debug(f"Advanced commit index to {index}")
+                    break
+
+    def _apply_committed_entries(self) -> None:
+        """Apply committed entries to state machine"""
+        while self.last_applied < self.commit_index:
+            self.last_applied += 1
+            entry = self.log[self.last_applied]
+            self.logger.debug(f"Applied entry {self.last_applied}: {entry}")
+
+    def submit_command(self, command: Any) -> bool:
+        """Submit a new command to be replicated by Raft (leader only)"""
+        if self.state != RaftState.LEADER:
+            return False
+        
+        entry = {
+            'term': self.current_term,
+            'command': command,
+            'index': len(self.log)
+        }
+        self.log.append(entry)
+        self.logger.info(f"Added command to log at index {len(self.log) - 1}")
+        
+        # Replicate immediately
+        self._send_heartbeats()
+        return True
+
+    def get_state_info(self) -> Dict[str, Any]:
+        """Get current state information for debugging/monitoring"""
+        return {
+            'node_id': self.node_id,
+            'state': self.state.name,
+            'current_term': self.current_term,
+            'voted_for': self.voted_for,
+            'log_length': len(self.log),
+            'commit_index': self.commit_index,
+            'last_applied': self.last_applied,
+            'alive': self.is_alive(),
+            'votes_received': len(self.votes_received) if self.state == RaftState.CANDIDATE else 0,
+            'votes_needed': self.votes_needed if self.state == RaftState.CANDIDATE else 0
+        }

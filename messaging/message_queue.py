@@ -1,11 +1,16 @@
 from __future__ import annotations
 
 import random
-from typing import Dict, Any, TypedDict
+import logging
+from typing import Dict, Any, TypedDict, TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from config import Config
+    from simulation.simulation import Simulation
 
 from simulation.simulation_events import Event, EventType
-from simulation import Simulation
-from config import Config
+
+logger = logging.getLogger(__name__)
 
 
 class MessageData(TypedDict):
@@ -16,9 +21,12 @@ class MessageData(TypedDict):
 
 
 class MessageQueue:
-    def __init__(self, config: Config, simulation: Simulation) -> None:
+    """Manages message delivery with realistic network behavior."""
+    
+    def __init__(self, config: 'Config', simulation: 'Simulation') -> None:
         self.config = config
         self.simulation = simulation
+        self.logger = logging.getLogger(f"{__name__}.MessageQueue")
 
     def send(
         self,
@@ -28,6 +36,7 @@ class MessageQueue:
         payload: Dict[str, Any],
         current_time: float
     ) -> None:
+        """Send a message with potential network delays and failures."""
         # Create message structure
         data: MessageData = {
             'src': src,
@@ -48,18 +57,26 @@ class MessageQueue:
         self._schedule_delivery(current_time, data)
 
     def _should_drop_message(self) -> bool:
+        """Determine if message should be dropped based on network conditions."""
         return random.random() < self.config.drop_rate
 
     def _log_send_event(self, timestamp: float, data: MessageData) -> None:
-        send_event = Event(EventType.SEND, timestamp, data)
+        """Log message send event."""
+        self.logger.debug(f"Sending {data['type']} from {data['src']} to {data['dst']}")
+        send_event = Event(EventType.MESSAGE_SEND, timestamp, data)
         self.simulation.schedule_event(send_event)
 
     def _log_drop_event(self, timestamp: float, data: MessageData) -> None:
+        """Log message drop event."""
+        self.logger.warning(f"Dropping {data['type']} from {data['src']} to {data['dst']}")
         drop_event = Event(EventType.MESSAGE_DROPPED, timestamp, data)
         self.simulation.schedule_event(drop_event)
 
     def _schedule_delivery(self, send_time: float, data: MessageData) -> None:
+        """Schedule message delivery with realistic network latency."""
         latency = random.uniform(self.config.min_latency, self.config.max_latency)
         delivery_time = send_time + latency
         delivery_event = Event(EventType.MESSAGE_RECEIVED, delivery_time, data)
         self.simulation.schedule_event(delivery_event)
+        
+        self.logger.debug(f"Scheduled delivery of {data['type']} at {delivery_time:.3f}")
