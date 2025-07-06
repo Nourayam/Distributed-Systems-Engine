@@ -37,6 +37,10 @@ class MessageQueue:
         current_time: float
     ) -> None:
         """Send a message with potential network delays and failures."""
+        # Validate inputs
+        if not isinstance(current_time, (int, float)):
+            raise ValueError(f"current_time must be numeric, got {type(current_time)}")
+        
         # Create message structure
         data: MessageData = {
             'src': src,
@@ -63,20 +67,37 @@ class MessageQueue:
     def _log_send_event(self, timestamp: float, data: MessageData) -> None:
         """Log message send event."""
         self.logger.debug(f"Sending {data['type']} from {data['src']} to {data['dst']}")
-        send_event = Event(EventType.MESSAGE_SEND, timestamp, data)
+        send_event = Event(
+            timestamp=timestamp,
+            event_type=EventType.MESSAGE_SEND,
+            data=dict(data)  # Convert TypedDict to regular dict
+        )
         self.simulation.schedule_event(send_event)
 
     def _log_drop_event(self, timestamp: float, data: MessageData) -> None:
         """Log message drop event."""
         self.logger.warning(f"Dropping {data['type']} from {data['src']} to {data['dst']}")
-        drop_event = Event(EventType.MESSAGE_DROPPED, timestamp, data)
+        drop_event = Event(
+            timestamp=timestamp,
+            event_type=EventType.MESSAGE_DROPPED,
+            data=dict(data)  # Convert TypedDict to regular dict
+        )
         self.simulation.schedule_event(drop_event)
 
     def _schedule_delivery(self, send_time: float, data: MessageData) -> None:
         """Schedule message delivery with realistic network latency."""
+        # Validate send_time
+        if send_time < 0:
+            raise ValueError(f"send_time cannot be negative: {send_time}")
+        
         latency = random.uniform(self.config.min_latency, self.config.max_latency)
         delivery_time = send_time + latency
-        delivery_event = Event(EventType.MESSAGE_RECEIVED, delivery_time, data)
+        
+        delivery_event = Event(
+            timestamp=delivery_time,
+            event_type=EventType.MESSAGE_RECEIVED,
+            data=dict(data)  # Convert TypedDict to regular dict
+        )
         self.simulation.schedule_event(delivery_event)
         
         self.logger.debug(f"Scheduled delivery of {data['type']} at {delivery_time:.3f}")

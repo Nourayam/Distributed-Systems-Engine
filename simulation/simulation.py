@@ -23,6 +23,7 @@ class Simulation:
         self.event_log: List[Dict[str, Any]] = []
         self.running = False
         self.logger = logging.getLogger(f"{__name__}.Simulation")
+        self._event_sequence_counter = 0  # For unique event sequencing
         
         # Initialize message queue
         from messaging.message_queue import MessageQueue
@@ -41,8 +42,23 @@ class Simulation:
 
     def schedule_event(self, event: Event) -> None:
         """Schedule an event for future processing."""
-        heapq.heappush(self.event_queue, event)
-        self.logger.debug(f"Scheduled {event}")
+        # Assign unique sequence ID for proper ordering
+        event._sequence_id = self._event_sequence_counter
+        self._event_sequence_counter += 1
+        
+        # Validate event before scheduling
+        if not isinstance(event.timestamp, (int, float)):
+            raise ValueError(f"Event timestamp must be numeric, got {type(event.timestamp)}")
+        
+        if event.timestamp < 0:
+            raise ValueError(f"Event timestamp cannot be negative: {event.timestamp}")
+        
+        try:
+            heapq.heappush(self.event_queue, event)
+            self.logger.debug(f"Scheduled {event} (seq: {event._sequence_id})")
+        except Exception as e:
+            self.logger.error(f"Failed to schedule event {event}: {e}")
+            raise
 
     def log_event(self, event_type: str, data: Dict[str, Any]) -> None:
         """Log an event to the simulation log."""
@@ -132,24 +148,42 @@ class Simulation:
         self.running = True
         self.logger.info(f"Starting simulation for {max_time} seconds")
         
-        while self.running and self.event_queue and self.current_time < max_time:
-            # Process next event
-            event = heapq.heappop(self.event_queue)
-            self.current_time = event.timestamp
-            
-            # Skip events that are too far in the future
-            if self.current_time > max_time:
-                break
+        try:
+            while self.running and self.event_queue and self.current_time < max_time:
+                # Process next event
+                if not self.event_queue:
+                    self.logger.debug("No more events to process")
+                    break
                 
-            self.process_event(event)
-            
-            # Let nodes tick
-            for node in self.nodes.values():
-                if node.is_alive():
-                    node.tick(self.current_time)
+                event = heapq.heappop(self.event_queue)
+                
+                # Validate event timestamp
+                if event.timestamp < self.current_time:
+                    self.logger.warning(f"Event timestamp {event.timestamp} is in the past (current: {self.current_time})")
+                
+                self.current_time = event.timestamp
+                
+                # Skip events that are too far in the future
+                if self.current_time > max_time:
+                    self.logger.debug(f"Reached max time {max_time}, stopping simulation")
+                    break
+                    
+                self.process_event(event)
+                
+                # Let nodes tick
+                for node in self.nodes.values():
+                    if node.is_alive():
+                        try:
+                            node.tick(self.current_time)
+                        except Exception as e:
+                            self.logger.error(f"Error in node {node.node_id} tick: {e}", exc_info=True)
         
-        self.running = False
-        self.logger.info("Simulation completed")
+        except Exception as e:
+            self.logger.error(f"Simulation error: {e}", exc_info=True)
+            raise
+        finally:
+            self.running = False
+            self.logger.info("Simulation completed")
 
     def get_state(self) -> Dict[str, Any]:
         """Get current simulation state."""
@@ -167,6 +201,12 @@ class Simulation:
             'event_count': len(self.event_log),
             'pending_events': len(self.event_queue)
         }
+
+    def get_next_event_time(self) -> Optional[float]:
+        """Get the timestamp of the next event to be processed."""
+        if self.event_queue:
+            return self.event_queue[0].timestamp
+        return None
 
 
 # Alias for backward compatibility

@@ -47,13 +47,21 @@ class Node(ABC):
             self.logger.warning(f"Attempted to send to unknown node: {dst_id}")
             return
         
+        # Validate delay
+        if delay < 0:
+            self.logger.warning(f"Negative delay {delay} corrected to 0")
+            delay = 0.0
+        
         # Use message queue for realistic network behavior
         send_time = self.simulation.current_time + delay
-        self.simulation.message_queue.send(
-            self.node_id, dst_id, message_type, payload, send_time
-        )
         
-        self.logger.debug(f"Sent {message_type} to {dst_id}")
+        try:
+            self.simulation.message_queue.send(
+                self.node_id, dst_id, message_type, payload, send_time
+            )
+            self.logger.debug(f"Sent {message_type} to {dst_id}")
+        except Exception as e:
+            self.logger.error(f"Failed to send {message_type} to {dst_id}: {e}")
     
     def is_alive(self) -> bool:
         """Check if node is operational (not crashed)"""
@@ -82,6 +90,11 @@ class Node(ABC):
         """Schedule a timeout event for this node."""
         from simulation.simulation_events import Event, EventType
         
+        # Validate delay
+        if delay < 0:
+            self.logger.warning(f"Negative delay {delay} corrected to 0")
+            delay = 0.0
+        
         # Map string event types to EventType enum
         event_type_map = {
             'election': EventType.ELECTION_TIMEOUT,
@@ -96,12 +109,16 @@ class Node(ABC):
             timeout_data.update(data)
         
         event = Event(
-            event_type=event_enum,
             timestamp=self.simulation.current_time + delay,
+            event_type=event_enum,
             data=timeout_data
         )
-        self.simulation.schedule_event(event)
-        self.logger.debug(f"Scheduled {event_type} timeout in {delay:.3f}s")
+        
+        try:
+            self.simulation.schedule_event(event)
+            self.logger.debug(f"Scheduled {event_type} timeout in {delay:.3f}s")
+        except Exception as e:
+            self.logger.error(f"Failed to schedule {event_type} timeout: {e}")
     
     def handle_timeout(self, event: 'Event') -> None:
         """Handle a timeout event (default implementation)"""
