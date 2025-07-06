@@ -9,7 +9,7 @@ from typing import (Any, Callable, Dict, List, Optional, Set, Tuple, Union,
                     cast)
 
 from nodes.base_node import Node
-from ..simulation.simulation_events import Event, EventType  # Added missing import
+from simulation.simulation_events import Event, EventType  # Added missing import
 
 # Configure logging
 logger = logging.getLogger(__name__)

@@ -3,8 +3,8 @@ from __future__ import annotations
 import random
 from typing import Dict, Any, TypedDict
 
-from ..simulation.simulation_events import Event, EventType
-from ..simulation import Simulation
+from simulation.simulation_events import Event, EventType
+from simulation import Simulation
 from config import Config
 
 
