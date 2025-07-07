@@ -1,0 +1,9 @@
+/* Provide minimal global CSS styles for the RAFT DSS dashboard:
+
+Apply a dark theme background
+
+Use monospace font for logs, modern sans-serif for UI
+
+Set basic layout sizing for the canvas, sidebar, and log feed
+
+Define styles for node states using class names (.leader, .follower, etc.) */

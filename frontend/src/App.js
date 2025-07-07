@@ -1,3 +1,17 @@
+// Write the main App component for a distributed systems dashboard frontend using React. It should:
+
+// Import and render components like <ClusterCanvas />, <LogViewer />, <ControlPanel />, and <StatusBar />
+
+// Fetch cluster status from the Flask API (/raft/status) on load
+
+// Organise layout using a clean structure (flex or grid) for engineers
+
+// Handle loading/error states gracefully
+
+// Read backend URL from .env via process.env.REACT_APP_API_URL
+
+
+
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
