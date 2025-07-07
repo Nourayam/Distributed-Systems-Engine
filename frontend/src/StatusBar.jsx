@@ -1,7 +1,43 @@
-// Write a simple StatusBar component that:
+import React from 'react';
+import PropTypes from 'prop-types';
+import styles from './StatusBar.module.css';
 
-// Shows the current simulation time, current term, and active leader
+const StatusBar = ({ currentTerm, leaderId, simulationTime, isRunning }) => {
+  return (
+    <div className={styles.statusBar}>
+      <div className={styles.statusItem}>
+        <span className={styles.label}>Status:</span>
+        <span className={`${styles.value} ${isRunning ? styles.running : styles.stopped}`}>
+          {isRunning ? 'RUNNING' : 'STOPPED'}
+        </span>
+      </div>
+      <div className={styles.statusItem}>
+        <span className={styles.label}>Time:</span>
+        <span className={styles.value}>{simulationTime.toFixed(1)}s</span>
+      </div>
+      <div className={styles.statusItem}>
+        <span className={styles.label}>Term:</span>
+        <span className={styles.value}>{currentTerm}</span>
+      </div>
+      <div className={styles.statusItem}>
+        <span className={styles.label}>Leader:</span>
+        <span className={styles.value}>
+          {leaderId !== null ? `Node ${leaderId}` : 'None'}
+        </span>
+      </div>
+    </div>
+  );
+};
 
-// Accepts props from parent state
+StatusBar.propTypes = {
+  currentTerm: PropTypes.number.isRequired,
+  leaderId: PropTypes.number,
+  simulationTime: PropTypes.number.isRequired,
+  isRunning: PropTypes.bool.isRequired
+};
 
-// Sticks to the top or bottom of the screen with minimal style
+StatusBar.defaultProps = {
+  leaderId: null
+};
+
+export default StatusBar;
