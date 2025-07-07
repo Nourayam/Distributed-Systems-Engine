@@ -1,5 +1,9 @@
+import sys
+import os
+sys.path.insert(0, os.path.dirname(__file__))
+
 from flask import Flask, jsonify
-from simulator.simulation.simulation import Simulation  # Adjust as needed
+from simulation.simulation import Simulation
 
 app = Flask(__name__)
 
