@@ -1,44 +1,68 @@
-Here's the polished CSS file for the RAFT DSS dashboard:
+I'll help improve the CSS file to create a more polished and cohesive design for the RAFT DSS dashboard. Here's the enhanced version:
 
-# ==== FILE: index.css ====
+# ==== FILE: src/index.css ====
 :root {
-  --bg-dark: #1a1a2e;
-  --bg-darker: #16213e;
-  --text-primary: #e6e6e6;
-  --text-secondary: #b8b8b8;
-  --leader-color: #4ade80;
-  --follower-color: #60a5fa;
-  --candidate-color: #fbbf24;
-  --failed-color: #f87171;
-  --log-bg: #0f172a;
-  --control-bg: #1e293b;
+  /* Color palette */
+  --bg-dark: #0f172a; /* Dark blue-gray */
+  --bg-darker: #0c1321;
+  --bg-light: #1e293b;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-tertiary: #64748b;
+  
+  /* Node states */
+  --leader-color: #10b981; /* Emerald */
+  --follower-color: #3b82f6; /* Blue */
+  --candidate-color: #f59e0b; /* Amber */
+  --failed-color: #ef4444; /* Red */
+  --partition-color: #8b5cf6; /* Violet */
+  
+  /* UI elements */
+  --border-color: #334155;
+  --highlight-glow: 0 0 12px;
+  --transition-fast: 150ms ease-in-out;
 }
 
+/* Base styles */
 body {
   margin: 0;
-  padding: 0;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
   background-color: var(--bg-dark);
   color: var(--text-primary);
   height: 100vh;
   overflow: hidden;
+  line-height: 1.5;
 }
 
 #root {
   height: 100%;
   display: grid;
   grid-template-rows: auto 1fr auto;
-  grid-template-columns: 300px 1fr;
+  grid-template-columns: 320px 1fr;
   grid-template-areas:
     "header header"
-    "logs cluster"
-    "controls controls";
+    "sidebar main"
+    "footer footer";
 }
 
-/* Node state classes */
+/* Typography */
+h1, h2, h3 {
+  font-weight: 600;
+  margin-top: 0;
+}
+
+h1 {
+  font-size: 1.5rem;
+}
+
+/* Node visualization */
+.node {
+  transition: all var(--transition-fast);
+}
+
 .node.leader {
   fill: var(--leader-color);
-  filter: drop-shadow(0 0 8px rgba(74, 222, 128, 0.7));
+  filter: drop-shadow(var(--highlight-glow) color-mix(in srgb, var(--leader-color), transparent 30%));
 }
 
 .node.follower {
@@ -47,110 +71,204 @@ body {
 
 .node.candidate {
   fill: var(--candidate-color);
-  animation: pulse 2s infinite;
+  animation: pulse 1.5s infinite;
 }
 
 .node.failed {
   fill: var(--failed-color);
-  opacity: 0.5;
+  opacity: 0.4;
+}
+
+.node.partitioned {
+  stroke: var(--partition-color);
+  stroke-width: 2px;
+  stroke-dasharray: 4;
+  animation: partitioned-pulse 2s infinite;
 }
 
 @keyframes pulse {
-  0% { opacity: 1; }
-  50% { opacity: 0.7; }
-  100% { opacity: 1; }
+  0% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.9; }
 }
 
-/* Cluster canvas area */
-.cluster-view {
-  grid-area: cluster;
-  background-color: var(--bg-darker);
-  position: relative;
-  overflow: hidden;
+@keyframes partitioned-pulse {
+  0% { stroke-opacity: 0.5; }
+  50% { stroke-opacity: 1; }
+  100% { stroke-opacity: 0.5; }
 }
 
-/* Log viewer area */
+/* Log viewer */
 .log-viewer {
-  grid-area: logs;
-  background-color: var(--log-bg);
-  font-family: 'Fira Code', monospace;
+  font-family: 'Roboto Mono', monospace;
   font-size: 0.85rem;
+  background-color: var(--bg-darker);
   padding: 1rem;
   overflow-y: auto;
-  border-right: 1px solid #2d3748;
+  height: 100%;
+  border-left: 1px solid var(--border-color);
 }
 
 .log-entry {
-  margin-bottom: 0.5rem;
-  line-height: 1.4;
+  margin-bottom: 0.75rem;
+  padding: 0.25rem 0;
+  border-bottom: 1px solid var(--border-color);
+  transition: background-color var(--transition-fast);
+}
+
+.log-entry:hover {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+.log-entry.election {
+  color: var(--candidate-color);
+}
+
+.log-entry.replication {
+  color: var(--leader-color);
+}
+
+.log-entry.chaos {
+  color: var(--partition-color);
 }
 
 .log-timestamp {
-  color: var(--text-secondary);
+  color: var(--text-tertiary);
   margin-right: 0.5rem;
 }
 
-/* Control panel area */
+/* Control panel */
 .control-panel {
-  grid-area: controls;
-  background-color: var(--control-bg);
-  padding: 1rem;
-  border-top: 1px solid #2d3748;
-  display: flex;
-  gap: 1rem;
-  align-items: center;
+  background-color: var(--bg-darker);
+  padding: 1.5rem;
+  border-right: 1px solid var(--border-color);
+  overflow-y: auto;
+}
+
+.control-group {
+  margin-bottom: 1.75rem;
+}
+
+.control-group h3 {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 /* Status bar */
 .status-bar {
-  grid-area: header;
-  background-color: var(--control-bg);
-  padding: 0.5rem 1rem;
+  background-color: var(--bg-darker);
+  padding: 0.75rem 1.5rem;
+  border-top: 1px solid var(--border-color);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #2d3748;
+  font-size: 0.85rem;
+  grid-area: footer;
 }
 
-/* Message animation */
+.status-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.status-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.status-indicator.leader {
+  background-color: var(--leader-color);
+  box-shadow: 0 0 8px var(--leader-color);
+}
+
+/* Message animations */
 .message-arrow {
-  stroke: #ffffff;
   stroke-width: 2;
-  animation: messageTravel 1s linear forwards;
+  stroke-dasharray: 8;
+  animation: messageFlow 0.8s linear infinite;
 }
 
-@keyframes messageTravel {
-  from { stroke-dashoffset: 100; }
+@keyframes messageFlow {
+  from { stroke-dashoffset: 16; }
   to { stroke-dashoffset: 0; }
 }
 
-/* Tooltip styles */
+.heartbeat {
+  stroke: var(--leader-color);
+  opacity: 0.8;
+}
+
+.vote-request {
+  stroke: var(--candidate-color);
+}
+
+.vote-granted {
+  stroke: var(--follower-color);
+}
+
+/* Tooltips */
 .tooltip {
   position: absolute;
-  background-color: rgba(0, 0, 0, 0.8);
-  padding: 0.5rem;
-  border-radius: 0.25rem;
+  background-color: var(--bg-light);
+  border: 1px solid var(--border-color);
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
   pointer-events: none;
   z-index: 100;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   max-width: 300px;
-  font-size: 0.8rem;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.tooltip-visible {
+  opacity: 1;
 }
 
 /* Responsive adjustments */
 @media (max-width: 1024px) {
   #root {
-    grid-template-rows: auto auto 1fr auto;
+    grid-template-columns: 280px 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  #root {
     grid-template-columns: 1fr;
     grid-template-areas:
       "header"
-      "controls"
-      "cluster"
-      "logs";
+      "main"
+      "sidebar"
+      "footer";
   }
-
+  
   .log-viewer {
-    border-right: none;
-    border-top: 1px solid #2d3748;
-    max-height: 200px;
+    border-left: none;
+    border-top: 1px solid var(--border-color);
   }
+}
+
+/* Utility classes */
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hidden {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }

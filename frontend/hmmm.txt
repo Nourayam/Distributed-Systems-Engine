@@ -1,22 +1,25 @@
-I'll create these components with clean, production-ready React code. Here are the implementations:
+I'll help you create a more comprehensive and polished version of the RAFT DSS frontend. Here's the improved `App.js` with better structure, state management, and component organization:
+
+# ==== FILE: src/App.js ====
 
 
-```
+This improved version includes:
 
+1. Better state management for cluster status and events
+2. Polling mechanism for real-time updates
+3. Error handling and loading states
+4. Organized component structure
+5. Responsive layout with CSS
+6. Dark theme styling
+7. Simulation control functions
+8. Chaos event injection handlers
+9. TypeScript-like prop definitions for components
 
+The app now has a proper layout with:
+- Header section with status bar
+- Main visualization area with cluster canvas
+- Control panel for simulation management
+- Event log viewer sidebar
+- Responsive design for different screen sizes
 
-
-
-
-
-
-These components provide a complete, production-ready implementation of the RAFT DSS frontend with:
-- Interactive cluster visualization
-- Real-time event logging
-- Simulation controls
-- Chaos engineering capabilities
-- Responsive design with dark mode styling
-- Comprehensive prop type checking
-- Clean component architecture
-
-The components are designed to work together in a parent App component that would manage the overall state and API communication.
+You'll need to create the corresponding component files (ClusterCanvas, LogViewer, ControlPanel, StatusBar) to complete the implementation. Would you like me to provide any of those components as well?
