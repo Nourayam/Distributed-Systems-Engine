@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import axios from 'axios';
-import StatusBar from './StatusBar';
+import StatusBar from './components/StatusBar';
 import ClusterCanvas from './components/ClusterCanvas';
-import Node from './components/Node';
 import ControlPanel from './components/ControlPanel';
 import LogViewer from './components/LogViewer';
+import { useInterval } from './hooks/useInterval';
+import { SimulationProvider } from './contexts/SimulationContext';
 import './index.css';
 
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
@@ -13,133 +14,120 @@ const App = () => {
   const [clusterState, setClusterState] = useState({
     nodes: [],
     leader: null,
-    term: 0
+    term: 0,
+    messages: []
   });
+  
   const [simulationState, setSimulationState] = useState({
     isRunning: false,
     time: 0,
     events: []
   });
-  const [messages, setMessages] = useState([]);
+  
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [logFilter, setLogFilter] = useState('ALL');
+  const [connectionRetries, setConnectionRetries] = useState(0);
+  
+  // Refs for managing state updates
+  const eventsRef = useRef([]);
+  const lastEventTimestamp = useRef(0);
 
-  // Fetch cluster status from backend
+  // Fetch cluster status with proper error handling
   const fetchClusterStatus = useCallback(async () => {
     try {
-      const response = await axios.get(`${API_URL}/raft/status`);
+      const response = await axios.get(`${API_URL}/raft/status`, {
+        timeout: 5000
+      });
+      
       const data = response.data;
       
-      // Transform backend data to frontend format
-      const transformedNodes = data.nodes.map(node => ({
-        id: node.id,
-        role: node.state,
-        term: node.term,
-        status: 'HEALTHY' // Default status, can be enhanced
-      }));
-
+      // Update cluster state
       setClusterState({
-        nodes: transformedNodes,
+        nodes: data.nodes || [],
         leader: data.leader,
-        term: data.term
+        term: data.term || 0,
+        messages: data.messages || []
       });
-
-      // Simulate some events for demonstration
-      if (simulationState.events.length === 0) {
-        setSimulationState(prev => ({
-          ...prev,
-          time: prev.time + 0.1,
-          events: [
-            { timestamp: 0.0, type: 'ELECTION', message: 'Initial leader election started' },
-            { timestamp: 1.2, type: 'LEADER_CHANGE', message: `Node ${data.leader} became leader for term ${data.term}` },
-            { timestamp: 2.1, type: 'RECOVERY', message: 'Cluster consensus established' }
-          ]
-        }));
+      
+      // Update simulation state
+      setSimulationState(prev => ({
+        isRunning: data.running || false,
+        time: data.simulation_time || 0,
+        events: data.events || prev.events
+      }));
+      
+      // Process new events
+      if (data.events && data.events.length > 0) {
+        const newEvents = data.events.filter(
+          e => e.timestamp > lastEventTimestamp.current
+        );
+        if (newEvents.length > 0) {
+          eventsRef.current = [...eventsRef.current, ...newEvents].slice(-100);
+          lastEventTimestamp.current = Math.max(
+            ...newEvents.map(e => e.timestamp)
+          );
+        }
       }
-
+      
       setError(null);
+      setConnectionRetries(0);
     } catch (err) {
       console.error('Failed to fetch cluster status:', err);
-      setError('Failed to connect to RAFT simulation backend');
+      
+      if (connectionRetries < 3) {
+        setConnectionRetries(prev => prev + 1);
+      } else {
+        setError('Unable to connect to RAFT simulation backend. Please ensure the backend is running.');
+      }
     } finally {
       setLoading(false);
     }
-  }, [simulationState.events.length]);
+  }, [connectionRetries]);
 
-  // Simulate message flow for visualization
-  const generateMessages = useCallback(() => {
-    if (clusterState.nodes.length === 0) return;
+  // Use custom interval hook for polling
+  useInterval(fetchClusterStatus, loading || error ? null : 1000);
 
-    const leader = clusterState.nodes.find(n => n.role === 'LEADER');
-    if (!leader) return;
-
-    const followers = clusterState.nodes.filter(n => n.role === 'FOLLOWER');
-    const newMessages = followers.map(follower => ({
-      from: leader.id,
-      to: follower.id,
-      type: 'HEARTBEAT',
-      timestamp: Date.now()
-    }));
-
-    setMessages(newMessages);
-    
-    // Clear messages after animation
-    setTimeout(() => setMessages([]), 1000);
-  }, [clusterState.nodes]);
-
-  // Polling effect
+  // Initial fetch
   useEffect(() => {
     fetchClusterStatus();
-    const interval = setInterval(fetchClusterStatus, 2000);
-    return () => clearInterval(interval);
   }, [fetchClusterStatus]);
 
-  // Message generation effect
-  useEffect(() => {
-    if (simulationState.isRunning) {
-      const messageInterval = setInterval(generateMessages, 3000);
-      return () => clearInterval(messageInterval);
+  // Simulation control handlers
+  const handleSimulationControl = useCallback(async (action, params = {}) => {
+    try {
+      const endpoint = `/raft/${action}`;
+      const response = await axios.post(`${API_URL}${endpoint}`, params);
+      
+      if (response.data.status === 'success') {
+        // Immediate UI feedback
+        if (action === 'start') {
+          setSimulationState(prev => ({ ...prev, isRunning: true }));
+        } else if (action === 'stop') {
+          setSimulationState(prev => ({ ...prev, isRunning: false }));
+        } else if (action === 'reset') {
+          setSimulationState({ isRunning: false, time: 0, events: [] });
+          setClusterState({ nodes: [], leader: null, term: 0, messages: [] });
+          eventsRef.current = [];
+          lastEventTimestamp.current = 0;
+        }
+        
+        // Fetch latest status
+        setTimeout(fetchClusterStatus, 100);
+      }
+    } catch (err) {
+      console.error(`Failed to ${action} simulation:`, err);
+      setError(`Failed to ${action} simulation. Please try again.`);
     }
-  }, [simulationState.isRunning, generateMessages]);
+  }, [fetchClusterStatus]);
 
-  // Event handlers
-  const handleSimulationChange = (action) => {
-    setSimulationState(prev => ({
-      ...prev,
-      isRunning: action === 'start',
-      time: action === 'reset' ? 0 : prev.time
-    }));
-
-    if (action === 'start') {
-      const startEvent = {
-        timestamp: simulationState.time,
-        type: 'ELECTION',
-        message: 'Simulation started'
-      };
-      setSimulationState(prev => ({
-        ...prev,
-        events: [...prev.events, startEvent]
-      }));
+  const handleChaosEvent = useCallback(async (type, nodeId = null) => {
+    try {
+      await axios.post(`${API_URL}/raft/chaos`, { type, nodeId });
+      setTimeout(fetchClusterStatus, 100);
+    } catch (err) {
+      console.error('Failed to inject chaos:', err);
     }
-  };
-
-  const handleChaosEvent = (type, nodeId) => {
-    const chaosEvent = {
-      timestamp: simulationState.time,
-      type: 'PARTITION',
-      message: `Chaos event: ${type}${nodeId !== null ? ` on Node ${nodeId}` : ''}`
-    };
-    
-    setSimulationState(prev => ({
-      ...prev,
-      events: [...prev.events, chaosEvent]
-    }));
-  };
-
-  const filteredEvents = simulationState.events.filter(event => 
-    logFilter === 'ALL' || event.type === logFilter
-  );
+  }, [fetchClusterStatus]);
 
   if (loading) {
     return (
@@ -150,48 +138,66 @@ const App = () => {
     );
   }
 
-  if (error) {
+  if (error && connectionRetries >= 3) {
     return (
       <div className="app-error">
         <h2>Connection Error</h2>
         <p>{error}</p>
-        <button onClick={fetchClusterStatus}>Retry Connection</button>
+        <p className="error-hint">
+          Make sure the backend is running on port 5000
+        </p>
+        <button onClick={() => {
+          setConnectionRetries(0);
+          setError(null);
+          fetchClusterStatus();
+        }}>
+          Retry Connection
+        </button>
       </div>
     );
   }
 
   return (
-    <div className="app-container">
-      <header className="app-header">
-        <h1>RAFT Distributed Systems Simulator</h1>
-        <StatusBar
-          currentTerm={clusterState.term}
-          leaderId={clusterState.leader}
-          simulationTime={simulationState.time}
-          isRunning={simulationState.isRunning}
-        />
-      </header>
+    <SimulationProvider value={{ 
+      clusterState, 
+      simulationState, 
+      API_URL 
+    }}>
+      <div className="app-container">
+        <header className="app-header">
+          <h1>RAFT Distributed Systems Simulator</h1>
+          <StatusBar
+            currentTerm={clusterState.term}
+            leaderId={clusterState.leader}
+            simulationTime={simulationState.time}
+            isRunning={simulationState.isRunning}
+            nodeCount={clusterState.nodes.length}
+          />
+        </header>
 
-      <main className="app-main">
-        <div className="visualization-section">
-          <ClusterCanvas 
-            nodes={clusterState.nodes} 
-            messages={messages}
-          />
-          <ControlPanel
-            onSimulationChange={handleSimulationChange}
-            onChaosEvent={handleChaosEvent}
-          />
-        </div>
+        <main className="app-main">
+          <div className="visualisation-section">
+            <ClusterCanvas 
+              nodes={clusterState.nodes} 
+              messages={clusterState.messages}
+              leaderId={clusterState.leader}
+            />
+            <ControlPanel
+              onSimulationControl={handleSimulationControl}
+              onChaosEvent={handleChaosEvent}
+              isRunning={simulationState.isRunning}
+            />
+          </div>
 
-        <div className="events-section">
-          <LogViewer
-            events={filteredEvents}
-            onFilterChange={setLogFilter}
-          />
-        </div>
-      </main>
-    </div>
+          <div className="events-section">
+            <LogViewer
+              events={eventsRef.current}
+              isRunning={simulationState.isRunning}
+            />
+          </div>
+        </main>
+      </div>
+    </SimulationProvider>
   );
 };
 
