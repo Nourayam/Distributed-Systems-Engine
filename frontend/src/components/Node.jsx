@@ -16,35 +16,47 @@ const Node = ({ id, role, term, status, style, onClick }) => {
   }, [role, lastRole]);
 
   const getNodeClasses = () => {
-    let classes = ['node', `node-${role.toLowerCase()}`];
-    
-    if (status !== 'HEALTHY') {
+    const classes = ['node'];
+
+    if (typeof role === 'string') {
+      classes.push(`node-${role.toLowerCase()}`);
+    } else {
+      classes.push('node-unknown');
+    }
+
+    if (typeof status === 'string' && status !== 'HEALTHY') {
       classes.push(`node-${status.toLowerCase()}`);
     }
-    
+
     if (isAnimating) {
       classes.push('node-transitioning');
     }
-    
+
     return classes.join(' ');
   };
 
   const getRoleEmoji = () => {
     if (status === 'FAILED') return '💀';
     if (status === 'PARTITIONED') return '🔌';
-    
+
     switch (role) {
-      case 'LEADER': return '👑';
-      case 'CANDIDATE': return '🗳️';
-      default: return '🖥️';
+      case 'LEADER':
+        return '👑';
+      case 'CANDIDATE':
+        return '🗳️';
+      default:
+        return '🖥️';
     }
   };
 
   const getStatusText = () => {
     switch (status) {
-      case 'FAILED': return 'CRASHED';
-      case 'PARTITIONED': return 'ISOLATED';
-      default: return role;
+      case 'FAILED':
+        return 'CRASHED';
+      case 'PARTITIONED':
+        return 'ISOLATED';
+      default:
+        return typeof role === 'string' ? role : 'UNKNOWN';
     }
   };
 
@@ -53,7 +65,7 @@ const Node = ({ id, role, term, status, style, onClick }) => {
       className={getNodeClasses()}
       style={style}
       onClick={() => onClick && onClick(id)}
-      title={`Node ${id} - ${getStatusText()} (Term ${term})`}
+      title={`Node ${id} – ${getStatusText()} (Term ${term})`}
     >
       <div className="node-content">
         <div className="node-emoji">{getRoleEmoji()}</div>
@@ -61,30 +73,27 @@ const Node = ({ id, role, term, status, style, onClick }) => {
         <div className="node-term">T{term}</div>
         <div className="node-status">{getStatusText()}</div>
       </div>
-      
-      {role === 'LEADER' && (
-        <div className="node-glow"></div>
-      )}
-      
-      {role === 'CANDIDATE' && (
-        <div className="node-pulse"></div>
-      )}
+
+      {role === 'LEADER' && <div className="node-glow"></div>}
+      {role === 'CANDIDATE' && <div className="node-pulse"></div>}
     </div>
   );
 };
 
 Node.propTypes = {
   id: PropTypes.number.isRequired,
-  role: PropTypes.oneOf(['LEADER', 'FOLLOWER', 'CANDIDATE']).isRequired,
+  role: PropTypes.string,
   term: PropTypes.number.isRequired,
-  status: PropTypes.oneOf(['HEALTHY', 'FAILED', 'PARTITIONED']).isRequired,
+  status: PropTypes.string,
   style: PropTypes.object,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
 };
 
 Node.defaultProps = {
+  role: 'UNKNOWN',
+  status: 'HEALTHY',
   style: {},
-  onClick: null
+  onClick: null,
 };
 
 export default Node;

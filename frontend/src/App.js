@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import axios from 'axios';
-import StatusBar from './components/StatusBar';
+import StatusBar from './StatusBar';
 import ClusterCanvas from './components/ClusterCanvas';
 import ControlPanel from './components/ControlPanel';
 import LogViewer from './components/LogViewer';
