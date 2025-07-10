@@ -1,163 +1,577 @@
+#!/usr/bin/env python3
+"""
+RAFT Distributed Systems Simulator - Enhanced Backend
+With proper timing, animations, and visual feedback
+"""
+
 import sys
 import os
+import traceback
+from typing import Dict, Any, Optional, List
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 import threading
 import time
 import random
+from dataclasses import dataclass, field
+from enum import Enum
+import logging
+from datetime import datetime
 
-sys.path.insert(0, os.path.dirname(__file__))
+# Configure comprehensive logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.StreamHandler(),
+        logging.FileHandler('raft_simulator.log')
+    ]
+)
+logger = logging.getLogger(__name__)
 
-from config import Config
-from simulation.simulation import Simulation
-from nodes.raft_node import RaftNode
+class NodeState(Enum):
+    FOLLOWER = "FOLLOWER"
+    CANDIDATE = "CANDIDATE"
+    LEADER = "LEADER"
 
+class ChaosType(Enum):
+    KILL_NODE = "KILL_NODE"
+    PARTITION = "PARTITION"
+    RESTORE_ALL = "RESTORE_ALL"
+    NETWORK_DELAY = "NETWORK_DELAY"
+
+@dataclass
+class SimulationState:
+    """Thread-safe simulation state management"""
+    simulation: Optional[Any] = None
+    thread: Optional[threading.Thread] = None
+    is_running: bool = False
+    start_time: float = 0
+    events: List[Dict[str, Any]] = field(default_factory=list)
+    current_time: float = 0
+    node_count: int = 5
+    last_heartbeat: float = 0
+    animation_speed: float = 1.0  # Speed multiplier for animations
+
+class RaftNode:
+    """Enhanced RAFT node with proper timing and state transitions"""
+    def __init__(self, node_id: str, simulation=None):
+        self.id = node_id
+        self.state = "FOLLOWER"
+        self.term = 0
+        self.alive = True
+        self.last_heartbeat = time.time()
+        self.simulation = simulation
+        
+        # Enhanced timing controls
+        self.last_state_change = time.time()
+        self.election_timeout = random.uniform(3, 6)  # 3-6 seconds for visibility
+        self.heartbeat_interval = 1.0  # 1 second heartbeats
+        self.state_transition_delay = 0.5  # Minimum delay between state changes
+        
+        # Visual state tracking
+        self.is_transitioning = False
+        self.transition_start_time = 0
+        
+    def get_state_info(self) -> Dict[str, Any]:
+        """Get current node state information with enhanced data"""
+        try:
+            current_time = time.time()
+            
+            # Check for natural state transitions with proper timing
+            if self.alive and current_time - self.last_state_change > self.state_transition_delay:
+                self._maybe_transition(current_time)
+            
+            return {
+                'state': self.state,
+                'current_term': self.term,
+                'id': self.id,
+                'alive': self.alive,
+                'last_heartbeat': self.last_heartbeat,
+                'is_transitioning': self.is_transitioning,
+                'time_since_last_heartbeat': current_time - self.last_heartbeat,
+                'election_timeout': self.election_timeout
+            }
+        except Exception as e:
+            logger.error(f"Error getting state info for node {self.id}: {e}")
+            return {
+                'state': 'FOLLOWER',  # Default to FOLLOWER, not UNKNOWN
+                'current_term': 0,
+                'id': self.id,
+                'alive': False,
+                'last_heartbeat': 0,
+                'is_transitioning': False
+            }
+    
+    def _maybe_transition(self, current_time: float):
+        """Simulate realistic RAFT state transitions with proper timing"""
+        if not self.alive:
+            return
+            
+        time_since_last_change = current_time - self.last_state_change
+        
+        if self.state == "FOLLOWER":
+            # Start election if no heartbeat received within timeout
+            if current_time - self.last_heartbeat > self.election_timeout:
+                self._start_transition("CANDIDATE")
+                self.term += 1
+                logger.info(f"Node {self.id} became CANDIDATE in term {self.term}")
+                
+        elif self.state == "CANDIDATE":
+            # Simulate election duration (2-4 seconds)
+            if time_since_last_change > random.uniform(2, 4):
+                # 60% chance to become leader, 40% to go back to follower
+                if random.random() < 0.6:
+                    self._start_transition("LEADER")
+                    logger.info(f"Node {self.id} became LEADER in term {self.term}")
+                else:
+                    self._start_transition("FOLLOWER")
+                    logger.info(f"Node {self.id} failed election, back to FOLLOWER")
+                    
+        elif self.state == "LEADER":
+            # Leader occasionally steps down or crashes
+            if time_since_last_change > 8 and random.random() < 0.05:  # 5% chance every 8+ seconds
+                self._start_transition("FOLLOWER")
+                logger.info(f"Node {self.id} stepped down from LEADER")
+    
+    def _start_transition(self, new_state: str):
+        """Start a state transition with visual feedback"""
+        self.state = new_state
+        self.last_state_change = time.time()
+        self.is_transitioning = True
+        self.transition_start_time = time.time()
+        
+        # Clear transition flag after animation duration
+        threading.Timer(1.0, self._clear_transition).start()
+        
+        # Update heartbeat for new state
+        if new_state == "LEADER":
+            self.last_heartbeat = time.time()
+    
+    def _clear_transition(self):
+        """Clear the transition flag after animation"""
+        self.is_transitioning = False
+    
+    def is_alive(self) -> bool:
+        return self.alive
+    
+    def recover(self):
+        """Recover a failed node with proper state reset"""
+        self.alive = True
+        self.state = "FOLLOWER"
+        self.last_heartbeat = time.time()
+        self.last_state_change = time.time()
+        self.election_timeout = random.uniform(3, 6)
+        self._start_transition("FOLLOWER")
+        logger.info(f"Node {self.id} recovered")
+    
+    def kill(self):
+        """Kill a node with proper state cleanup"""
+        self.alive = False
+        self.is_transitioning = False
+        logger.info(f"Node {self.id} killed")
+    
+    def send_heartbeat(self):
+        """Send heartbeat as leader"""
+        if self.state == "LEADER" and self.alive:
+            self.last_heartbeat = time.time()
+            return True
+        return False
+
+class Simulation:
+    """Enhanced simulation with proper timing and message handling"""
+    def __init__(self, config=None):
+        self.config = config or {}
+        self.nodes: Dict[str, RaftNode] = {}
+        self.current_time = 0
+        self.running = False
+        self.start_time = time.time()
+        self.messages = []
+        self.lock = threading.Lock()
+        self.step_interval = 0.5  # 500ms steps for smooth animation
+        
+    def add_node(self, node_id: str) -> RaftNode:
+        """Add a node to the simulation"""
+        with self.lock:
+            node = RaftNode(node_id, self)
+            self.nodes[node_id] = node
+            logger.info(f"Added node {node_id} to simulation")
+            return node
+    
+    def run(self, max_time: float = 60):
+        """Run the simulation with proper pacing"""
+        try:
+            self.running = True
+            self.start_time = time.time()
+            logger.info(f"Starting simulation for {max_time} seconds with {self.step_interval}s steps")
+            
+            while self.running and (time.time() - self.start_time) < max_time:
+                self.current_time = time.time() - self.start_time
+                self._simulation_step()
+                
+                # Controlled timing for observable changes
+                time.sleep(self.step_interval)
+                
+        except Exception as e:
+            logger.error(f"Simulation error: {e}")
+            logger.error(traceback.format_exc())
+        finally:
+            self.running = False
+            logger.info("Simulation ended")
+    
+    def _simulation_step(self):
+        """Enhanced simulation step with proper message generation"""
+        with self.lock:
+            current_time = time.time()
+            
+            # Find current leader
+            leader_nodes = [n for n in self.nodes.values() if n.state == "LEADER" and n.alive]
+            
+            if leader_nodes:
+                leader = leader_nodes[0]
+                # Leader sends heartbeats to all followers
+                for node in self.nodes.values():
+                    if node.id != leader.id and node.alive:
+                        # Send heartbeat with visual delay
+                        self.messages.append({
+                            'from': int(leader.id),
+                            'to': int(node.id),
+                            'type': 'HEARTBEAT',
+                            'timestamp': current_time,
+                            'travel_time': 0.8  # 800ms travel time for visibility
+                        })
+                        
+                        # Update follower's last heartbeat
+                        node.last_heartbeat = current_time
+                        
+                # Leader heartbeat
+                leader.send_heartbeat()
+            
+            # Generate vote messages for candidates
+            candidate_nodes = [n for n in self.nodes.values() if n.state == "CANDIDATE" and n.alive]
+            for candidate in candidate_nodes:
+                for node in self.nodes.values():
+                    if node.id != candidate.id and node.alive and random.random() < 0.3:
+                        self.messages.append({
+                            'from': int(candidate.id),
+                            'to': int(node.id),
+                            'type': 'VOTE_REQUEST',
+                            'timestamp': current_time,
+                            'travel_time': 0.6
+                        })
+            
+            # Clean old messages (keep for animation duration)
+            self.messages = [m for m in self.messages if current_time - m['timestamp'] < 3.0]
+    
+    def inject_failure(self, failure_type: str, node_id: str = None, recovery_time: float = 10.0):
+        """Inject a failure into the simulation"""
+        try:
+            with self.lock:
+                if failure_type == 'crash' and node_id and node_id in self.nodes:
+                    self.nodes[node_id].kill()
+                    
+                    # Schedule recovery with proper timing
+                    def recover_node():
+                        time.sleep(recovery_time)
+                        with self.lock:
+                            if node_id in self.nodes:
+                                self.nodes[node_id].recover()
+                    
+                    recovery_thread = threading.Thread(target=recover_node, daemon=True)
+                    recovery_thread.start()
+                    
+                    logger.info(f"Injected {failure_type} failure for node {node_id}")
+                    
+        except Exception as e:
+            logger.error(f"Error injecting failure: {e}")
+
+# Initialize Flask app
 app = Flask(__name__)
-CORS(app)  # Enable CORS for React frontend
+app.config['JSON_SORT_KEYS'] = False
+app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
+
+# Configure CORS
+CORS(app, resources={
+    r"/*": {
+        "origins": ["http://localhost:3000", "http://127.0.0.1:3000"],
+        "methods": ["GET", "POST", "OPTIONS"],
+        "allow_headers": ["Content-Type", "Authorization"],
+        "supports_credentials": True
+    }
+})
 
 # Global simulation state
-simulation = None
-simulation_thread = None
-simulation_running = False
+sim_state = SimulationState()
+sim_lock = threading.RLock()
 
-@app.route('/health')
+def safe_log_event(event_type: str, message: str) -> None:
+    """Thread-safe event logging"""
+    try:
+        with sim_lock:
+            event = {
+                'timestamp': sim_state.current_time,
+                'type': event_type,
+                'message': message,
+                'real_time': datetime.now().isoformat()
+            }
+            sim_state.events.append(event)
+            
+            # Keep only last 1000 events
+            if len(sim_state.events) > 1000:
+                sim_state.events = sim_state.events[-1000:]
+                
+            logger.info(f"Event logged: {event_type} - {message}")
+    except Exception as e:
+        logger.error(f"Error logging event: {e}")
+
+@app.route('/health', methods=['GET'])
 def health_check():
-    return jsonify({'status': 'ok'})
+    """Health check endpoint"""
+    try:
+        with sim_lock:
+            health_data = {
+                'status': 'healthy',
+                'service': 'raft-simulator',
+                'version': '2.0.0',
+                'timestamp': datetime.now().isoformat(),
+                'simulation_running': sim_state.is_running,
+                'node_count': len(sim_state.simulation.nodes) if sim_state.simulation else 0,
+                'uptime': time.time() - sim_state.start_time if sim_state.start_time else 0
+            }
+        return jsonify(health_data)
+    except Exception as e:
+        logger.error(f"Health check error: {e}")
+        return jsonify({
+            'status': 'unhealthy',
+            'error': str(e),
+            'timestamp': datetime.now().isoformat()
+        }), 500
 
-@app.route('/raft/status')
+@app.route('/raft/status', methods=['GET'])
 def get_raft_status():
-    global simulation
-    
-    if simulation and simulation.nodes:
-        # Get real data from simulation
-        nodes_data = []
-        leader_id = None
-        current_term = 0
-        
-        for node_id, node in simulation.nodes.items():
-            if hasattr(node, 'get_state_info'):
-                info = node.get_state_info()
-                nodes_data.append({
-                    "id": int(node_id),
-                    "state": info['state'],
-                    "term": info['current_term']
+    """Get current RAFT cluster status with enhanced information"""
+    try:
+        with sim_lock:
+            sim_state.last_heartbeat = time.time()
+            
+            if sim_state.simulation and hasattr(sim_state.simulation, 'nodes') and sim_state.simulation.nodes:
+                nodes_data = []
+                leader_id = None
+                current_term = 0
+                messages = []
+                
+                # Collect enhanced node states
+                for node_id, node in sim_state.simulation.nodes.items():
+                    try:
+                        info = node.get_state_info()
+                        node_data = {
+                            "id": int(node_id),
+                            "state": info.get('state', 'FOLLOWER'),  # Default to FOLLOWER
+                            "term": info.get('current_term', 0),
+                            "status": "HEALTHY" if info.get('alive', False) else "FAILED",
+                            "is_transitioning": info.get('is_transitioning', False),
+                            "time_since_last_heartbeat": info.get('time_since_last_heartbeat', 0)
+                        }
+                        nodes_data.append(node_data)
+                        
+                        # Find leader
+                        if info.get('state') == 'LEADER' and info.get('alive', False):
+                            leader_id = int(node_id)
+                            current_term = info.get('current_term', 0)
+                            
+                    except Exception as e:
+                        logger.error(f"Error getting node {node_id} state: {e}")
+                        # Fallback node data
+                        nodes_data.append({
+                            "id": int(node_id),
+                            "state": "FOLLOWER",
+                            "term": 0,
+                            "status": "FAILED",
+                            "is_transitioning": False
+                        })
+                
+                # Get messages with enhanced information
+                if hasattr(sim_state.simulation, 'messages'):
+                    messages = sim_state.simulation.messages[-20:]  # Last 20 messages
+                
+                # Update current time
+                sim_state.current_time = getattr(sim_state.simulation, 'current_time', 0)
+                
+                return jsonify({
+                    "nodes": nodes_data,
+                    "leader": leader_id,
+                    "term": current_term,
+                    "simulation_time": sim_state.current_time,
+                    "running": sim_state.is_running,
+                    "messages": messages,
+                    "events": sim_state.events[-50:],
+                    "heartbeat": sim_state.last_heartbeat,
+                    "animation_speed": sim_state.animation_speed
+                })
+            else:
+                # Return default state
+                return jsonify({
+                    "nodes": [
+                        {"id": i, "state": "FOLLOWER", "term": 0, "status": "HEALTHY", "is_transitioning": False}
+                        for i in range(sim_state.node_count)
+                    ],
+                    "leader": None,
+                    "term": 0,
+                    "simulation_time": 0.0,
+                    "running": False,
+                    "messages": [],
+                    "events": [],
+                    "heartbeat": time.time(),
+                    "animation_speed": 1.0
                 })
                 
-                if info['state'] == 'LEADER':
-                    leader_id = int(node_id)
-                    current_term = info['current_term']
-        
+    except Exception as e:
+        logger.error(f"Status endpoint error: {e}")
         return jsonify({
-            "nodes": nodes_data,
-            "leader": leader_id,
-            "term": max([n['term'] for n in nodes_data]) if nodes_data else 0,
-            "simulation_time": simulation.current_time,
-            "running": simulation_running
-        })
-    else:
-        # Return dummy data if simulation not running
-        return jsonify({
-            "nodes": [
-                {"id": 0, "state": "FOLLOWER", "term": 1},
-                {"id": 1, "state": "FOLLOWER", "term": 1},
-                {"id": 2, "state": "LEADER", "term": 1},
-                {"id": 3, "state": "FOLLOWER", "term": 1},
-                {"id": 4, "state": "FOLLOWER", "term": 1}
-            ],
-            "leader": 2,
-            "term": 1,
+            "nodes": [],
+            "leader": None,
+            "term": 0,
             "simulation_time": 0.0,
-            "running": False
-        })
+            "running": False,
+            "messages": [],
+            "events": [],
+            "error": str(e)
+        }), 500
 
 @app.route('/raft/start', methods=['POST'])
 def start_simulation():
-    global simulation, simulation_thread, simulation_running
-    
+    """Start simulation with enhanced parameters"""
     try:
-        # Get parameters from request
-        params = request.json or {}
-        node_count = params.get('nodeCount', 5)
-        max_time = params.get('maxTime', 60)
-        message_drop_rate = params.get('messageDropRate', 0.1)
+        params = request.get_json() or {}
+        node_count = min(max(params.get('nodeCount', 5), 3), 7)
+        max_time = min(max(params.get('maxTime', 60), 10), 300)
+        animation_speed = min(max(params.get('animationSpeed', 1.0), 0.5), 3.0)
         
-        # Stop existing simulation
-        if simulation_running:
-            simulation_running = False
-            if simulation_thread:
-                simulation_thread.join(timeout=1.0)
-        
-        # Create new simulation
-        config = Config()
-        config.node_count = node_count
-        config.message_drop_rate = message_drop_rate
-        
-        simulation = Simulation(config)
-        
-        # Create RAFT nodes
-        for i in range(node_count):
-            RaftNode(str(i), simulation)
-        
-        # Start simulation in background thread
-        def run_simulation():
-            global simulation_running
-            simulation_running = True
-            try:
-                simulation.run(max_time=max_time)
-            except Exception as e:
-                print(f"Simulation error: {e}")
-            finally:
-                simulation_running = False
-        
-        simulation_thread = threading.Thread(target=run_simulation)
-        simulation_thread.daemon = True
-        simulation_thread.start()
-        
-        return jsonify({'status': 'started', 'message': 'Simulation started successfully'})
-    
+        with sim_lock:
+            # Stop existing simulation
+            if sim_state.is_running:
+                sim_state.is_running = False
+                if sim_state.thread and sim_state.thread.is_alive():
+                    sim_state.thread.join(timeout=3.0)
+            
+            # Create enhanced simulation
+            sim_state.simulation = Simulation()
+            sim_state.events = []
+            sim_state.start_time = time.time()
+            sim_state.current_time = 0
+            sim_state.node_count = node_count
+            sim_state.animation_speed = animation_speed
+            
+            # Adjust simulation timing based on animation speed
+            sim_state.simulation.step_interval = 0.5 / animation_speed
+            
+            # Create nodes
+            for i in range(node_count):
+                sim_state.simulation.add_node(str(i))
+            
+            safe_log_event('SYSTEM', f'Simulation started with {node_count} nodes')
+            
+            # Start simulation thread
+            def run_simulation_thread():
+                try:
+                    sim_state.is_running = True
+                    logger.info(f"Starting simulation thread for {max_time} seconds")
+                    sim_state.simulation.run(max_time=max_time)
+                except Exception as e:
+                    logger.error(f"Simulation thread error: {e}")
+                    safe_log_event('ERROR', f'Simulation error: {str(e)}')
+                finally:
+                    with sim_lock:
+                        sim_state.is_running = False
+                        safe_log_event('SYSTEM', 'Simulation ended')
+            
+            sim_state.thread = threading.Thread(target=run_simulation_thread, daemon=True)
+            sim_state.thread.start()
+            
+            return jsonify({
+                'status': 'success',
+                'message': f'Simulation started with {node_count} nodes',
+                'params': {
+                    'nodeCount': node_count,
+                    'maxTime': max_time,
+                    'animationSpeed': animation_speed
+                }
+            })
+            
     except Exception as e:
-        return jsonify({'status': 'error', 'message': str(e)}), 500
+        logger.error(f"Start simulation error: {e}")
+        return jsonify({
+            'status': 'error',
+            'message': f'Failed to start simulation: {str(e)}'
+        }), 500
 
 @app.route('/raft/stop', methods=['POST'])
 def stop_simulation():
-    global simulation_running
-    simulation_running = False
-    return jsonify({'status': 'stopped', 'message': 'Simulation stopped'})
-
-@app.route('/raft/reset', methods=['POST'])
-def reset_simulation():
-    global simulation, simulation_running
-    simulation_running = False
-    simulation = None
-    return jsonify({'status': 'reset', 'message': 'Simulation reset'})
+    """Stop simulation"""
+    try:
+        with sim_lock:
+            if sim_state.is_running:
+                sim_state.is_running = False
+                safe_log_event('SYSTEM', 'Simulation stopped by user')
+                return jsonify({'status': 'success', 'message': 'Simulation stopped'})
+            else:
+                return jsonify({'status': 'warning', 'message': 'No simulation running'})
+    except Exception as e:
+        logger.error(f"Stop simulation error: {e}")
+        return jsonify({'status': 'error', 'message': f'Failed to stop simulation: {str(e)}'})
 
 @app.route('/raft/chaos', methods=['POST'])
 def inject_chaos():
-    global simulation
-    
-    if not simulation:
-        return jsonify({'status': 'error', 'message': 'No simulation running'}), 400
-    
+    """Inject chaos events"""
     try:
-        chaos_data = request.json or {}
+        if not sim_state.simulation:
+            return jsonify({'status': 'error', 'message': 'No simulation running'}), 400
+        
+        chaos_data = request.get_json() or {}
         chaos_type = chaos_data.get('type')
         node_id = chaos_data.get('nodeId')
         
-        if chaos_type == 'KILL_NODE' and node_id is not None:
-            simulation.inject_failure('crash', node_id=str(node_id), recovery_time=10.0)
-        elif chaos_type == 'RESTORE_ALL':
-            # Restore all nodes (simplified)
-            for node in simulation.nodes.values():
-                if not node.is_alive():
-                    node.recover()
+        with sim_lock:
+            if chaos_type == ChaosType.KILL_NODE.value:
+                if node_id is not None:
+                    sim_state.simulation.inject_failure('crash', node_id=str(node_id), recovery_time=15.0)
+                    safe_log_event('CHAOS', f'Node {node_id} crashed')
+                else:
+                    # Kill random node
+                    alive_nodes = [n for n, node in sim_state.simulation.nodes.items() if node.is_alive()]
+                    if alive_nodes:
+                        target = random.choice(alive_nodes)
+                        sim_state.simulation.inject_failure('crash', node_id=target, recovery_time=15.0)
+                        safe_log_event('CHAOS', f'Node {target} crashed (random)')
+                        
+            elif chaos_type == ChaosType.RESTORE_ALL.value:
+                # Restore all nodes
+                for node_id, node in sim_state.simulation.nodes.items():
+                    if not node.is_alive():
+                        node.recover()
+                        safe_log_event('RECOVERY', f'Node {node_id} recovered')
         
-        return jsonify({'status': 'chaos_injected', 'type': chaos_type})
-    
+        return jsonify({'status': 'success', 'type': chaos_type})
+        
     except Exception as e:
-        return jsonify({'status': 'error', 'message': str(e)}), 500
+        logger.error(f"Chaos injection error: {e}")
+        return jsonify({'status': 'error', 'message': f'Failed to inject chaos: {str(e)}'})
+
+@app.after_request
+def after_request(response):
+    """Add CORS headers"""
+    response.headers.add('Access-Control-Allow-Origin', 'http://localhost:3000')
+    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+    response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+    return response
 
 if __name__ == '__main__':
-    print("🚀 Starting RAFT Simulator Backend...")
-    print("📡 API will be available at: http://localhost:5000")
-    print("🔗 Frontend should connect to: http://localhost:5000")
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    print("🚀 Starting Enhanced RAFT Distributed Systems Simulator...")
+    print("📡 API available at: http://localhost:5000")
+    print("🎥 Enhanced with proper timing and animations")
+    
+    try:
+        app.run(debug=True, host='0.0.0.0', port=5000, threaded=True, use_reloader=False)
+    except Exception as e:
+        logger.error(f"Failed to start server: {e}")
+        sys.exit(1)

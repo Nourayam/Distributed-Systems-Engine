@@ -1,0 +1,1945 @@
+2025-07-09 23:47:53,189 - __main__ - INFO - Successfully imported actual simulation modules
+2025-07-09 23:47:53,370 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.107:5000
+2025-07-09 23:47:53,371 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-07-09 23:48:38,865 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:48:38] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:48:39,107 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:48:39] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:48:40,111 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:48:40] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:48:41,432 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:48:41] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:48:42,122 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:48:42] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:48:43,432 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:48:43] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:48:44,121 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:48:44] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:48:45,423 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:48:45] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:48:46,120 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:48:46] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:48:47,422 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:48:47] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:48:48,117 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:48:48] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:48:49,436 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:48:49] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:48:50,116 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:48:50] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:48:51,447 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:48:51] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:48:51,757 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:48:51] "OPTIONS /raft/start HTTP/1.1" 200 -
+2025-07-09 23:48:52,109 - simulation.simulation.Simulation - INFO - Simulation initialized
+2025-07-09 23:48:52,111 - simulation.simulation.Simulation - INFO - Registered node 0
+2025-07-09 23:48:52,112 - Node[0] - INFO - Node initialized and registered
+2025-07-09 23:48:52,113 - Node[0] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:48:52,114 - simulation.simulation.Simulation - INFO - Registered node 1
+2025-07-09 23:48:52,115 - Node[1] - INFO - Node initialized and registered
+2025-07-09 23:48:52,117 - Node[1] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:48:52,121 - simulation.simulation.Simulation - INFO - Registered node 2
+2025-07-09 23:48:52,123 - Node[2] - INFO - Node initialized and registered
+2025-07-09 23:48:52,126 - Node[2] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:48:52,128 - simulation.simulation.Simulation - INFO - Registered node 3
+2025-07-09 23:48:52,129 - Node[3] - INFO - Node initialized and registered
+2025-07-09 23:48:52,131 - Node[3] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:48:52,134 - simulation.simulation.Simulation - INFO - Registered node 4
+2025-07-09 23:48:52,135 - Node[4] - INFO - Node initialized and registered
+2025-07-09 23:48:52,137 - Node[4] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:48:52,138 - __main__ - INFO - Event logged: SYSTEM - Simulation started with 5 nodes
+2025-07-09 23:48:52,144 - __main__ - INFO - Starting simulation thread for 60 seconds
+2025-07-09 23:48:52,146 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:48:52] "POST /raft/start HTTP/1.1" 200 -
+2025-07-09 23:48:52,147 - simulation.simulation.Simulation - INFO - Starting simulation for 60 seconds
+2025-07-09 23:48:52,150 - Node[1] - INFO - Became CANDIDATE for term 1, need 3 votes
+2025-07-09 23:48:52,152 - Node[3] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:48:52,154 - Node[4] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:48:52,160 - Node[0] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:48:52,162 - Node[1] - INFO - Became LEADER for term 1
+2025-07-09 23:48:52,164 - Node[2] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:48:52,167 - Node[3] - INFO - Became CANDIDATE for term 2, need 3 votes
+2025-07-09 23:48:52,169 - Node[0] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:48:52,172 - Node[2] - INFO - Became CANDIDATE for term 2, need 3 votes
+2025-07-09 23:48:52,175 - Node[4] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:48:52,177 - Node[1] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:48:52,179 - Node[3] - INFO - Became LEADER for term 2
+2025-07-09 23:48:52,181 - Node[2] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:48:52,183 - Node[0] - INFO - Became CANDIDATE for term 3, need 3 votes
+2025-07-09 23:48:52,185 - Node[1] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:48:52,186 - Node[4] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:48:52,188 - Node[3] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:48:52,191 - Node[0] - INFO - Became LEADER for term 3
+2025-07-09 23:48:52,194 - Node[4] - INFO - Became CANDIDATE for term 4, need 3 votes
+2025-07-09 23:48:52,199 - Node[3] - INFO - Became FOLLOWER for term 4
+2025-07-09 23:48:52,201 - Node[0] - INFO - Became FOLLOWER for term 4
+2025-07-09 23:48:52,204 - Node[2] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:48:52,206 - Node[2] - INFO - Became FOLLOWER for term 4
+2025-07-09 23:48:52,208 - Node[1] - INFO - Became FOLLOWER for term 4
+2025-07-09 23:48:52,210 - Node[4] - INFO - Became LEADER for term 4
+2025-07-09 23:48:52,325 - Node[0] - INFO - Became CANDIDATE for term 5, need 3 votes
+2025-07-09 23:48:52,332 - Node[2] - INFO - Became FOLLOWER for term 5
+2025-07-09 23:48:52,341 - Node[1] - INFO - Became FOLLOWER for term 5
+2025-07-09 23:48:52,354 - Node[3] - INFO - Became FOLLOWER for term 5
+2025-07-09 23:48:52,364 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:48:52] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:48:52,365 - Node[4] - INFO - Became FOLLOWER for term 5
+2025-07-09 23:48:52,374 - Node[0] - INFO - Became LEADER for term 5
+2025-07-09 23:48:52,415 - simulation.simulation.Simulation - INFO - Simulation completed. Processed 2065 events in 60.03s sim time
+2025-07-09 23:48:52,422 - __main__ - INFO - Event logged: SYSTEM - Simulation ended
+2025-07-09 23:48:52,431 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:48:52] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:48:53,115 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:48:53] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:48:54,429 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:48:54] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:48:55,114 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:48:55] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:48:56,428 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:48:56] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:48:57,112 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:48:57] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:48:58,425 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:48:58] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:48:59,111 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:48:59] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:00,423 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:00] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:00,753 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:00] "OPTIONS /raft/start HTTP/1.1" 200 -
+2025-07-09 23:49:01,076 - simulation.simulation.Simulation - INFO - Simulation initialized
+2025-07-09 23:49:01,077 - simulation.simulation.Simulation - INFO - Registered node 0
+2025-07-09 23:49:01,078 - Node[0] - INFO - Node initialized and registered
+2025-07-09 23:49:01,079 - Node[0] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:01,080 - simulation.simulation.Simulation - INFO - Registered node 1
+2025-07-09 23:49:01,081 - Node[1] - INFO - Node initialized and registered
+2025-07-09 23:49:01,083 - Node[1] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:01,085 - simulation.simulation.Simulation - INFO - Registered node 2
+2025-07-09 23:49:01,086 - Node[2] - INFO - Node initialized and registered
+2025-07-09 23:49:01,089 - Node[2] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:01,091 - simulation.simulation.Simulation - INFO - Registered node 3
+2025-07-09 23:49:01,092 - Node[3] - INFO - Node initialized and registered
+2025-07-09 23:49:01,093 - Node[3] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:01,094 - simulation.simulation.Simulation - INFO - Registered node 4
+2025-07-09 23:49:01,095 - Node[4] - INFO - Node initialized and registered
+2025-07-09 23:49:01,097 - Node[4] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:01,099 - __main__ - INFO - Event logged: SYSTEM - Simulation started with 5 nodes
+2025-07-09 23:49:01,102 - __main__ - INFO - Starting simulation thread for 60 seconds
+2025-07-09 23:49:01,104 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:01] "POST /raft/start HTTP/1.1" 200 -
+2025-07-09 23:49:01,106 - simulation.simulation.Simulation - INFO - Starting simulation for 60 seconds
+2025-07-09 23:49:01,109 - Node[3] - INFO - Became CANDIDATE for term 1, need 3 votes
+2025-07-09 23:49:01,111 - Node[1] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:49:01,117 - Node[4] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:49:01,119 - Node[0] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:49:01,123 - Node[2] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:49:01,125 - Node[3] - INFO - Became LEADER for term 1
+2025-07-09 23:49:01,126 - Node[2] - INFO - Became CANDIDATE for term 2, need 3 votes
+2025-07-09 23:49:01,129 - Node[0] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:49:01,137 - Node[3] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:49:01,139 - Node[2] - INFO - Became LEADER for term 2
+2025-07-09 23:49:01,141 - Node[4] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:49:01,143 - Node[1] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:49:01,145 - Node[1] - INFO - Became CANDIDATE for term 3, need 3 votes
+2025-07-09 23:49:01,152 - Node[0] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:49:01,155 - Node[4] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:49:01,156 - Node[3] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:49:01,157 - Node[1] - INFO - Became LEADER for term 3
+2025-07-09 23:49:01,159 - Node[2] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:49:01,161 - Node[0] - INFO - Became CANDIDATE for term 4, need 3 votes
+2025-07-09 23:49:01,169 - Node[4] - INFO - Became CANDIDATE for term 4, need 3 votes
+2025-07-09 23:49:01,175 - Node[2] - INFO - Became FOLLOWER for term 4
+2025-07-09 23:49:01,177 - Node[3] - INFO - Became FOLLOWER for term 4
+2025-07-09 23:49:01,185 - Node[1] - INFO - Became FOLLOWER for term 4
+2025-07-09 23:49:01,190 - Node[0] - INFO - Became LEADER for term 4
+2025-07-09 23:49:01,192 - Node[4] - INFO - Became FOLLOWER for term 4
+2025-07-09 23:49:01,198 - Node[3] - INFO - Became CANDIDATE for term 5, need 3 votes
+2025-07-09 23:49:01,204 - Node[2] - INFO - Became FOLLOWER for term 5
+2025-07-09 23:49:01,209 - Node[4] - INFO - Became FOLLOWER for term 5
+2025-07-09 23:49:01,212 - Node[0] - INFO - Became FOLLOWER for term 5
+2025-07-09 23:49:01,220 - Node[1] - INFO - Became FOLLOWER for term 5
+2025-07-09 23:49:01,225 - Node[3] - INFO - Became LEADER for term 5
+2025-07-09 23:49:01,274 - simulation.simulation.Simulation - INFO - Simulation completed. Processed 2041 events in 60.08s sim time
+2025-07-09 23:49:01,275 - __main__ - INFO - Event logged: SYSTEM - Simulation ended
+2025-07-09 23:49:01,325 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:01] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:01,433 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:01] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:02,114 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:02] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:02,538 - simulation.simulation.Simulation - INFO - Simulation initialized
+2025-07-09 23:49:02,539 - simulation.simulation.Simulation - INFO - Registered node 0
+2025-07-09 23:49:02,539 - Node[0] - INFO - Node initialized and registered
+2025-07-09 23:49:02,540 - Node[0] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:02,540 - simulation.simulation.Simulation - INFO - Registered node 1
+2025-07-09 23:49:02,541 - Node[1] - INFO - Node initialized and registered
+2025-07-09 23:49:02,542 - Node[1] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:02,542 - simulation.simulation.Simulation - INFO - Registered node 2
+2025-07-09 23:49:02,543 - Node[2] - INFO - Node initialized and registered
+2025-07-09 23:49:02,543 - Node[2] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:02,544 - simulation.simulation.Simulation - INFO - Registered node 3
+2025-07-09 23:49:02,545 - Node[3] - INFO - Node initialized and registered
+2025-07-09 23:49:02,547 - Node[3] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:02,548 - simulation.simulation.Simulation - INFO - Registered node 4
+2025-07-09 23:49:02,550 - Node[4] - INFO - Node initialized and registered
+2025-07-09 23:49:02,552 - Node[4] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:02,553 - __main__ - INFO - Event logged: SYSTEM - Simulation started with 5 nodes
+2025-07-09 23:49:02,555 - __main__ - INFO - Starting simulation thread for 60 seconds
+2025-07-09 23:49:02,557 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:02] "POST /raft/start HTTP/1.1" 200 -
+2025-07-09 23:49:02,557 - simulation.simulation.Simulation - INFO - Starting simulation for 60 seconds
+2025-07-09 23:49:02,558 - Node[2] - INFO - Became CANDIDATE for term 1, need 3 votes
+2025-07-09 23:49:02,559 - Node[4] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:49:02,560 - Node[3] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:49:02,560 - Node[2] - INFO - Became LEADER for term 1
+2025-07-09 23:49:02,566 - Node[0] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:49:02,568 - Node[1] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:49:02,569 - Node[0] - INFO - Became CANDIDATE for term 2, need 3 votes
+2025-07-09 23:49:02,570 - Node[4] - INFO - Became CANDIDATE for term 2, need 3 votes
+2025-07-09 23:49:02,571 - Node[2] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:49:02,572 - Node[1] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:49:02,573 - Node[3] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:49:02,574 - Node[0] - INFO - Became LEADER for term 2
+2025-07-09 23:49:02,575 - Node[1] - INFO - Became CANDIDATE for term 3, need 3 votes
+2025-07-09 23:49:02,575 - Node[3] - INFO - Became CANDIDATE for term 3, need 3 votes
+2025-07-09 23:49:02,576 - Node[4] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:49:02,577 - Node[0] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:49:02,577 - Node[2] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:49:02,578 - Node[1] - INFO - Became LEADER for term 3
+2025-07-09 23:49:02,580 - Node[3] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:49:02,586 - Node[4] - INFO - Became CANDIDATE for term 4, need 3 votes
+2025-07-09 23:49:02,588 - Node[3] - INFO - Became FOLLOWER for term 4
+2025-07-09 23:49:02,588 - Node[1] - INFO - Became FOLLOWER for term 4
+2025-07-09 23:49:02,589 - Node[2] - INFO - Became FOLLOWER for term 4
+2025-07-09 23:49:02,590 - Node[0] - INFO - Became FOLLOWER for term 4
+2025-07-09 23:49:02,591 - Node[4] - INFO - Became LEADER for term 4
+2025-07-09 23:49:02,594 - Node[3] - INFO - Became CANDIDATE for term 5, need 3 votes
+2025-07-09 23:49:02,595 - Node[4] - INFO - Became FOLLOWER for term 5
+2025-07-09 23:49:02,597 - Node[1] - INFO - Became FOLLOWER for term 5
+2025-07-09 23:49:02,600 - Node[2] - INFO - Became FOLLOWER for term 5
+2025-07-09 23:49:02,601 - Node[0] - INFO - Became FOLLOWER for term 5
+2025-07-09 23:49:02,602 - Node[3] - INFO - Became LEADER for term 5
+2025-07-09 23:49:02,607 - Node[1] - INFO - Became CANDIDATE for term 6, need 3 votes
+2025-07-09 23:49:02,608 - Node[3] - INFO - Became FOLLOWER for term 6
+2025-07-09 23:49:02,609 - Node[4] - INFO - Became FOLLOWER for term 6
+2025-07-09 23:49:02,610 - Node[2] - INFO - Became FOLLOWER for term 6
+2025-07-09 23:49:02,610 - Node[1] - INFO - Became LEADER for term 6
+2025-07-09 23:49:02,611 - Node[0] - INFO - Became FOLLOWER for term 6
+2025-07-09 23:49:02,626 - Node[4] - INFO - Became CANDIDATE for term 7, need 3 votes
+2025-07-09 23:49:02,627 - Node[0] - INFO - Became FOLLOWER for term 7
+2025-07-09 23:49:02,628 - Node[3] - INFO - Became FOLLOWER for term 7
+2025-07-09 23:49:02,629 - Node[1] - INFO - Became FOLLOWER for term 7
+2025-07-09 23:49:02,631 - Node[2] - INFO - Became FOLLOWER for term 7
+2025-07-09 23:49:02,634 - Node[4] - INFO - Became LEADER for term 7
+2025-07-09 23:49:02,645 - Node[1] - INFO - Became CANDIDATE for term 8, need 3 votes
+2025-07-09 23:49:02,648 - Node[3] - INFO - Became FOLLOWER for term 8
+2025-07-09 23:49:02,651 - Node[4] - INFO - Became FOLLOWER for term 8
+2025-07-09 23:49:02,652 - Node[2] - INFO - Became FOLLOWER for term 8
+2025-07-09 23:49:02,653 - Node[0] - INFO - Became FOLLOWER for term 8
+2025-07-09 23:49:02,654 - Node[1] - INFO - Became LEADER for term 8
+2025-07-09 23:49:02,663 - simulation.simulation.Simulation - INFO - Simulation completed. Processed 2133 events in 60.18s sim time
+2025-07-09 23:49:02,666 - __main__ - INFO - Event logged: SYSTEM - Simulation ended
+2025-07-09 23:49:02,805 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:02] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:03,122 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:03] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:04,435 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:04] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:04,512 - simulation.simulation.Simulation - INFO - Simulation initialized
+2025-07-09 23:49:04,514 - simulation.simulation.Simulation - INFO - Registered node 0
+2025-07-09 23:49:04,517 - Node[0] - INFO - Node initialized and registered
+2025-07-09 23:49:04,518 - Node[0] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:04,520 - simulation.simulation.Simulation - INFO - Registered node 1
+2025-07-09 23:49:04,521 - Node[1] - INFO - Node initialized and registered
+2025-07-09 23:49:04,522 - Node[1] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:04,527 - simulation.simulation.Simulation - INFO - Registered node 2
+2025-07-09 23:49:04,530 - Node[2] - INFO - Node initialized and registered
+2025-07-09 23:49:04,532 - Node[2] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:04,536 - simulation.simulation.Simulation - INFO - Registered node 3
+2025-07-09 23:49:04,540 - Node[3] - INFO - Node initialized and registered
+2025-07-09 23:49:04,542 - Node[3] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:04,546 - simulation.simulation.Simulation - INFO - Registered node 4
+2025-07-09 23:49:04,549 - Node[4] - INFO - Node initialized and registered
+2025-07-09 23:49:04,552 - Node[4] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:04,553 - __main__ - INFO - Event logged: SYSTEM - Simulation started with 5 nodes
+2025-07-09 23:49:04,557 - __main__ - INFO - Starting simulation thread for 60 seconds
+2025-07-09 23:49:04,558 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:04] "POST /raft/start HTTP/1.1" 200 -
+2025-07-09 23:49:04,560 - simulation.simulation.Simulation - INFO - Starting simulation for 60 seconds
+2025-07-09 23:49:04,564 - Node[0] - INFO - Became CANDIDATE for term 1, need 3 votes
+2025-07-09 23:49:04,565 - Node[1] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:49:04,569 - Node[4] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:49:04,575 - Node[0] - INFO - Became LEADER for term 1
+2025-07-09 23:49:04,576 - Node[2] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:49:04,581 - Node[3] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:49:04,586 - Node[2] - INFO - Became CANDIDATE for term 2, need 3 votes
+2025-07-09 23:49:04,587 - Node[1] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:49:04,589 - Node[0] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:49:04,590 - Node[4] - INFO - Became CANDIDATE for term 2, need 3 votes
+2025-07-09 23:49:04,594 - Node[3] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:49:04,596 - Node[2] - INFO - Became LEADER for term 2
+2025-07-09 23:49:04,598 - Node[4] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:49:04,600 - Node[3] - INFO - Became CANDIDATE for term 3, need 3 votes
+2025-07-09 23:49:04,603 - Node[4] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:49:04,605 - Node[0] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:49:04,606 - Node[1] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:49:04,608 - Node[3] - INFO - Became LEADER for term 3
+2025-07-09 23:49:04,609 - Node[1] - INFO - Became CANDIDATE for term 4, need 3 votes
+2025-07-09 23:49:04,613 - Node[2] - INFO - Became FOLLOWER for term 4
+2025-07-09 23:49:04,615 - Node[0] - INFO - Became FOLLOWER for term 4
+2025-07-09 23:49:04,617 - Node[3] - INFO - Became FOLLOWER for term 4
+2025-07-09 23:49:04,619 - Node[4] - INFO - Became FOLLOWER for term 4
+2025-07-09 23:49:04,622 - Node[1] - INFO - Became LEADER for term 4
+2025-07-09 23:49:04,646 - Node[0] - INFO - Became CANDIDATE for term 5, need 3 votes
+2025-07-09 23:49:04,649 - Node[4] - INFO - Became FOLLOWER for term 5
+2025-07-09 23:49:04,651 - Node[1] - INFO - Became FOLLOWER for term 5
+2025-07-09 23:49:04,652 - Node[3] - INFO - Became FOLLOWER for term 5
+2025-07-09 23:49:04,653 - Node[2] - INFO - Became FOLLOWER for term 5
+2025-07-09 23:49:04,654 - Node[0] - INFO - Became LEADER for term 5
+2025-07-09 23:49:04,701 - Node[2] - INFO - Became CANDIDATE for term 6, need 3 votes
+2025-07-09 23:49:04,704 - Node[3] - INFO - Became FOLLOWER for term 6
+2025-07-09 23:49:04,707 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:04] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:04,708 - Node[4] - INFO - Became FOLLOWER for term 6
+2025-07-09 23:49:04,710 - Node[2] - INFO - Became LEADER for term 6
+2025-07-09 23:49:04,714 - Node[1] - INFO - Became FOLLOWER for term 6
+2025-07-09 23:49:04,715 - Node[0] - INFO - Became FOLLOWER for term 6
+2025-07-09 23:49:04,721 - Node[3] - INFO - Became CANDIDATE for term 7, need 3 votes
+2025-07-09 23:49:04,722 - Node[4] - INFO - Became FOLLOWER for term 7
+2025-07-09 23:49:04,722 - Node[1] - INFO - Became FOLLOWER for term 7
+2025-07-09 23:49:04,724 - Node[2] - INFO - Became FOLLOWER for term 7
+2025-07-09 23:49:04,724 - Node[0] - INFO - Became FOLLOWER for term 7
+2025-07-09 23:49:04,725 - Node[3] - INFO - Became LEADER for term 7
+2025-07-09 23:49:04,734 - simulation.simulation.Simulation - INFO - Simulation completed. Processed 2101 events in 60.30s sim time
+2025-07-09 23:49:04,736 - __main__ - INFO - Event logged: SYSTEM - Simulation ended
+2025-07-09 23:49:05,424 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:05] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:05,553 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:05] "OPTIONS /raft/reset HTTP/1.1" 200 -
+2025-07-09 23:49:05,693 - __main__ - INFO - Event logged: SYSTEM - Simulation reset
+2025-07-09 23:49:05,695 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:05] "POST /raft/reset HTTP/1.1" 200 -
+2025-07-09 23:49:05,868 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:05] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:06,135 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:06] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:07,121 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:07] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:08,441 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:08] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:08,712 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:08] "OPTIONS /raft/start HTTP/1.1" 200 -
+2025-07-09 23:49:08,932 - simulation.simulation.Simulation - INFO - Simulation initialized
+2025-07-09 23:49:08,933 - simulation.simulation.Simulation - INFO - Registered node 0
+2025-07-09 23:49:08,934 - Node[0] - INFO - Node initialized and registered
+2025-07-09 23:49:08,935 - Node[0] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:08,936 - simulation.simulation.Simulation - INFO - Registered node 1
+2025-07-09 23:49:08,937 - Node[1] - INFO - Node initialized and registered
+2025-07-09 23:49:08,938 - Node[1] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:08,939 - simulation.simulation.Simulation - INFO - Registered node 2
+2025-07-09 23:49:08,941 - Node[2] - INFO - Node initialized and registered
+2025-07-09 23:49:08,945 - Node[2] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:08,946 - simulation.simulation.Simulation - INFO - Registered node 3
+2025-07-09 23:49:08,948 - Node[3] - INFO - Node initialized and registered
+2025-07-09 23:49:08,950 - Node[3] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:08,951 - simulation.simulation.Simulation - INFO - Registered node 4
+2025-07-09 23:49:08,953 - Node[4] - INFO - Node initialized and registered
+2025-07-09 23:49:08,954 - Node[4] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:08,956 - __main__ - INFO - Event logged: SYSTEM - Simulation started with 5 nodes
+2025-07-09 23:49:08,962 - __main__ - INFO - Starting simulation thread for 60 seconds
+2025-07-09 23:49:08,964 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:08] "POST /raft/start HTTP/1.1" 200 -
+2025-07-09 23:49:08,965 - simulation.simulation.Simulation - INFO - Starting simulation for 60 seconds
+2025-07-09 23:49:08,968 - Node[4] - INFO - Became CANDIDATE for term 1, need 3 votes
+2025-07-09 23:49:08,971 - Node[3] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:49:08,973 - Node[1] - INFO - Became CANDIDATE for term 1, need 3 votes
+2025-07-09 23:49:08,983 - Node[2] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:49:08,985 - Node[0] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:49:08,986 - Node[4] - INFO - Became LEADER for term 1
+2025-07-09 23:49:08,989 - Node[1] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:49:08,993 - Node[3] - INFO - Became CANDIDATE for term 2, need 3 votes
+2025-07-09 23:49:08,996 - Node[0] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:49:08,998 - Node[1] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:49:09,000 - Node[4] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:49:09,001 - Node[2] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:49:09,002 - Node[3] - INFO - Became LEADER for term 2
+2025-07-09 23:49:09,004 - Node[0] - INFO - Became CANDIDATE for term 3, need 3 votes
+2025-07-09 23:49:09,006 - Node[2] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:49:09,009 - Node[4] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:49:09,012 - Node[3] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:49:09,014 - Node[1] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:49:09,016 - Node[0] - INFO - Became LEADER for term 3
+2025-07-09 23:49:09,017 - Node[2] - INFO - Became CANDIDATE for term 4, need 3 votes
+2025-07-09 23:49:09,020 - Node[4] - INFO - Became FOLLOWER for term 4
+2025-07-09 23:49:09,021 - Node[0] - INFO - Became FOLLOWER for term 4
+2025-07-09 23:49:09,025 - Node[3] - INFO - Became FOLLOWER for term 4
+2025-07-09 23:49:09,029 - Node[1] - INFO - Became FOLLOWER for term 4
+2025-07-09 23:49:09,030 - Node[2] - INFO - Became LEADER for term 4
+2025-07-09 23:49:09,071 - Node[1] - INFO - Became CANDIDATE for term 5, need 3 votes
+2025-07-09 23:49:09,072 - Node[2] - INFO - Became FOLLOWER for term 5
+2025-07-09 23:49:09,073 - Node[3] - INFO - Became FOLLOWER for term 5
+2025-07-09 23:49:09,075 - Node[0] - INFO - Became FOLLOWER for term 5
+2025-07-09 23:49:09,078 - Node[4] - INFO - Became FOLLOWER for term 5
+2025-07-09 23:49:09,080 - Node[1] - INFO - Became LEADER for term 5
+2025-07-09 23:49:09,100 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:09] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:09,104 - Node[2] - INFO - Became CANDIDATE for term 6, need 3 votes
+2025-07-09 23:49:09,107 - Node[1] - INFO - Became FOLLOWER for term 6
+2025-07-09 23:49:09,110 - Node[0] - INFO - Became FOLLOWER for term 6
+2025-07-09 23:49:09,112 - Node[3] - INFO - Became FOLLOWER for term 6
+2025-07-09 23:49:09,115 - Node[4] - INFO - Became FOLLOWER for term 6
+2025-07-09 23:49:09,119 - Node[2] - INFO - Became LEADER for term 6
+2025-07-09 23:49:09,136 - simulation.simulation.Simulation - INFO - Simulation completed. Processed 2084 events in 60.13s sim time
+2025-07-09 23:49:09,137 - __main__ - INFO - Event logged: SYSTEM - Simulation ended
+2025-07-09 23:49:09,432 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:09] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:10,117 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:10] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:10,776 - simulation.simulation.Simulation - INFO - Simulation initialized
+2025-07-09 23:49:10,777 - simulation.simulation.Simulation - INFO - Registered node 0
+2025-07-09 23:49:10,778 - Node[0] - INFO - Node initialized and registered
+2025-07-09 23:49:10,780 - Node[0] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:10,781 - simulation.simulation.Simulation - INFO - Registered node 1
+2025-07-09 23:49:10,782 - Node[1] - INFO - Node initialized and registered
+2025-07-09 23:49:10,783 - Node[1] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:10,785 - simulation.simulation.Simulation - INFO - Registered node 2
+2025-07-09 23:49:10,786 - Node[2] - INFO - Node initialized and registered
+2025-07-09 23:49:10,788 - Node[2] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:10,792 - simulation.simulation.Simulation - INFO - Registered node 3
+2025-07-09 23:49:10,795 - Node[3] - INFO - Node initialized and registered
+2025-07-09 23:49:10,796 - Node[3] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:10,797 - simulation.simulation.Simulation - INFO - Registered node 4
+2025-07-09 23:49:10,799 - Node[4] - INFO - Node initialized and registered
+2025-07-09 23:49:10,800 - Node[4] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:10,801 - __main__ - INFO - Event logged: SYSTEM - Simulation started with 5 nodes
+2025-07-09 23:49:10,805 - __main__ - INFO - Starting simulation thread for 60 seconds
+2025-07-09 23:49:10,807 - simulation.simulation.Simulation - INFO - Starting simulation for 60 seconds
+2025-07-09 23:49:10,806 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:10] "POST /raft/start HTTP/1.1" 200 -
+2025-07-09 23:49:10,811 - Node[4] - INFO - Became CANDIDATE for term 1, need 3 votes
+2025-07-09 23:49:10,813 - Node[3] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:49:10,816 - Node[0] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:49:10,818 - Node[1] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:49:10,822 - Node[2] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:49:10,827 - Node[3] - INFO - Became CANDIDATE for term 2, need 3 votes
+2025-07-09 23:49:10,829 - Node[4] - INFO - Became LEADER for term 1
+2025-07-09 23:49:10,832 - Node[4] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:49:10,833 - Node[2] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:49:10,835 - Node[0] - INFO - Became CANDIDATE for term 2, need 3 votes
+2025-07-09 23:49:10,836 - Node[1] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:49:10,838 - Node[3] - INFO - Became LEADER for term 2
+2025-07-09 23:49:10,843 - Node[0] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:49:10,846 - Node[1] - INFO - Became CANDIDATE for term 3, need 3 votes
+2025-07-09 23:49:10,848 - Node[4] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:49:10,849 - Node[0] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:49:10,851 - Node[1] - INFO - Became LEADER for term 3
+2025-07-09 23:49:10,853 - Node[3] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:49:10,854 - Node[2] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:49:10,855 - Node[2] - INFO - Became CANDIDATE for term 4, need 3 votes
+2025-07-09 23:49:10,859 - Node[1] - INFO - Became FOLLOWER for term 4
+2025-07-09 23:49:10,862 - Node[4] - INFO - Became FOLLOWER for term 4
+2025-07-09 23:49:10,863 - Node[3] - INFO - Became FOLLOWER for term 4
+2025-07-09 23:49:10,865 - Node[2] - INFO - Became LEADER for term 4
+2025-07-09 23:49:10,867 - Node[0] - INFO - Became FOLLOWER for term 4
+2025-07-09 23:49:10,884 - Node[3] - INFO - Became CANDIDATE for term 5, need 3 votes
+2025-07-09 23:49:10,885 - Node[1] - INFO - Became FOLLOWER for term 5
+2025-07-09 23:49:10,887 - Node[4] - INFO - Became FOLLOWER for term 5
+2025-07-09 23:49:10,889 - Node[0] - INFO - Became FOLLOWER for term 5
+2025-07-09 23:49:10,890 - Node[2] - INFO - Became FOLLOWER for term 5
+2025-07-09 23:49:10,893 - Node[3] - INFO - Became LEADER for term 5
+2025-07-09 23:49:10,947 - simulation.simulation.Simulation - INFO - Simulation completed. Processed 2057 events in 60.04s sim time
+2025-07-09 23:49:10,948 - __main__ - INFO - Event logged: SYSTEM - Simulation ended
+2025-07-09 23:49:11,027 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:11] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:11,242 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:11] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:12,117 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:12] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:13,429 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:13] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:13,649 - simulation.simulation.Simulation - INFO - Simulation initialized
+2025-07-09 23:49:13,650 - simulation.simulation.Simulation - INFO - Registered node 0
+2025-07-09 23:49:13,652 - Node[0] - INFO - Node initialized and registered
+2025-07-09 23:49:13,653 - Node[0] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:13,654 - simulation.simulation.Simulation - INFO - Registered node 1
+2025-07-09 23:49:13,656 - Node[1] - INFO - Node initialized and registered
+2025-07-09 23:49:13,658 - Node[1] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:13,663 - simulation.simulation.Simulation - INFO - Registered node 2
+2025-07-09 23:49:13,665 - Node[2] - INFO - Node initialized and registered
+2025-07-09 23:49:13,666 - Node[2] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:13,668 - simulation.simulation.Simulation - INFO - Registered node 3
+2025-07-09 23:49:13,669 - Node[3] - INFO - Node initialized and registered
+2025-07-09 23:49:13,672 - Node[3] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:13,677 - simulation.simulation.Simulation - INFO - Registered node 4
+2025-07-09 23:49:13,679 - Node[4] - INFO - Node initialized and registered
+2025-07-09 23:49:13,680 - Node[4] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:13,681 - __main__ - INFO - Event logged: SYSTEM - Simulation started with 5 nodes
+2025-07-09 23:49:13,684 - __main__ - INFO - Starting simulation thread for 60 seconds
+2025-07-09 23:49:13,686 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:13] "POST /raft/start HTTP/1.1" 200 -
+2025-07-09 23:49:13,687 - simulation.simulation.Simulation - INFO - Starting simulation for 60 seconds
+2025-07-09 23:49:13,689 - Node[1] - INFO - Became CANDIDATE for term 1, need 3 votes
+2025-07-09 23:49:13,693 - Node[3] - INFO - Became CANDIDATE for term 1, need 3 votes
+2025-07-09 23:49:13,696 - Node[2] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:49:13,698 - Node[0] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:49:13,705 - Node[4] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:49:13,711 - Node[1] - INFO - Became LEADER for term 1
+2025-07-09 23:49:13,713 - Node[3] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:49:13,715 - Node[0] - INFO - Became CANDIDATE for term 2, need 3 votes
+2025-07-09 23:49:13,717 - Node[2] - INFO - Became CANDIDATE for term 2, need 3 votes
+2025-07-09 23:49:13,718 - Node[3] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:49:13,720 - Node[1] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:49:13,726 - Node[4] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:49:13,728 - Node[0] - INFO - Became LEADER for term 2
+2025-07-09 23:49:13,730 - Node[2] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:49:13,731 - Node[4] - INFO - Became CANDIDATE for term 3, need 3 votes
+2025-07-09 23:49:13,733 - Node[3] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:49:13,736 - Node[0] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:49:13,739 - Node[1] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:49:13,742 - Node[2] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:49:13,744 - Node[4] - INFO - Became LEADER for term 3
+2025-07-09 23:49:13,767 - Node[0] - INFO - Became CANDIDATE for term 4, need 3 votes
+2025-07-09 23:49:13,770 - Node[4] - INFO - Became FOLLOWER for term 4
+2025-07-09 23:49:13,772 - Node[1] - INFO - Became FOLLOWER for term 4
+2025-07-09 23:49:13,774 - Node[3] - INFO - Became FOLLOWER for term 4
+2025-07-09 23:49:13,776 - Node[0] - INFO - Became LEADER for term 4
+2025-07-09 23:49:13,778 - Node[2] - INFO - Became FOLLOWER for term 4
+2025-07-09 23:49:13,789 - Node[4] - INFO - Became CANDIDATE for term 5, need 3 votes
+2025-07-09 23:49:13,791 - Node[1] - INFO - Became FOLLOWER for term 5
+2025-07-09 23:49:13,793 - Node[3] - INFO - Became FOLLOWER for term 5
+2025-07-09 23:49:13,795 - Node[2] - INFO - Became FOLLOWER for term 5
+2025-07-09 23:49:13,796 - Node[4] - INFO - Became LEADER for term 5
+2025-07-09 23:49:13,798 - Node[0] - INFO - Became FOLLOWER for term 5
+2025-07-09 23:49:13,815 - Node[2] - INFO - Became CANDIDATE for term 6, need 3 votes
+2025-07-09 23:49:13,818 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:13] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:13,819 - Node[1] - INFO - Became FOLLOWER for term 6
+2025-07-09 23:49:13,822 - Node[0] - INFO - Became FOLLOWER for term 6
+2025-07-09 23:49:13,826 - Node[3] - INFO - Became FOLLOWER for term 6
+2025-07-09 23:49:13,829 - Node[2] - INFO - Became LEADER for term 6
+2025-07-09 23:49:13,835 - Node[4] - INFO - Became FOLLOWER for term 6
+2025-07-09 23:49:13,844 - Node[1] - INFO - Became CANDIDATE for term 7, need 3 votes
+2025-07-09 23:49:13,848 - Node[4] - INFO - Became FOLLOWER for term 7
+2025-07-09 23:49:13,849 - Node[0] - INFO - Became FOLLOWER for term 7
+2025-07-09 23:49:13,850 - Node[3] - INFO - Became FOLLOWER for term 7
+2025-07-09 23:49:13,852 - Node[2] - INFO - Became FOLLOWER for term 7
+2025-07-09 23:49:13,853 - Node[1] - INFO - Became LEADER for term 7
+2025-07-09 23:49:13,866 - Node[4] - INFO - Became CANDIDATE for term 8, need 3 votes
+2025-07-09 23:49:13,867 - Node[0] - INFO - Became FOLLOWER for term 8
+2025-07-09 23:49:13,867 - Node[2] - INFO - Became FOLLOWER for term 8
+2025-07-09 23:49:13,868 - Node[3] - INFO - Became FOLLOWER for term 8
+2025-07-09 23:49:13,873 - Node[4] - INFO - Became LEADER for term 8
+2025-07-09 23:49:13,874 - Node[1] - INFO - Became FOLLOWER for term 8
+2025-07-09 23:49:13,887 - Node[1] - INFO - Became CANDIDATE for term 9, need 3 votes
+2025-07-09 23:49:13,889 - Node[4] - INFO - Became FOLLOWER for term 9
+2025-07-09 23:49:13,893 - Node[0] - INFO - Became FOLLOWER for term 9
+2025-07-09 23:49:13,894 - Node[2] - INFO - Became FOLLOWER for term 9
+2025-07-09 23:49:13,896 - Node[1] - INFO - Became LEADER for term 9
+2025-07-09 23:49:13,898 - Node[3] - INFO - Became FOLLOWER for term 9
+2025-07-09 23:49:13,902 - simulation.simulation.Simulation - INFO - Simulation completed. Processed 2176 events in 60.04s sim time
+2025-07-09 23:49:13,903 - __main__ - INFO - Event logged: SYSTEM - Simulation ended
+2025-07-09 23:49:14,432 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:14] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:15,115 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:15] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:16,431 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:16] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:17,113 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:17] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:18,427 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:18] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:19,113 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:19] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:20,430 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:20] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:21,114 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:21] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:22,426 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:22] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:23,115 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:23] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:24,432 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:24] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:25,123 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:25] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:26,457 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:26] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:27,115 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:27] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:28,435 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:28] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:29,119 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:29] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:30,430 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:30] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:31,022 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:31] "OPTIONS /raft/reset HTTP/1.1" 200 -
+2025-07-09 23:49:31,350 - __main__ - INFO - Event logged: SYSTEM - Simulation reset
+2025-07-09 23:49:31,352 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:31] "POST /raft/reset HTTP/1.1" 200 -
+2025-07-09 23:49:31,431 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:31] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:31,599 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:31] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:32,116 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:32] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:32,850 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:32] "OPTIONS /raft/start HTTP/1.1" 200 -
+2025-07-09 23:49:33,119 - simulation.simulation.Simulation - INFO - Simulation initialized
+2025-07-09 23:49:33,121 - simulation.simulation.Simulation - INFO - Registered node 0
+2025-07-09 23:49:33,121 - Node[0] - INFO - Node initialized and registered
+2025-07-09 23:49:33,124 - Node[0] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:33,125 - simulation.simulation.Simulation - INFO - Registered node 1
+2025-07-09 23:49:33,128 - Node[1] - INFO - Node initialized and registered
+2025-07-09 23:49:33,130 - Node[1] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:33,132 - simulation.simulation.Simulation - INFO - Registered node 2
+2025-07-09 23:49:33,134 - Node[2] - INFO - Node initialized and registered
+2025-07-09 23:49:33,135 - Node[2] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:33,137 - simulation.simulation.Simulation - INFO - Registered node 3
+2025-07-09 23:49:33,138 - Node[3] - INFO - Node initialized and registered
+2025-07-09 23:49:33,139 - Node[3] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:33,143 - simulation.simulation.Simulation - INFO - Registered node 4
+2025-07-09 23:49:33,145 - Node[4] - INFO - Node initialized and registered
+2025-07-09 23:49:33,146 - Node[4] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:33,148 - __main__ - INFO - Event logged: SYSTEM - Simulation started with 5 nodes
+2025-07-09 23:49:33,150 - __main__ - INFO - Starting simulation thread for 60 seconds
+2025-07-09 23:49:33,152 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:33] "POST /raft/start HTTP/1.1" 200 -
+2025-07-09 23:49:33,153 - simulation.simulation.Simulation - INFO - Starting simulation for 60 seconds
+2025-07-09 23:49:33,155 - Node[0] - INFO - Became CANDIDATE for term 1, need 3 votes
+2025-07-09 23:49:33,159 - Node[1] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:49:33,162 - Node[2] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:49:33,167 - Node[4] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:49:33,171 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:33] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:33,172 - Node[0] - INFO - Became LEADER for term 1
+2025-07-09 23:49:33,182 - Node[3] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:49:33,184 - Node[2] - INFO - Became CANDIDATE for term 2, need 3 votes
+2025-07-09 23:49:33,186 - Node[1] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:49:33,193 - Node[4] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:49:33,196 - Node[3] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:49:33,198 - Node[0] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:49:33,199 - Node[2] - INFO - Became LEADER for term 2
+2025-07-09 23:49:33,202 - Node[4] - INFO - Became CANDIDATE for term 3, need 3 votes
+2025-07-09 23:49:33,204 - Node[1] - INFO - Became CANDIDATE for term 3, need 3 votes
+2025-07-09 23:49:33,208 - Node[3] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:49:33,211 - Node[3] - INFO - Became CANDIDATE for term 4, need 3 votes
+2025-07-09 23:49:33,213 - Node[2] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:49:33,214 - Node[1] - INFO - Became FOLLOWER for term 4
+2025-07-09 23:49:33,216 - Node[0] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:49:33,217 - Node[4] - INFO - Became LEADER for term 3
+2025-07-09 23:49:33,222 - Node[4] - INFO - Became FOLLOWER for term 4
+2025-07-09 23:49:33,225 - Node[2] - INFO - Became FOLLOWER for term 4
+2025-07-09 23:49:33,227 - Node[0] - INFO - Became FOLLOWER for term 4
+2025-07-09 23:49:33,228 - Node[3] - INFO - Became LEADER for term 4
+2025-07-09 23:49:33,309 - simulation.simulation.Simulation - INFO - Simulation completed. Processed 2021 events in 60.02s sim time
+2025-07-09 23:49:33,311 - __main__ - INFO - Event logged: SYSTEM - Simulation ended
+2025-07-09 23:49:33,431 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:33] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:34,128 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:34] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:35,438 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:35] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:36,116 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:36] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:37,425 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:37] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:37,456 - simulation.simulation.Simulation - INFO - Simulation initialized
+2025-07-09 23:49:37,457 - simulation.simulation.Simulation - INFO - Registered node 0
+2025-07-09 23:49:37,458 - Node[0] - INFO - Node initialized and registered
+2025-07-09 23:49:37,460 - Node[0] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:37,461 - simulation.simulation.Simulation - INFO - Registered node 1
+2025-07-09 23:49:37,462 - Node[1] - INFO - Node initialized and registered
+2025-07-09 23:49:37,463 - Node[1] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:37,464 - simulation.simulation.Simulation - INFO - Registered node 2
+2025-07-09 23:49:37,467 - Node[2] - INFO - Node initialized and registered
+2025-07-09 23:49:37,469 - Node[2] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:37,470 - simulation.simulation.Simulation - INFO - Registered node 3
+2025-07-09 23:49:37,473 - Node[3] - INFO - Node initialized and registered
+2025-07-09 23:49:37,479 - Node[3] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:37,480 - simulation.simulation.Simulation - INFO - Registered node 4
+2025-07-09 23:49:37,484 - Node[4] - INFO - Node initialized and registered
+2025-07-09 23:49:37,487 - Node[4] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:37,490 - simulation.simulation.Simulation - INFO - Registered node 5
+2025-07-09 23:49:37,491 - Node[5] - INFO - Node initialized and registered
+2025-07-09 23:49:37,493 - Node[5] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:37,495 - __main__ - INFO - Event logged: SYSTEM - Simulation started with 6 nodes
+2025-07-09 23:49:37,499 - __main__ - INFO - Starting simulation thread for 220 seconds
+2025-07-09 23:49:37,500 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:37] "POST /raft/start HTTP/1.1" 200 -
+2025-07-09 23:49:37,502 - simulation.simulation.Simulation - INFO - Starting simulation for 220 seconds
+2025-07-09 23:49:37,505 - Node[0] - INFO - Became CANDIDATE for term 1, need 4 votes
+2025-07-09 23:49:37,508 - Node[3] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:49:37,512 - Node[2] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:49:37,516 - Node[4] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:49:37,518 - Node[3] - INFO - Became CANDIDATE for term 2, need 4 votes
+2025-07-09 23:49:37,522 - Node[0] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:49:37,525 - Node[1] - INFO - Became CANDIDATE for term 1, need 4 votes
+2025-07-09 23:49:37,527 - Node[2] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:49:37,531 - Node[5] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:49:37,532 - Node[4] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:49:37,535 - Node[1] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:49:37,537 - Node[5] - INFO - Became CANDIDATE for term 2, need 4 votes
+2025-07-09 23:49:37,541 - Node[4] - INFO - Became CANDIDATE for term 3, need 4 votes
+2025-07-09 23:49:37,544 - Node[2] - INFO - Became CANDIDATE for term 3, need 4 votes
+2025-07-09 23:49:37,548 - Node[0] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:49:37,550 - Node[3] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:49:37,556 - Node[1] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:49:37,562 - Node[5] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:49:37,565 - simulation.simulation.Simulation - INFO - Simulation completed. Processed 112 events in 1.90s sim time
+2025-07-09 23:49:37,566 - __main__ - INFO - Event logged: SYSTEM - Simulation ended
+2025-07-09 23:49:37,693 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:37] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:38,116 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:38] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:39,431 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:39] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:40,118 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:40] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:41,432 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:41] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:42,131 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:42] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:43,429 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:43] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:44,120 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:44] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:45,250 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:45] "OPTIONS /raft/start HTTP/1.1" 200 -
+2025-07-09 23:49:45,440 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:45] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:45,514 - simulation.simulation.Simulation - INFO - Simulation initialized
+2025-07-09 23:49:45,517 - simulation.simulation.Simulation - INFO - Registered node 0
+2025-07-09 23:49:45,519 - Node[0] - INFO - Node initialized and registered
+2025-07-09 23:49:45,520 - Node[0] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:45,521 - simulation.simulation.Simulation - INFO - Registered node 1
+2025-07-09 23:49:45,522 - Node[1] - INFO - Node initialized and registered
+2025-07-09 23:49:45,524 - Node[1] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:45,525 - simulation.simulation.Simulation - INFO - Registered node 2
+2025-07-09 23:49:45,526 - Node[2] - INFO - Node initialized and registered
+2025-07-09 23:49:45,527 - Node[2] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:45,528 - simulation.simulation.Simulation - INFO - Registered node 3
+2025-07-09 23:49:45,532 - Node[3] - INFO - Node initialized and registered
+2025-07-09 23:49:45,534 - Node[3] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:45,536 - simulation.simulation.Simulation - INFO - Registered node 4
+2025-07-09 23:49:45,538 - Node[4] - INFO - Node initialized and registered
+2025-07-09 23:49:45,539 - Node[4] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:45,540 - simulation.simulation.Simulation - INFO - Registered node 5
+2025-07-09 23:49:45,542 - Node[5] - INFO - Node initialized and registered
+2025-07-09 23:49:45,543 - Node[5] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:45,544 - __main__ - INFO - Event logged: SYSTEM - Simulation started with 6 nodes
+2025-07-09 23:49:45,547 - __main__ - INFO - Starting simulation thread for 220 seconds
+2025-07-09 23:49:45,550 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:45] "POST /raft/start HTTP/1.1" 200 -
+2025-07-09 23:49:45,551 - simulation.simulation.Simulation - INFO - Starting simulation for 220 seconds
+2025-07-09 23:49:45,554 - Node[5] - INFO - Became CANDIDATE for term 1, need 4 votes
+2025-07-09 23:49:45,555 - Node[3] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:49:45,557 - Node[4] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:49:45,558 - Node[1] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:49:45,561 - Node[0] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:49:45,563 - Node[5] - INFO - Became LEADER for term 1
+2025-07-09 23:49:45,567 - Node[2] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:49:45,569 - Node[4] - INFO - Became CANDIDATE for term 2, need 4 votes
+2025-07-09 23:49:45,576 - Node[2] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:49:45,577 - Node[5] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:49:45,578 - Node[3] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:49:45,579 - Node[2] - INFO - Became CANDIDATE for term 3, need 4 votes
+2025-07-09 23:49:45,582 - Node[4] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:49:45,584 - Node[3] - INFO - Became CANDIDATE for term 3, need 4 votes
+2025-07-09 23:49:45,586 - Node[5] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:49:45,588 - Node[0] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:49:45,590 - Node[1] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:49:45,592 - Node[0] - INFO - Became CANDIDATE for term 4, need 4 votes
+2025-07-09 23:49:45,593 - Node[2] - INFO - Became FOLLOWER for term 4
+2025-07-09 23:49:45,595 - Node[3] - INFO - Became FOLLOWER for term 4
+2025-07-09 23:49:45,596 - Node[4] - INFO - Became FOLLOWER for term 4
+2025-07-09 23:49:45,599 - Node[1] - INFO - Became CANDIDATE for term 4, need 4 votes
+2025-07-09 23:49:45,606 - simulation.simulation.Simulation - INFO - Simulation completed. Processed 127 events in 2.09s sim time
+2025-07-09 23:49:45,607 - __main__ - INFO - Event logged: SYSTEM - Simulation ended
+2025-07-09 23:49:45,673 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:45] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:46,441 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:46] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:47,118 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:47] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:47,935 - simulation.simulation.Simulation - INFO - Simulation initialized
+2025-07-09 23:49:47,937 - simulation.simulation.Simulation - INFO - Registered node 0
+2025-07-09 23:49:47,938 - Node[0] - INFO - Node initialized and registered
+2025-07-09 23:49:47,939 - Node[0] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:47,940 - simulation.simulation.Simulation - INFO - Registered node 1
+2025-07-09 23:49:47,941 - Node[1] - INFO - Node initialized and registered
+2025-07-09 23:49:47,942 - Node[1] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:47,943 - simulation.simulation.Simulation - INFO - Registered node 2
+2025-07-09 23:49:47,948 - Node[2] - INFO - Node initialized and registered
+2025-07-09 23:49:47,951 - Node[2] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:47,953 - simulation.simulation.Simulation - INFO - Registered node 3
+2025-07-09 23:49:47,955 - Node[3] - INFO - Node initialized and registered
+2025-07-09 23:49:47,958 - Node[3] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:47,960 - simulation.simulation.Simulation - INFO - Registered node 4
+2025-07-09 23:49:47,965 - Node[4] - INFO - Node initialized and registered
+2025-07-09 23:49:47,968 - Node[4] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:47,972 - simulation.simulation.Simulation - INFO - Registered node 5
+2025-07-09 23:49:47,974 - Node[5] - INFO - Node initialized and registered
+2025-07-09 23:49:47,975 - Node[5] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:47,985 - __main__ - INFO - Event logged: SYSTEM - Simulation started with 6 nodes
+2025-07-09 23:49:47,988 - __main__ - INFO - Starting simulation thread for 220 seconds
+2025-07-09 23:49:47,990 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:47] "POST /raft/start HTTP/1.1" 200 -
+2025-07-09 23:49:47,991 - simulation.simulation.Simulation - INFO - Starting simulation for 220 seconds
+2025-07-09 23:49:47,993 - Node[3] - INFO - Became CANDIDATE for term 1, need 4 votes
+2025-07-09 23:49:47,996 - Node[1] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:49:47,998 - Node[5] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:49:48,003 - Node[0] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:49:48,004 - Node[2] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:49:48,009 - Node[0] - INFO - Became CANDIDATE for term 2, need 4 votes
+2025-07-09 23:49:48,013 - Node[5] - INFO - Became CANDIDATE for term 2, need 4 votes
+2025-07-09 23:49:48,018 - Node[3] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:49:48,020 - Node[1] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:49:48,021 - Node[2] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:49:48,023 - Node[4] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:49:48,025 - Node[1] - INFO - Became CANDIDATE for term 3, need 4 votes
+2025-07-09 23:49:48,028 - Node[3] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:49:48,033 - Node[2] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:49:48,036 - Node[5] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:49:48,038 - Node[0] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:49:48,040 - Node[2] - INFO - Became CANDIDATE for term 4, need 4 votes
+2025-07-09 23:49:48,041 - Node[4] - INFO - Became FOLLOWER for term 4
+2025-07-09 23:49:48,043 - Node[0] - INFO - Became FOLLOWER for term 4
+2025-07-09 23:49:48,049 - Node[4] - INFO - Became CANDIDATE for term 5, need 4 votes
+2025-07-09 23:49:48,051 - Node[5] - INFO - Became FOLLOWER for term 5
+2025-07-09 23:49:48,053 - Node[2] - INFO - Became FOLLOWER for term 5
+2025-07-09 23:49:48,056 - Node[0] - INFO - Became FOLLOWER for term 5
+2025-07-09 23:49:48,058 - Node[1] - INFO - Became FOLLOWER for term 5
+2025-07-09 23:49:48,064 - Node[3] - INFO - Became FOLLOWER for term 5
+2025-07-09 23:49:48,066 - simulation.simulation.Simulation - INFO - Simulation completed. Processed 110 events in 2.09s sim time
+2025-07-09 23:49:48,068 - __main__ - INFO - Event logged: SYSTEM - Simulation ended
+2025-07-09 23:49:48,203 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:48] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:48,437 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:48] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:49,120 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:49] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:50,435 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:50] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:51,118 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:51] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:52,432 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:52] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:53,118 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:53] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:54,431 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:54] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:55,116 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:55] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:56,435 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:56] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:56,675 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:56] "OPTIONS /raft/start HTTP/1.1" 200 -
+2025-07-09 23:49:56,703 - simulation.simulation.Simulation - INFO - Simulation initialized
+2025-07-09 23:49:56,704 - simulation.simulation.Simulation - INFO - Registered node 0
+2025-07-09 23:49:56,706 - Node[0] - INFO - Node initialized and registered
+2025-07-09 23:49:56,708 - Node[0] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:56,709 - simulation.simulation.Simulation - INFO - Registered node 1
+2025-07-09 23:49:56,710 - Node[1] - INFO - Node initialized and registered
+2025-07-09 23:49:56,712 - Node[1] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:56,713 - simulation.simulation.Simulation - INFO - Registered node 2
+2025-07-09 23:49:56,714 - Node[2] - INFO - Node initialized and registered
+2025-07-09 23:49:56,716 - Node[2] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:56,718 - simulation.simulation.Simulation - INFO - Registered node 3
+2025-07-09 23:49:56,719 - Node[3] - INFO - Node initialized and registered
+2025-07-09 23:49:56,722 - Node[3] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:56,724 - simulation.simulation.Simulation - INFO - Registered node 4
+2025-07-09 23:49:56,726 - Node[4] - INFO - Node initialized and registered
+2025-07-09 23:49:56,728 - Node[4] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:56,729 - simulation.simulation.Simulation - INFO - Registered node 5
+2025-07-09 23:49:56,730 - Node[5] - INFO - Node initialized and registered
+2025-07-09 23:49:56,732 - Node[5] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:56,733 - __main__ - INFO - Event logged: SYSTEM - Simulation started with 6 nodes
+2025-07-09 23:49:56,736 - __main__ - INFO - Starting simulation thread for 280 seconds
+2025-07-09 23:49:56,737 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:56] "POST /raft/start HTTP/1.1" 200 -
+2025-07-09 23:49:56,738 - simulation.simulation.Simulation - INFO - Starting simulation for 280 seconds
+2025-07-09 23:49:56,745 - Node[3] - INFO - Became CANDIDATE for term 1, need 4 votes
+2025-07-09 23:49:56,748 - Node[5] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:49:56,752 - Node[0] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:49:56,753 - Node[1] - INFO - Became CANDIDATE for term 1, need 4 votes
+2025-07-09 23:49:56,758 - Node[4] - INFO - Became CANDIDATE for term 1, need 4 votes
+2025-07-09 23:49:56,760 - Node[2] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:49:56,763 - Node[2] - INFO - Became CANDIDATE for term 2, need 4 votes
+2025-07-09 23:49:56,767 - Node[5] - INFO - Became CANDIDATE for term 2, need 4 votes
+2025-07-09 23:49:56,769 - Node[3] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:49:56,772 - Node[1] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:49:56,775 - Node[0] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:49:56,776 - Node[4] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:49:56,779 - Node[2] - INFO - Became LEADER for term 2
+2025-07-09 23:49:56,782 - Node[0] - INFO - Became CANDIDATE for term 3, need 4 votes
+2025-07-09 23:49:56,784 - Node[5] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:49:56,785 - Node[2] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:49:56,786 - Node[1] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:49:56,790 - simulation.simulation.Simulation - INFO - Simulation completed. Processed 127 events in 2.40s sim time
+2025-07-09 23:49:56,792 - __main__ - INFO - Event logged: SYSTEM - Simulation ended
+2025-07-09 23:49:56,987 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:56] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:57,178 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:57] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:58,114 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:58] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:59,435 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:59] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:49:59,705 - simulation.simulation.Simulation - INFO - Simulation initialized
+2025-07-09 23:49:59,707 - simulation.simulation.Simulation - INFO - Registered node 0
+2025-07-09 23:49:59,708 - Node[0] - INFO - Node initialized and registered
+2025-07-09 23:49:59,710 - Node[0] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:59,712 - simulation.simulation.Simulation - INFO - Registered node 1
+2025-07-09 23:49:59,713 - Node[1] - INFO - Node initialized and registered
+2025-07-09 23:49:59,715 - Node[1] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:59,718 - simulation.simulation.Simulation - INFO - Registered node 2
+2025-07-09 23:49:59,720 - Node[2] - INFO - Node initialized and registered
+2025-07-09 23:49:59,723 - Node[2] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:59,726 - simulation.simulation.Simulation - INFO - Registered node 3
+2025-07-09 23:49:59,728 - Node[3] - INFO - Node initialized and registered
+2025-07-09 23:49:59,729 - Node[3] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:59,731 - simulation.simulation.Simulation - INFO - Registered node 4
+2025-07-09 23:49:59,732 - Node[4] - INFO - Node initialized and registered
+2025-07-09 23:49:59,734 - Node[4] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:59,736 - simulation.simulation.Simulation - INFO - Registered node 5
+2025-07-09 23:49:59,738 - Node[5] - INFO - Node initialized and registered
+2025-07-09 23:49:59,740 - Node[5] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:59,741 - simulation.simulation.Simulation - INFO - Registered node 6
+2025-07-09 23:49:59,743 - Node[6] - INFO - Node initialized and registered
+2025-07-09 23:49:59,747 - Node[6] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:49:59,748 - __main__ - INFO - Event logged: SYSTEM - Simulation started with 7 nodes
+2025-07-09 23:49:59,752 - __main__ - INFO - Starting simulation thread for 280 seconds
+2025-07-09 23:49:59,754 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:59] "POST /raft/start HTTP/1.1" 200 -
+2025-07-09 23:49:59,755 - simulation.simulation.Simulation - INFO - Starting simulation for 280 seconds
+2025-07-09 23:49:59,757 - Node[5] - INFO - Became CANDIDATE for term 1, need 4 votes
+2025-07-09 23:49:59,759 - Node[3] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:49:59,760 - Node[2] - INFO - Became CANDIDATE for term 1, need 4 votes
+2025-07-09 23:49:59,763 - Node[1] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:49:59,767 - Node[4] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:49:59,772 - Node[0] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:49:59,774 - Node[6] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:49:59,775 - Node[1] - INFO - Became CANDIDATE for term 2, need 4 votes
+2025-07-09 23:49:59,778 - Node[5] - INFO - Became LEADER for term 1
+2025-07-09 23:49:59,781 - Node[3] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:49:59,786 - Node[5] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:49:59,789 - Node[6] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:49:59,791 - Node[2] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:49:59,793 - Node[2] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:49:59,794 - Node[1] - INFO - Became LEADER for term 2
+2025-07-09 23:49:59,797 - Node[4] - INFO - Became CANDIDATE for term 2, need 4 votes
+2025-07-09 23:49:59,799 - Node[6] - INFO - Became CANDIDATE for term 3, need 4 votes
+2025-07-09 23:49:59,801 - Node[3] - INFO - Became CANDIDATE for term 3, need 4 votes
+2025-07-09 23:49:59,803 - Node[0] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:49:59,806 - Node[1] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:49:59,811 - Node[4] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:49:59,812 - Node[0] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:49:59,813 - Node[2] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:49:59,815 - Node[0] - INFO - Became CANDIDATE for term 4, need 4 votes
+2025-07-09 23:49:59,817 - Node[5] - INFO - Became FOLLOWER for term 4
+2025-07-09 23:49:59,820 - Node[2] - INFO - Became FOLLOWER for term 4
+2025-07-09 23:49:59,822 - Node[3] - INFO - Became FOLLOWER for term 4
+2025-07-09 23:49:59,824 - simulation.simulation.Simulation - INFO - Simulation completed. Processed 177 events in 2.01s sim time
+2025-07-09 23:49:59,826 - __main__ - INFO - Event logged: SYSTEM - Simulation ended
+2025-07-09 23:49:59,883 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:49:59] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:50:00,428 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:50:00] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:50:01,124 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:50:01] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:50:02,429 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:50:02] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:50:03,123 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:50:03] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:50:04,434 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:50:04] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:50:05,228 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:50:05] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:50:06,539 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:50:06] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:50:07,231 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:50:07] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:50:08,532 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:50:08] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:50:09,228 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:50:09] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:50:10,527 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:50:10] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:50:11,236 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:50:11] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:50:12,545 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:50:12] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:50:13,229 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:50:13] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:50:14,548 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:50:14] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:50:15,231 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:50:15] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:50:16,536 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:50:16] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:50:17,232 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:50:17] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:50:18,532 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:50:18] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:50:19,230 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:50:19] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:50:20,537 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:50:20] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:50:21,231 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:50:21] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:50:22,542 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:50:22] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:50:23,230 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:50:23] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:50:24,536 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:50:24] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:50:25,228 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:50:25] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:50:26,551 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:50:26] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:50:27,229 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:50:27] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:50:28,535 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:50:28] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:50:29,292 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:50:29] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:50:30,437 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:50:30] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:50:31,121 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:50:31] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:50:32,440 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:50:32] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:50:33,121 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:50:33] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:50:34,436 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:50:34] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:50:35,138 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:50:35] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:50:36,437 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:50:36] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:50:37,120 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:50:37] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:50:38,444 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:50:38] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:50:39,131 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:50:39] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:50:40,434 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:50:40] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:50:41,121 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:50:41] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:50:42,430 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:50:42] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:50:43,126 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:50:43] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:50:44,437 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:50:44] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:50:45,132 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:50:45] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:50:46,460 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:50:46] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:50:47,130 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:50:47] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:50:48,459 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:50:48] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:50:49,144 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:50:49] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:50:50,442 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:50:50] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:50:51,122 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:50:51] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:50:52,437 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:50:52] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:50:53,126 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:50:53] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:50:54,463 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:50:54] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:50:55,126 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:50:55] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:50:56,454 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:50:56] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:50:57,121 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:50:57] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:50:58,453 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:50:58] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:50:59,133 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:50:59] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:51:00,437 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:51:00] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:51:01,118 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:51:01] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:51:02,434 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:51:02] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:51:03,125 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:51:03] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:51:04,431 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:51:04] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:51:05,128 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:51:05] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:51:06,444 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:51:06] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:51:07,128 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:51:07] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:51:08,431 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:51:08] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:51:09,117 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:51:09] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:51:10,445 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:51:10] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:51:11,127 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:51:11] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:51:12,436 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:51:12] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:51:13,132 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:51:13] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:51:14,437 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:51:14] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:51:15,125 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:51:15] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:51:16,438 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:51:16] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:51:17,123 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:51:17] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:51:18,468 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:51:18] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:51:19,132 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:51:19] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:51:20,435 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:51:20] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:51:21,124 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:51:21] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:51:22,432 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:51:22] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:51:23,126 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:51:23] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:51:24,430 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:51:24] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:51:25,126 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:51:25] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:51:26,432 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:51:26] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:51:27,117 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:51:27] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:51:28,448 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:51:28] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:51:29,144 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:51:29] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:51:30,441 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:51:30] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:51:31,126 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:51:31] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:51:32,439 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:51:32] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:51:33,126 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:51:33] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:51:34,445 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:51:34] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:51:35,121 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:51:35] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:51:36,440 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:51:36] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:51:37,126 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:51:37] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:51:38,456 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:51:38] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:51:39,129 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:51:39] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:51:40,433 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:51:40] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:51:41,128 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:51:41] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:51:42,458 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:51:42] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:51:43,123 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:51:43] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:51:44,435 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:51:44] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:51:45,134 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:51:45] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:51:46,430 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:51:46] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:51:47,130 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:51:47] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:51:48,435 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:51:48] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:51:49,122 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:51:49] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:51:50,439 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:51:50] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:51:51,125 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:51:51] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:51:52,442 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:51:52] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:51:53,128 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:51:53] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:51:54,432 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:51:54] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:51:55,123 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:51:55] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:51:56,429 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:51:56] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:51:57,123 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:51:57] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:51:58,437 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:51:58] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:51:59,127 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:51:59] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:00,002 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:00] "OPTIONS /raft/start HTTP/1.1" 200 -
+2025-07-09 23:52:00,264 - simulation.simulation.Simulation - INFO - Simulation initialized
+2025-07-09 23:52:00,265 - simulation.simulation.Simulation - INFO - Registered node 0
+2025-07-09 23:52:00,268 - Node[0] - INFO - Node initialized and registered
+2025-07-09 23:52:00,269 - Node[0] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:52:00,270 - simulation.simulation.Simulation - INFO - Registered node 1
+2025-07-09 23:52:00,272 - Node[1] - INFO - Node initialized and registered
+2025-07-09 23:52:00,275 - Node[1] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:52:00,277 - simulation.simulation.Simulation - INFO - Registered node 2
+2025-07-09 23:52:00,281 - Node[2] - INFO - Node initialized and registered
+2025-07-09 23:52:00,284 - Node[2] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:52:00,285 - simulation.simulation.Simulation - INFO - Registered node 3
+2025-07-09 23:52:00,291 - Node[3] - INFO - Node initialized and registered
+2025-07-09 23:52:00,294 - Node[3] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:52:00,297 - simulation.simulation.Simulation - INFO - Registered node 4
+2025-07-09 23:52:00,300 - Node[4] - INFO - Node initialized and registered
+2025-07-09 23:52:00,303 - Node[4] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:52:00,305 - simulation.simulation.Simulation - INFO - Registered node 5
+2025-07-09 23:52:00,307 - Node[5] - INFO - Node initialized and registered
+2025-07-09 23:52:00,309 - Node[5] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:52:00,311 - simulation.simulation.Simulation - INFO - Registered node 6
+2025-07-09 23:52:00,315 - Node[6] - INFO - Node initialized and registered
+2025-07-09 23:52:00,317 - Node[6] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:52:00,319 - __main__ - INFO - Event logged: SYSTEM - Simulation started with 7 nodes
+2025-07-09 23:52:00,328 - __main__ - INFO - Starting simulation thread for 280 seconds
+2025-07-09 23:52:00,329 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:00] "POST /raft/start HTTP/1.1" 200 -
+2025-07-09 23:52:00,330 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:00] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:00,331 - simulation.simulation.Simulation - INFO - Starting simulation for 280 seconds
+2025-07-09 23:52:00,337 - Node[2] - INFO - Became CANDIDATE for term 1, need 4 votes
+2025-07-09 23:52:00,339 - Node[4] - INFO - Became CANDIDATE for term 1, need 4 votes
+2025-07-09 23:52:00,347 - Node[5] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:52:00,352 - Node[1] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:52:00,354 - Node[0] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:52:00,357 - Node[6] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:52:00,359 - Node[0] - INFO - Became CANDIDATE for term 2, need 4 votes
+2025-07-09 23:52:00,364 - Node[4] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:52:00,367 - Node[6] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:52:00,369 - Node[5] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:52:00,371 - Node[1] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:52:00,374 - Node[0] - INFO - Became LEADER for term 2
+2025-07-09 23:52:00,379 - Node[3] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:52:00,382 - Node[1] - INFO - Became CANDIDATE for term 3, need 4 votes
+2025-07-09 23:52:00,384 - Node[3] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:52:00,385 - Node[2] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:52:00,387 - Node[6] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:52:00,389 - Node[3] - INFO - Became CANDIDATE for term 4, need 4 votes
+2025-07-09 23:52:00,391 - Node[0] - INFO - Became FOLLOWER for term 4
+2025-07-09 23:52:00,393 - Node[4] - INFO - Became FOLLOWER for term 4
+2025-07-09 23:52:00,396 - Node[2] - INFO - Became FOLLOWER for term 4
+2025-07-09 23:52:00,400 - Node[1] - INFO - Became FOLLOWER for term 4
+2025-07-09 23:52:00,401 - Node[3] - INFO - Became LEADER for term 4
+2025-07-09 23:52:00,404 - Node[5] - INFO - Became CANDIDATE for term 3, need 4 votes
+2025-07-09 23:52:00,405 - Node[6] - INFO - Became FOLLOWER for term 4
+2025-07-09 23:52:00,406 - Node[5] - INFO - Became FOLLOWER for term 4
+2025-07-09 23:52:00,407 - Node[6] - INFO - Became CANDIDATE for term 5, need 4 votes
+2025-07-09 23:52:00,407 - Node[1] - INFO - Became FOLLOWER for term 5
+2025-07-09 23:52:00,408 - Node[3] - INFO - Became FOLLOWER for term 5
+2025-07-09 23:52:00,408 - Node[0] - INFO - Became FOLLOWER for term 5
+2025-07-09 23:52:00,409 - Node[5] - INFO - Became FOLLOWER for term 5
+2025-07-09 23:52:00,411 - Node[2] - INFO - Became FOLLOWER for term 5
+2025-07-09 23:52:00,412 - Node[4] - INFO - Became FOLLOWER for term 5
+2025-07-09 23:52:00,414 - Node[6] - INFO - Became LEADER for term 5
+2025-07-09 23:52:00,416 - Node[2] - INFO - Became CANDIDATE for term 6, need 4 votes
+2025-07-09 23:52:00,417 - Node[4] - INFO - Became FOLLOWER for term 6
+2025-07-09 23:52:00,418 - Node[6] - INFO - Became FOLLOWER for term 6
+2025-07-09 23:52:00,418 - Node[0] - INFO - Became FOLLOWER for term 6
+2025-07-09 23:52:00,419 - Node[1] - INFO - Became FOLLOWER for term 6
+2025-07-09 23:52:00,419 - Node[3] - INFO - Became FOLLOWER for term 6
+2025-07-09 23:52:00,420 - Node[2] - INFO - Became LEADER for term 6
+2025-07-09 23:52:00,421 - Node[5] - INFO - Became FOLLOWER for term 6
+2025-07-09 23:52:00,424 - Node[1] - INFO - Became CANDIDATE for term 7, need 4 votes
+2025-07-09 23:52:00,425 - Node[5] - INFO - Became FOLLOWER for term 7
+2025-07-09 23:52:00,426 - Node[2] - INFO - Became FOLLOWER for term 7
+2025-07-09 23:52:00,429 - Node[3] - INFO - Became FOLLOWER for term 7
+2025-07-09 23:52:00,432 - Node[0] - INFO - Became FOLLOWER for term 7
+2025-07-09 23:52:00,434 - Node[4] - INFO - Became FOLLOWER for term 7
+2025-07-09 23:52:00,435 - Node[1] - INFO - Became LEADER for term 7
+2025-07-09 23:52:00,436 - Node[6] - INFO - Became FOLLOWER for term 7
+2025-07-09 23:52:00,439 - Node[0] - INFO - Became CANDIDATE for term 8, need 4 votes
+2025-07-09 23:52:00,440 - Node[3] - INFO - Became CANDIDATE for term 8, need 4 votes
+2025-07-09 23:52:00,441 - Node[5] - INFO - Became CANDIDATE for term 8, need 4 votes
+2025-07-09 23:52:00,442 - Node[6] - INFO - Became FOLLOWER for term 8
+2025-07-09 23:52:00,443 - Node[1] - INFO - Became FOLLOWER for term 8
+2025-07-09 23:52:00,446 - Node[2] - INFO - Became FOLLOWER for term 8
+2025-07-09 23:52:00,448 - Node[4] - INFO - Became FOLLOWER for term 8
+2025-07-09 23:52:00,451 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:00] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:00,452 - simulation.simulation.Simulation - INFO - Simulation completed. Processed 527 events in 7.48s sim time
+2025-07-09 23:52:00,453 - __main__ - INFO - Event logged: SYSTEM - Simulation ended
+2025-07-09 23:52:01,436 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:01] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:02,123 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:02] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:03,447 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:03] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:04,136 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:04] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:05,446 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:05] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:06,132 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:06] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:07,442 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:07] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:08,131 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:08] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:09,014 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:09] "OPTIONS /raft/start HTTP/1.1" 200 -
+2025-07-09 23:52:09,281 - simulation.simulation.Simulation - INFO - Simulation initialized
+2025-07-09 23:52:09,282 - simulation.simulation.Simulation - INFO - Registered node 0
+2025-07-09 23:52:09,283 - Node[0] - INFO - Node initialized and registered
+2025-07-09 23:52:09,283 - Node[0] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:52:09,284 - simulation.simulation.Simulation - INFO - Registered node 1
+2025-07-09 23:52:09,285 - Node[1] - INFO - Node initialized and registered
+2025-07-09 23:52:09,286 - Node[1] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:52:09,286 - simulation.simulation.Simulation - INFO - Registered node 2
+2025-07-09 23:52:09,287 - Node[2] - INFO - Node initialized and registered
+2025-07-09 23:52:09,288 - Node[2] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:52:09,291 - simulation.simulation.Simulation - INFO - Registered node 3
+2025-07-09 23:52:09,292 - Node[3] - INFO - Node initialized and registered
+2025-07-09 23:52:09,294 - Node[3] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:52:09,295 - simulation.simulation.Simulation - INFO - Registered node 4
+2025-07-09 23:52:09,296 - Node[4] - INFO - Node initialized and registered
+2025-07-09 23:52:09,298 - Node[4] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:52:09,298 - simulation.simulation.Simulation - INFO - Registered node 5
+2025-07-09 23:52:09,299 - Node[5] - INFO - Node initialized and registered
+2025-07-09 23:52:09,300 - Node[5] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:52:09,301 - simulation.simulation.Simulation - INFO - Registered node 6
+2025-07-09 23:52:09,302 - Node[6] - INFO - Node initialized and registered
+2025-07-09 23:52:09,303 - Node[6] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:52:09,305 - __main__ - INFO - Event logged: SYSTEM - Simulation started with 7 nodes
+2025-07-09 23:52:09,312 - __main__ - INFO - Starting simulation thread for 280 seconds
+2025-07-09 23:52:09,314 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:09] "POST /raft/start HTTP/1.1" 200 -
+2025-07-09 23:52:09,315 - simulation.simulation.Simulation - INFO - Starting simulation for 280 seconds
+2025-07-09 23:52:09,317 - Node[6] - INFO - Became CANDIDATE for term 1, need 4 votes
+2025-07-09 23:52:09,318 - Node[0] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:52:09,323 - Node[2] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:52:09,328 - Node[4] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:52:09,332 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:09] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:09,332 - Node[3] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:52:09,335 - Node[5] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:52:09,339 - Node[6] - INFO - Became LEADER for term 1
+2025-07-09 23:52:09,346 - Node[1] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:52:09,348 - Node[4] - INFO - Became CANDIDATE for term 2, need 4 votes
+2025-07-09 23:52:09,350 - Node[5] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:52:09,351 - Node[0] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:52:09,352 - Node[3] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:52:09,358 - Node[5] - INFO - Became CANDIDATE for term 3, need 4 votes
+2025-07-09 23:52:09,362 - Node[1] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:52:09,363 - Node[6] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:52:09,365 - Node[4] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:52:09,367 - Node[2] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:52:09,368 - Node[3] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:52:09,371 - Node[0] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:52:09,372 - Node[2] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:52:09,377 - Node[3] - INFO - Became CANDIDATE for term 4, need 4 votes
+2025-07-09 23:52:09,378 - Node[5] - INFO - Became FOLLOWER for term 4
+2025-07-09 23:52:09,379 - Node[2] - INFO - Became FOLLOWER for term 4
+2025-07-09 23:52:09,380 - Node[4] - INFO - Became FOLLOWER for term 4
+2025-07-09 23:52:09,382 - Node[1] - INFO - Became FOLLOWER for term 4
+2025-07-09 23:52:09,383 - Node[6] - INFO - Became FOLLOWER for term 4
+2025-07-09 23:52:09,390 - Node[0] - INFO - Became FOLLOWER for term 4
+2025-07-09 23:52:09,394 - Node[3] - INFO - Became LEADER for term 4
+2025-07-09 23:52:09,396 - Node[2] - INFO - Became CANDIDATE for term 5, need 4 votes
+2025-07-09 23:52:09,398 - Node[1] - INFO - Became FOLLOWER for term 5
+2025-07-09 23:52:09,399 - Node[3] - INFO - Became FOLLOWER for term 5
+2025-07-09 23:52:09,400 - Node[1] - INFO - Became CANDIDATE for term 6, need 4 votes
+2025-07-09 23:52:09,402 - Node[6] - INFO - Became FOLLOWER for term 6
+2025-07-09 23:52:09,405 - Node[0] - INFO - Became FOLLOWER for term 6
+2025-07-09 23:52:09,409 - Node[3] - INFO - Became FOLLOWER for term 6
+2025-07-09 23:52:09,410 - Node[4] - INFO - Became FOLLOWER for term 5
+2025-07-09 23:52:09,412 - Node[5] - INFO - Became FOLLOWER for term 6
+2025-07-09 23:52:09,414 - Node[0] - INFO - Became CANDIDATE for term 7, need 4 votes
+2025-07-09 23:52:09,415 - Node[4] - INFO - Became FOLLOWER for term 6
+2025-07-09 23:52:09,417 - Node[2] - INFO - Became FOLLOWER for term 6
+2025-07-09 23:52:09,426 - Node[3] - INFO - Became FOLLOWER for term 7
+2025-07-09 23:52:09,427 - Node[1] - INFO - Became LEADER for term 6
+2025-07-09 23:52:09,429 - Node[5] - INFO - Became FOLLOWER for term 7
+2025-07-09 23:52:09,430 - Node[6] - INFO - Became FOLLOWER for term 7
+2025-07-09 23:52:09,432 - Node[4] - INFO - Became FOLLOWER for term 7
+2025-07-09 23:52:09,434 - Node[1] - INFO - Became FOLLOWER for term 7
+2025-07-09 23:52:09,437 - Node[2] - INFO - Became FOLLOWER for term 7
+2025-07-09 23:52:09,443 - Node[0] - INFO - Became LEADER for term 7
+2025-07-09 23:52:09,447 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:09] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:09,835 - simulation.simulation.Simulation - INFO - Simulation completed. Processed 13993 events in 280.01s sim time
+2025-07-09 23:52:09,838 - __main__ - INFO - Event logged: SYSTEM - Simulation ended
+2025-07-09 23:52:10,444 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:10] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:11,129 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:11] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:12,446 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:12] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:13,125 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:13] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:14,439 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:14] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:15,126 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:15] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:15,891 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:15] "OPTIONS /raft/start HTTP/1.1" 200 -
+2025-07-09 23:52:16,156 - simulation.simulation.Simulation - INFO - Simulation initialized
+2025-07-09 23:52:16,158 - simulation.simulation.Simulation - INFO - Registered node 0
+2025-07-09 23:52:16,159 - Node[0] - INFO - Node initialized and registered
+2025-07-09 23:52:16,160 - Node[0] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:52:16,161 - simulation.simulation.Simulation - INFO - Registered node 1
+2025-07-09 23:52:16,162 - Node[1] - INFO - Node initialized and registered
+2025-07-09 23:52:16,162 - Node[1] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:52:16,163 - simulation.simulation.Simulation - INFO - Registered node 2
+2025-07-09 23:52:16,164 - Node[2] - INFO - Node initialized and registered
+2025-07-09 23:52:16,170 - Node[2] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:52:16,172 - simulation.simulation.Simulation - INFO - Registered node 3
+2025-07-09 23:52:16,173 - Node[3] - INFO - Node initialized and registered
+2025-07-09 23:52:16,174 - Node[3] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:52:16,175 - simulation.simulation.Simulation - INFO - Registered node 4
+2025-07-09 23:52:16,177 - Node[4] - INFO - Node initialized and registered
+2025-07-09 23:52:16,178 - Node[4] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:52:16,180 - simulation.simulation.Simulation - INFO - Registered node 5
+2025-07-09 23:52:16,184 - Node[5] - INFO - Node initialized and registered
+2025-07-09 23:52:16,189 - Node[5] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:52:16,190 - simulation.simulation.Simulation - INFO - Registered node 6
+2025-07-09 23:52:16,191 - Node[6] - INFO - Node initialized and registered
+2025-07-09 23:52:16,193 - Node[6] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:52:16,194 - __main__ - INFO - Event logged: SYSTEM - Simulation started with 7 nodes
+2025-07-09 23:52:16,197 - __main__ - INFO - Starting simulation thread for 300 seconds
+2025-07-09 23:52:16,201 - simulation.simulation.Simulation - INFO - Starting simulation for 300 seconds
+2025-07-09 23:52:16,199 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:16] "POST /raft/start HTTP/1.1" 200 -
+2025-07-09 23:52:16,204 - Node[5] - INFO - Became CANDIDATE for term 1, need 4 votes
+2025-07-09 23:52:16,210 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:16] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:16,212 - Node[4] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:52:16,221 - Node[1] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:52:16,222 - Node[3] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:52:16,225 - Node[3] - INFO - Became CANDIDATE for term 2, need 4 votes
+2025-07-09 23:52:16,226 - Node[6] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:52:16,228 - Node[0] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:52:16,239 - Node[6] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:52:16,245 - Node[1] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:52:16,246 - Node[5] - INFO - Became LEADER for term 1
+2025-07-09 23:52:16,252 - Node[5] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:52:16,255 - Node[2] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:52:16,256 - Node[0] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:52:16,258 - Node[4] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:52:16,261 - Node[2] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:52:16,262 - Node[3] - INFO - Became LEADER for term 2
+2025-07-09 23:52:16,263 - Node[0] - INFO - Became CANDIDATE for term 3, need 4 votes
+2025-07-09 23:52:16,264 - Node[1] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:52:16,266 - Node[5] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:52:16,267 - Node[6] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:52:16,269 - Node[3] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:52:16,270 - Node[4] - INFO - Became CANDIDATE for term 3, need 4 votes
+2025-07-09 23:52:16,270 - Node[2] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:52:16,271 - Node[0] - INFO - Became LEADER for term 3
+2025-07-09 23:52:16,271 - Node[4] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:52:16,272 - Node[2] - INFO - Became CANDIDATE for term 4, need 4 votes
+2025-07-09 23:52:16,273 - Node[1] - INFO - Became FOLLOWER for term 4
+2025-07-09 23:52:16,275 - Node[0] - INFO - Became FOLLOWER for term 4
+2025-07-09 23:52:16,277 - Node[6] - INFO - Became FOLLOWER for term 4
+2025-07-09 23:52:16,278 - Node[5] - INFO - Became FOLLOWER for term 4
+2025-07-09 23:52:16,279 - Node[3] - INFO - Became FOLLOWER for term 4
+2025-07-09 23:52:16,279 - Node[4] - INFO - Became FOLLOWER for term 4
+2025-07-09 23:52:16,280 - Node[2] - INFO - Became LEADER for term 4
+2025-07-09 23:52:16,282 - Node[6] - INFO - Became CANDIDATE for term 5, need 4 votes
+2025-07-09 23:52:16,284 - Node[1] - INFO - Became CANDIDATE for term 5, need 4 votes
+2025-07-09 23:52:16,286 - Node[5] - INFO - Became FOLLOWER for term 5
+2025-07-09 23:52:16,287 - Node[4] - INFO - Became FOLLOWER for term 5
+2025-07-09 23:52:16,288 - Node[0] - INFO - Became FOLLOWER for term 5
+2025-07-09 23:52:16,289 - Node[3] - INFO - Became FOLLOWER for term 5
+2025-07-09 23:52:16,290 - Node[2] - INFO - Became FOLLOWER for term 5
+2025-07-09 23:52:16,292 - Node[1] - INFO - Became LEADER for term 5
+2025-07-09 23:52:16,293 - Node[6] - INFO - Became FOLLOWER for term 5
+2025-07-09 23:52:16,481 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:16] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:16,667 - simulation.simulation.Simulation - INFO - Simulation completed. Processed 15039 events in 300.06s sim time
+2025-07-09 23:52:16,668 - __main__ - INFO - Event logged: SYSTEM - Simulation ended
+2025-07-09 23:52:17,126 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:17] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:18,435 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:18] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:19,125 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:19] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:20,435 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:20] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:21,124 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:21] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:22,455 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:22] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:23,137 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:23] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:24,552 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:24] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:25,129 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:25] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:26,430 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:26] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:27,133 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:27] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:28,437 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:28] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:29,131 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:29] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:30,430 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:30] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:31,143 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:31] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:32,432 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:32] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:33,129 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:33] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:34,448 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:34] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:35,129 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:35] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:36,443 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:36] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:37,128 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:37] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:38,449 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:38] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:39,128 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:39] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:40,455 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:40] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:41,133 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:41] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:42,442 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:42] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:43,135 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:43] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:44,437 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:44] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:45,138 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:45] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:46,452 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:46] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:47,134 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:47] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:48,451 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:48] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:49,125 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:49] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:50,436 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:50] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:51,131 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:51] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:52,446 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:52] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:53,131 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:53] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:54,450 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:54] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:55,130 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:55] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:56,460 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:56] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:57,132 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:57] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:58,443 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:58] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:52:59,136 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:52:59] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:53:00,441 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:53:00] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:53:01,134 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:53:01] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:53:02,448 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:53:02] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:53:03,142 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:53:03] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:53:04,439 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:53:04] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:53:05,130 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:53:05] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:53:06,437 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:53:06] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:53:07,178 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:53:07] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:53:08,441 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:53:08] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:53:09,133 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:53:09] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:53:10,562 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:53:10] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:53:11,237 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:53:11] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:53:12,556 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:53:12] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:53:13,230 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:53:13] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:53:14,548 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:53:14] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:53:15,245 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:53:15] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:53:16,539 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:53:16] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:53:17,231 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:53:17] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:53:18,554 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:53:18] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:53:19,232 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:53:19] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:53:20,552 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:53:20] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:53:21,244 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:53:21] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:53:22,545 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:53:22] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:53:23,258 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:53:23] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:53:24,543 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:53:24] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:53:25,239 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:53:25] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:53:26,555 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:53:26] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:53:27,238 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:53:27] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:53:28,558 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:53:28] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:53:29,234 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:53:29] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:53:30,558 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:53:30] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:53:31,242 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:53:31] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:53:32,547 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:53:32] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:53:33,246 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:53:33] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:53:34,544 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:53:34] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:53:35,233 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:53:35] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:53:36,551 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:53:36] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:53:37,243 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:53:37] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:53:38,555 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:53:38] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:53:39,140 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:53:39] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:53:40,446 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:53:40] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:53:41,133 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:53:41] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:53:42,443 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:53:42] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:53:43,136 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:53:43] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:53:44,463 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:53:44] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:53:45,134 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:53:45] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:53:46,453 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:53:46] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:53:47,137 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:53:47] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:53:48,470 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:53:48] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:53:49,135 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:53:49] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:53:50,451 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:53:50] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:53:51,144 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:53:51] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:53:52,454 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:53:52] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:53:53,145 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:53:53] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:53:54,438 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:53:54] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:53:55,137 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:53:55] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:53:56,555 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:53:56] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:53:57,244 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:53:57] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:53:58,553 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:53:58] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:53:59,252 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:53:59] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:54:00,547 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:54:00] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:54:01,243 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:54:01] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:54:02,558 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:54:02] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:54:03,245 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:54:03] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:54:04,558 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:54:04] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:54:05,247 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:54:05] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:54:06,560 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:54:06] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:54:07,268 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:54:07] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:54:08,451 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:54:08] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:54:09,139 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:54:09] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:54:10,459 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:54:10] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:54:11,136 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:54:11] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:54:12,444 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:54:12] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:54:13,136 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:54:13] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:54:14,450 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:54:14] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:54:15,135 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:54:15] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:54:16,441 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:54:16] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:54:17,133 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:54:17] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:54:18,450 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:54:18] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:54:19,132 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:54:19] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:54:20,447 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:54:20] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:54:21,136 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:54:21] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:54:22,446 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:54:22] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:54:23,133 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:54:23] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:54:24,458 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:54:24] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:54:25,132 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:54:25] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:54:26,460 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:54:26] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:54:27,134 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:54:27] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:54:28,444 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:54:28] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:54:29,142 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:54:29] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:54:30,444 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:54:30] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:54:31,134 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:54:31] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:54:32,447 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:54:32] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:54:33,136 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:54:33] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:54:34,451 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:54:34] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:54:35,137 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:54:35] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:54:36,452 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:54:36] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:54:37,135 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:54:37] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:54:38,447 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:54:38] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:54:39,132 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:54:39] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:54:40,446 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:54:40] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:54:41,133 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:54:41] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:54:42,455 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:54:42] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:54:43,170 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:54:43] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:54:44,444 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:54:44] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:54:45,138 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:54:45] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:54:46,459 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:54:46] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:54:47,131 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:54:47] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:54:48,445 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:54:48] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:54:49,151 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:54:49] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:54:50,456 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:54:50] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:54:51,144 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:54:51] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:54:52,457 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:54:52] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:54:53,139 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:54:53] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:54:54,463 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:54:54] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:54:55,140 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:54:55] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:54:56,450 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:54:56] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:54:57,140 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:54:57] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:54:58,453 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:54:58] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:54:59,135 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:54:59] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:55:00,461 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:00] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:55:01,152 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:01] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:55:02,442 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:02] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:55:03,148 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:03] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:55:04,452 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:04] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:55:05,143 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:05] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:55:06,450 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:06] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:55:07,146 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:07] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:55:08,463 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:08] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:55:09,139 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:09] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:55:10,447 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:10] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:55:11,143 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:11] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:55:12,446 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:12] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:55:13,137 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:13] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:55:14,459 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:14] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:55:15,139 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:15] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:55:16,457 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:16] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:55:17,137 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:17] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:55:18,456 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:18] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:55:19,137 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:19] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:55:20,451 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:20] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:55:21,136 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:21] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:55:22,452 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:22] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:55:23,142 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:23] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:55:24,451 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:24] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:55:25,133 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:25] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:55:26,446 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:26] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:55:27,146 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:27] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:55:28,456 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:28] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:55:29,133 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:29] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:55:30,453 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:30] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:55:31,143 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:31] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:55:32,450 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:32] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:55:33,141 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:33] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:55:34,456 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:34] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:55:35,143 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:35] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:55:36,456 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:36] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:55:37,141 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:37] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:55:38,468 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:38] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:55:39,149 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:39] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:55:40,466 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:40] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:55:41,139 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:41] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:55:42,466 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:42] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:55:43,145 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:43] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:55:44,453 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:44] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:55:45,146 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:45] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:55:46,466 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:46] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:55:47,138 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:47] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:55:48,464 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:48] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:55:49,146 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:49] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:55:50,454 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:50] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:55:51,147 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:51] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:55:52,455 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:52] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:55:52,959 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:52] "OPTIONS /raft/start HTTP/1.1" 200 -
+2025-07-09 23:55:53,270 - simulation.simulation.Simulation - INFO - Simulation initialized
+2025-07-09 23:55:53,271 - simulation.simulation.Simulation - INFO - Registered node 0
+2025-07-09 23:55:53,273 - Node[0] - INFO - Node initialized and registered
+2025-07-09 23:55:53,275 - Node[0] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:55:53,276 - simulation.simulation.Simulation - INFO - Registered node 1
+2025-07-09 23:55:53,277 - Node[1] - INFO - Node initialized and registered
+2025-07-09 23:55:53,279 - Node[1] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:55:53,280 - simulation.simulation.Simulation - INFO - Registered node 2
+2025-07-09 23:55:53,281 - Node[2] - INFO - Node initialized and registered
+2025-07-09 23:55:53,285 - Node[2] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:55:53,286 - simulation.simulation.Simulation - INFO - Registered node 3
+2025-07-09 23:55:53,287 - Node[3] - INFO - Node initialized and registered
+2025-07-09 23:55:53,289 - Node[3] - INFO - Raft node initialized in FOLLOWER state
+2025-07-09 23:55:53,290 - __main__ - INFO - Event logged: SYSTEM - Simulation started with 4 nodes
+2025-07-09 23:55:53,292 - __main__ - INFO - Starting simulation thread for 300 seconds
+2025-07-09 23:55:53,294 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:53] "POST /raft/start HTTP/1.1" 200 -
+2025-07-09 23:55:53,295 - simulation.simulation.Simulation - INFO - Starting simulation for 300 seconds
+2025-07-09 23:55:53,303 - Node[1] - INFO - Became CANDIDATE for term 1, need 3 votes
+2025-07-09 23:55:53,309 - Node[0] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:55:53,312 - Node[2] - INFO - Became FOLLOWER for term 1
+2025-07-09 23:55:53,315 - Node[0] - INFO - Became CANDIDATE for term 2, need 3 votes
+2025-07-09 23:55:53,328 - Node[2] - INFO - Became CANDIDATE for term 2, need 3 votes
+2025-07-09 23:55:53,330 - Node[1] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:55:53,334 - Node[3] - INFO - Became FOLLOWER for term 2
+2025-07-09 23:55:53,338 - Node[3] - INFO - Became CANDIDATE for term 3, need 3 votes
+2025-07-09 23:55:53,341 - Node[1] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:55:53,342 - Node[2] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:55:53,344 - Node[0] - INFO - Became FOLLOWER for term 3
+2025-07-09 23:55:53,345 - Node[3] - INFO - Became LEADER for term 3
+2025-07-09 23:55:53,508 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:53] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:55:53,622 - simulation.simulation.Simulation - INFO - Simulation completed. Processed 7758 events in 300.02s sim time
+2025-07-09 23:55:53,625 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:53] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:55:53,625 - __main__ - INFO - Event logged: SYSTEM - Simulation ended
+2025-07-09 23:55:54,449 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:54] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:55:55,155 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:55] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:55:56,443 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:56] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:55:57,154 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:57] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:55:58,453 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:58] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:55:59,139 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:55:59] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:56:00,454 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:56:00] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:56:01,143 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:56:01] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:56:02,456 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:56:02] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:56:03,138 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:56:03] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:56:04,460 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:56:04] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:56:05,149 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:56:05] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:56:08,135 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:56:08] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:56:08,402 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:56:08] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:56:08,450 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:56:08] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:56:09,142 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:56:09] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:56:10,450 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:56:10] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:56:11,144 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:56:11] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:56:12,449 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:56:12] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:56:13,145 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:56:13] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:56:14,463 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:56:14] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:56:15,141 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:56:15] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:56:16,460 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:56:16] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:56:17,140 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:56:17] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:56:18,458 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:56:18] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:56:19,140 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:56:19] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:56:20,460 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:56:20] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:56:21,140 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:56:21] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:56:22,453 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:56:22] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:56:23,138 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:56:23] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:56:24,464 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:56:24] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:56:25,138 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:56:25] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:56:26,450 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:56:26] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:56:27,137 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:56:27] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:56:28,455 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:56:28] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:56:29,148 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:56:29] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:56:30,456 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:56:30] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:56:31,146 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:56:31] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:56:32,456 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:56:32] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:56:33,146 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:56:33] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:56:34,459 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:56:34] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:56:35,143 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:56:35] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:56:36,460 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:56:36] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:56:37,159 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:56:37] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:56:38,458 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:56:38] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:56:39,153 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:56:39] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:56:40,455 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:56:40] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:56:41,148 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:56:41] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:56:42,454 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:56:42] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:56:43,155 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:56:43] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:56:44,466 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:56:44] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:56:45,148 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:56:45] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:56:46,460 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:56:46] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:56:47,152 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:56:47] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:56:48,460 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:56:48] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:56:49,149 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:56:49] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:56:50,468 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:56:50] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:56:51,149 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:56:51] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:56:52,463 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:56:52] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:56:53,149 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:56:53] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:56:54,457 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:56:54] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:56:55,146 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:56:55] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:56:56,460 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:56:56] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:56:57,145 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:56:57] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:56:58,458 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:56:58] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:56:59,142 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:56:59] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:57:00,460 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:57:00] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:57:01,151 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:57:01] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:57:02,461 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:57:02] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:57:03,148 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:57:03] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:57:04,459 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:57:04] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:57:05,146 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:57:05] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:57:06,456 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:57:06] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:57:07,150 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:57:07] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:57:08,461 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:57:08] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:57:09,152 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:57:09] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:57:10,447 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:57:10] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:57:11,146 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:57:11] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:57:12,461 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:57:12] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:57:13,147 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:57:13] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:57:14,463 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:57:14] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:57:15,152 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:57:15] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:57:16,455 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:57:16] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:57:17,145 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:57:17] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:57:18,463 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:57:18] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:57:19,157 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:57:19] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:57:20,460 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:57:20] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:57:21,154 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:57:21] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:57:22,459 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:57:22] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:57:23,147 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:57:23] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:57:24,474 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:57:24] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:57:25,151 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:57:25] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:57:26,456 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:57:26] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:57:27,144 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:57:27] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:57:28,453 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:57:28] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:57:29,142 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:57:29] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:57:30,462 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:57:30] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:57:31,146 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:57:31] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:57:32,466 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:57:32] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:57:33,143 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:57:33] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:57:34,466 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:57:34] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:57:35,146 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:57:35] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:57:36,456 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:57:36] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:57:37,142 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:57:37] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:57:38,474 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:57:38] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:57:39,147 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:57:39] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:57:40,459 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:57:40] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:57:41,146 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:57:41] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:57:42,451 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:57:42] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:57:43,144 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:57:43] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:57:44,465 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:57:44] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:57:45,148 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:57:45] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:57:46,475 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:57:46] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:57:47,181 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:57:47] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:57:48,475 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:57:48] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:57:49,153 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:57:49] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:57:50,461 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:57:50] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:57:51,154 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:57:51] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:57:52,456 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:57:52] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:57:53,155 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:57:53] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:57:54,458 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:57:54] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:57:55,149 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:57:55] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:57:56,459 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:57:56] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:57:57,148 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:57:57] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:57:58,465 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:57:58] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:57:59,148 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:57:59] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:58:00,464 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:58:00] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:58:01,147 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:58:01] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:58:02,462 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:58:02] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:58:03,147 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:58:03] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:58:04,466 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:58:04] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:58:05,150 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:58:05] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:58:06,459 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:58:06] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:58:07,164 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:58:07] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:58:08,474 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:58:08] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:58:09,267 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:58:09] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:58:10,566 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:58:10] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:58:11,256 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:58:11] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:58:12,574 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:58:12] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:58:13,264 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:58:13] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:58:14,559 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:58:14] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:58:15,258 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:58:15] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:58:16,567 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:58:16] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:58:17,262 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:58:17] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:58:18,569 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:58:18] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:58:19,278 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:58:19] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:58:20,562 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:58:20] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:58:21,249 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:58:21] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:58:22,560 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:58:22] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:58:23,264 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:58:23] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:58:24,573 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:58:24] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:58:25,269 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:58:25] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:58:26,571 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:58:26] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:58:27,268 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:58:27] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:58:28,562 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:58:28] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:58:29,253 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:58:29] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:58:30,599 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:58:30] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:58:31,258 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:58:31] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:58:32,566 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:58:32] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:58:33,257 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:58:33] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:58:34,570 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:58:34] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:58:35,271 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:58:35] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:58:36,574 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:58:36] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:58:37,262 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:58:37] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:58:38,568 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:58:38] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:58:39,261 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:58:39] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:58:40,577 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:58:40] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:58:41,264 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:58:41] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:58:42,576 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:58:42] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:58:43,260 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:58:43] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:58:44,569 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:58:44] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:58:45,269 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:58:45] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:58:46,574 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:58:46] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:58:47,263 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:58:47] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:58:48,574 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:58:48] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:58:49,267 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:58:49] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:58:50,592 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:58:50] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:58:51,266 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:58:51] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:58:52,573 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:58:52] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:58:53,259 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:58:53] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:58:54,575 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:58:54] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:58:55,267 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:58:55] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:58:56,565 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:58:56] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:58:57,256 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:58:57] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:58:58,569 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:58:58] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:58:59,263 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:58:59] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:59:00,573 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:59:00] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:59:01,266 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:59:01] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:59:02,571 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:59:02] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:59:03,273 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:59:03] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:59:04,566 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:59:04] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:59:05,259 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:59:05] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:59:06,577 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:59:06] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:59:07,259 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:59:07] "GET /raft/status HTTP/1.1" 200 -
+2025-07-09 23:59:08,576 - werkzeug - INFO - 127.0.0.1 - - [09/Jul/2025 23:59:08] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:00:06,331 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:00:06] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:01:05,569 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:01:05] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:02:05,588 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:02:05] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:03:05,281 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:03:05] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:04:05,590 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:04:05] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:05:05,289 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:05:05] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:06:05,588 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:06:05] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:07:05,304 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:07:05] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:08:05,600 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:08:05] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:09:05,289 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:09:05] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:10:05,612 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:10:05] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:11:05,301 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:11:05] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:12:05,617 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:12:05] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:13:05,313 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:13:05] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:14:05,622 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:14:05] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:15:05,314 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:15:05] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:16:05,631 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:16:05] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:17:05,321 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:17:05] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:18:05,631 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:18:05] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:19:05,325 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:19:05] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:20:05,639 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:20:05] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:21:05,331 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:21:05] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:22:05,642 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:22:05] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:23:05,343 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:23:05] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:24:05,646 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:24:05] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:25:03,343 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:25:03] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:25:04,660 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:25:04] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:25:05,365 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:25:05] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:25:07,663 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:25:07] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:25:08,344 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:25:08] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:25:09,657 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:25:09] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:26:05,668 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:26:05] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:27:05,675 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:27:05] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:28:05,340 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:28:05] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:29:05,677 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:29:05] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:30:05,347 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:30:05] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:31:05,671 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:31:05] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:31:06,341 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:31:06] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:31:07,548 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:31:07] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:31:08,262 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:31:08] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:31:09,563 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:31:09] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:31:10,251 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:31:10] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:31:11,559 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:31:11] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:31:12,255 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:31:12] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:31:13,560 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:31:13] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:31:14,244 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:31:14] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:31:15,550 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:31:15] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:31:16,243 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:31:16] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:31:17,569 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:31:17] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:31:18,240 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:31:18] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:31:19,558 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:31:19] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:31:20,240 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:31:20] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:31:21,553 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:31:21] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:31:22,245 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:31:22] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:31:23,550 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:31:23] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:31:24,251 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:31:24] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:31:25,558 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:31:25] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:31:26,251 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:31:26] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:31:27,566 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:31:27] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:31:28,247 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:31:28] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:31:29,566 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:31:29] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:31:30,258 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:31:30] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:31:31,548 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:31:31] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:31:32,254 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:31:32] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:31:33,572 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:31:33] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:31:34,253 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:31:34] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:31:35,560 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:31:35] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:31:36,248 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:31:36] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:31:37,584 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:31:37] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:31:38,242 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:31:38] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:31:39,551 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:31:39] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:31:40,241 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:31:40] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:31:41,566 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:31:41] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:31:42,246 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:31:42] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:31:43,552 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:31:43] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:31:44,254 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:31:44] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:31:45,563 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:31:45] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:31:46,249 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:31:46] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:31:47,585 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:31:47] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:31:48,249 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:31:48] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:31:49,565 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:31:49] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:31:50,256 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:31:50] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:31:51,551 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:31:51] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:31:52,284 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:31:52] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:31:53,563 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:31:53] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:31:54,242 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:31:54] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:31:55,555 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:31:55] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:31:56,242 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:31:56] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:31:57,546 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:31:57] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:31:58,241 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:31:58] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:31:59,546 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:31:59] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:32:00,241 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:32:00] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:32:01,556 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:32:01] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:32:02,254 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:32:02] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:32:03,558 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:32:03] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:32:04,237 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:32:04] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:32:05,565 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:32:05] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:32:06,241 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:32:06] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:32:07,552 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:32:07] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:32:08,248 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:32:08] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:32:09,555 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:32:09] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:32:10,247 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:32:10] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:32:11,551 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:32:11] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:32:12,248 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:32:12] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:32:13,553 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:32:13] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:32:14,242 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:32:14] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:32:15,547 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:32:15] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:32:16,243 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:32:16] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:32:17,559 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:32:17] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:32:18,242 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:32:18] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:32:19,545 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:32:19] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:32:20,245 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:32:20] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:32:21,566 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:32:21] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:32:22,263 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:32:22] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:32:23,556 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:32:23] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:32:24,246 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:32:24] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:32:25,554 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:32:25] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:32:26,252 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:32:26] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:32:27,562 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:32:27] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:32:28,353 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:32:28] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:32:29,659 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:32:29] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:32:30,353 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:32:30] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:32:31,695 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:32:31] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:32:32,345 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:32:32] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:32:33,668 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:32:33] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:32:34,349 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:32:34] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:32:35,663 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:32:35] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:32:36,355 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:32:36] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:32:37,669 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:32:37] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:32:38,355 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:32:38] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:32:39,753 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:32:39] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:32:40,364 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:32:40] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:32:41,682 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:32:41] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:32:42,354 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:32:42] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:32:43,674 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:32:43] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:32:44,356 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:32:44] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:32:45,660 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:32:45] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:32:46,352 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:32:46] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:32:47,658 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:32:47] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:32:48,353 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:32:48] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:32:49,649 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:32:49] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:32:50,355 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:32:50] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:32:51,652 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:32:51] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:32:52,357 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:32:52] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:32:53,665 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:32:53] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:32:54,367 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:32:54] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:32:55,672 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:32:55] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:32:56,350 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:32:56] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:32:57,671 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:32:57] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:32:58,360 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:32:58] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:32:59,675 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:32:59] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:33:00,359 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:33:00] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:33:01,669 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:33:01] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:33:02,360 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:33:02] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:33:03,668 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:33:03] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:33:04,356 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:33:04] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:33:05,668 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:33:05] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:33:06,347 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:33:06] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:33:07,666 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:33:07] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:33:08,366 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:33:08] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:33:09,664 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:33:09] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:33:10,349 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:33:10] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:33:11,667 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:33:11] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:33:12,359 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:33:12] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:33:13,679 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:33:13] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:33:14,359 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:33:14] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:33:15,663 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:33:15] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:33:16,362 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:33:16] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:33:17,675 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:33:17] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:33:18,356 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:33:18] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:33:19,670 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:33:19] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:33:20,352 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:33:20] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:33:21,673 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:33:21] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:33:22,357 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:33:22] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:33:23,667 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:33:23] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:33:24,254 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:33:24] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:33:25,559 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:33:25] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:33:26,245 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:33:26] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:33:27,555 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:33:27] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:33:28,252 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:33:28] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:33:29,570 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:33:29] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:33:30,244 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:33:30] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:33:31,571 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:33:31] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:33:32,248 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:33:32] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:33:33,560 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:33:33] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:33:34,256 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:33:34] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:33:35,571 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:33:35] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:33:36,250 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:33:36] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:33:37,574 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:33:37] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:33:38,247 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:33:38] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:33:39,555 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:33:39] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:33:40,258 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:33:40] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:33:41,594 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:33:41] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:33:42,257 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:33:42] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:33:43,559 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:33:43] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:33:44,259 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:33:44] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:33:45,557 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:33:45] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:33:46,248 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:33:46] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:33:47,557 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:33:47] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:33:48,256 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:33:48] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:33:49,569 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:33:49] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:33:50,253 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:33:50] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:33:51,561 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:33:51] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:33:52,245 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:33:52] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:33:53,561 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:33:53] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:33:54,248 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:33:54] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:33:55,565 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:33:55] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:33:56,248 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:33:56] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:33:57,561 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:33:57] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:33:58,243 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:33:58] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:33:59,566 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:33:59] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:34:00,247 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:34:00] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:34:01,583 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:34:01] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:34:02,268 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:34:02] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:34:03,572 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:34:03] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:34:04,250 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:34:04] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:34:05,668 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:34:05] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:34:06,360 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:34:06] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:34:07,675 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:34:07] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:34:08,355 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:34:08] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:34:09,656 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:34:09] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:34:10,356 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:34:10] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:34:11,671 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:34:11] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:34:12,357 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:34:12] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:34:13,728 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:34:13] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:34:14,357 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:34:14] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:34:15,665 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:34:15] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:34:16,346 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:34:16] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:34:17,671 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:34:17] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:34:18,352 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:34:18] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:34:19,670 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:34:19] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:34:20,350 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:34:20] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:34:21,685 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:34:21] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:34:22,359 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:34:22] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:34:23,666 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:34:23] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:34:24,358 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:34:24] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:34:25,667 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:34:25] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:34:26,363 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:34:26] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:34:27,674 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:34:27] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:34:28,413 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:34:28] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:34:29,713 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:34:29] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:34:30,356 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:34:30] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:34:31,665 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:34:31] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:34:32,355 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:34:32] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:34:33,669 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:34:33] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:34:34,361 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:34:34] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:34:35,669 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:34:35] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:34:36,360 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:34:36] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:34:37,663 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:34:37] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:34:38,351 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:34:38] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:34:39,658 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:34:39] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:34:40,347 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:34:40] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:34:41,664 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:34:41] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:34:42,353 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:34:42] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:34:43,672 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:34:43] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:34:44,353 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:34:44] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:34:45,673 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:34:45] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:34:46,360 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:34:46] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:34:47,668 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:34:47] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:34:48,361 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:34:48] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:34:49,672 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:34:49] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:34:50,363 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:34:50] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:34:51,667 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:34:51] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:34:52,358 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:34:52] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:34:53,667 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:34:53] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:34:54,356 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:34:54] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:34:55,673 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:34:55] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:34:56,362 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:34:56] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:34:57,666 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:34:57] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:34:58,364 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:34:58] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:34:59,661 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:34:59] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:35:00,355 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:35:00] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:35:01,675 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:35:01] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:35:02,362 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:35:02] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:35:03,663 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:35:03] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:35:04,365 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:35:04] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:35:05,667 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:35:05] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:36:05,371 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:36:05] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:37:05,673 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:37:05] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:38:05,367 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:38:05] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:38:49,667 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:38:49] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:38:50,361 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:38:50] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:38:51,677 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:38:51] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:39:05,368 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:39:05] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:40:05,683 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:40:05] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:41:05,381 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:41:05] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:41:25,525 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:41:25] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:41:25,784 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:41:25] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:41:26,274 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:41:26] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:41:27,567 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:41:27] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 00:41:28,269 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 00:41:28] "GET /raft/status HTTP/1.1" 200 -
+2025-07-10 01:02:23,832 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.178.215:5000
+2025-07-10 01:02:23,834 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-07-10 01:02:40,786 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 01:02:40] "GET /health HTTP/1.1" 200 -
