@@ -5,8 +5,7 @@ import ClusterCanvas from './components/ClusterCanvas';
 import ControlPanel from './components/ControlPanel';
 import LogViewer from './components/LogViewer';
 import { useInterval } from './hooks/useInterval';
-import { SimulationProvider } from './contexts/SimulationContext';
-import './index.css';
+import './App.css';
 
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
@@ -21,18 +20,17 @@ const App = () => {
   const [simulationState, setSimulationState] = useState({
     isRunning: false,
     time: 0,
-    events: []
+    events: [],
+    animationSpeed: 1.0
   });
   
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [connectionRetries, setConnectionRetries] = useState(0);
   
-  // Refs for managing state updates
   const eventsRef = useRef([]);
   const lastEventTimestamp = useRef(0);
 
-  // Fetch cluster status with proper error handling
   const fetchClusterStatus = useCallback(async () => {
     try {
       const response = await axios.get(`${API_URL}/raft/status`, {
@@ -53,7 +51,8 @@ const App = () => {
       setSimulationState(prev => ({
         isRunning: data.running || false,
         time: data.simulation_time || 0,
-        events: data.events || prev.events
+        events: data.events || prev.events,
+        animationSpeed: data.animation_speed || 1.0
       }));
       
       // Process new events
@@ -77,46 +76,42 @@ const App = () => {
       if (connectionRetries < 3) {
         setConnectionRetries(prev => prev + 1);
       } else {
-        setError('Unable to connect to RAFT simulation backend. Please ensure the backend is running.');
+        setError('Unable to connect to RAFT simulation backend.');
       }
     } finally {
       setLoading(false);
     }
   }, [connectionRetries]);
 
-  // Use custom interval hook for polling
-  useInterval(fetchClusterStatus, loading || error ? null : 1000);
+  // Faster polling for smoother animations
+  useInterval(fetchClusterStatus, loading || error ? null : 250);
 
-  // Initial fetch
   useEffect(() => {
     fetchClusterStatus();
   }, [fetchClusterStatus]);
 
-  // Simulation control handlers
   const handleSimulationControl = useCallback(async (action, params = {}) => {
     try {
       const endpoint = `/raft/${action}`;
       const response = await axios.post(`${API_URL}${endpoint}`, params);
       
       if (response.data.status === 'success') {
-        // Immediate UI feedback
         if (action === 'start') {
           setSimulationState(prev => ({ ...prev, isRunning: true }));
         } else if (action === 'stop') {
           setSimulationState(prev => ({ ...prev, isRunning: false }));
         } else if (action === 'reset') {
-          setSimulationState({ isRunning: false, time: 0, events: [] });
+          setSimulationState({ isRunning: false, time: 0, events: [], animationSpeed: 1.0 });
           setClusterState({ nodes: [], leader: null, term: 0, messages: [] });
           eventsRef.current = [];
           lastEventTimestamp.current = 0;
         }
         
-        // Fetch latest status
         setTimeout(fetchClusterStatus, 100);
       }
     } catch (err) {
       console.error(`Failed to ${action} simulation:`, err);
-      setError(`Failed to ${action} simulation. Please try again.`);
+      setError(`Failed to ${action} simulation.`);
     }
   }, [fetchClusterStatus]);
 
@@ -143,9 +138,6 @@ const App = () => {
       <div className="app-error">
         <h2>Connection Error</h2>
         <p>{error}</p>
-        <p className="error-hint">
-          Make sure the backend is running on port 5000
-        </p>
         <button onClick={() => {
           setConnectionRetries(0);
           setError(null);
@@ -158,46 +150,47 @@ const App = () => {
   }
 
   return (
-    <SimulationProvider value={{ 
-      clusterState, 
-      simulationState, 
-      API_URL 
-    }}>
-      <div className="app-container">
-        <header className="app-header">
-          <h1>RAFT Distributed Systems Simulator</h1>
-          <StatusBar
-            currentTerm={clusterState.term}
-            leaderId={clusterState.leader}
-            simulationTime={simulationState.time}
-            isRunning={simulationState.isRunning}
-            nodeCount={clusterState.nodes.length}
-          />
-        </header>
+    <div className="app-container">
+      <header className="app-header">
+        <h1>RAFT Distributed Systems Simulator</h1>
+        <StatusBar
+          currentTerm={clusterState.term}
+          leaderId={clusterState.leader}
+          simulationTime={simulationState.time}
+          isRunning={simulationState.isRunning}
+          nodeCount={clusterState.nodes.length}
+        />
+      </header>
 
-        <main className="app-main">
-          <div className="visualisation-section">
+      <main className="app-main">
+        <div className="main-content">
+          <div className="cluster-section">
             <ClusterCanvas 
               nodes={clusterState.nodes} 
               messages={clusterState.messages}
               leaderId={clusterState.leader}
+              animationSpeed={simulationState.animationSpeed}
             />
+          </div>
+          
+          <div className="control-section">
             <ControlPanel
               onSimulationControl={handleSimulationControl}
               onChaosEvent={handleChaosEvent}
               isRunning={simulationState.isRunning}
+              animationSpeed={simulationState.animationSpeed}
             />
           </div>
+        </div>
 
-          <div className="events-section">
-            <LogViewer
-              events={eventsRef.current}
-              isRunning={simulationState.isRunning}
-            />
-          </div>
-        </main>
-      </div>
-    </SimulationProvider>
+        <div className="events-section">
+          <LogViewer
+            events={eventsRef.current}
+            isRunning={simulationState.isRunning}
+          />
+        </div>
+      </main>
+    </div>
   );
 };
 

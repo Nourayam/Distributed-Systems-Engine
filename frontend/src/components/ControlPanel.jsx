@@ -1,166 +1,126 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-const ControlPanel = ({ onSimulationControl, onChaosEvent, isRunning }) => {
+const ControlPanel = ({ onSimulationControl, onChaosEvent, isRunning, animationSpeed = 1.0 }) => {
   const [params, setParams] = useState({
     nodeCount: 5,
     maxTime: 60,
-    messageDropRate: 0.1
+    animationSpeed: 1.0
   });
-  const [isExpanded, setIsExpanded] = useState(true);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
 
-  const handleParamChange = (name, value) => {
-    setParams(prev => ({
-      ...prev,
-      [name]: value
-    }));
+  const handleStart = () => {
+    onSimulationControl('start', params);
   };
 
-  const handleAction = async (action) => {
-    setIsLoading(true);
-    try {
-      await onSimulationControl(action, params);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const handleChaos = (type, nodeId = null) => {
-    onChaosEvent(type, nodeId);
+  const handleChaos = (type) => {
+    onChaosEvent(type);
   };
 
   return (
     <div className="control-panel">
-      <div className="panel-header">
-        <h3>🎮 Simulation Controls</h3>
+      <div className="primary-controls">
         <button 
-          className="expand-button"
-          onClick={() => setIsExpanded(!isExpanded)}
-          aria-label={isExpanded ? 'Collapse' : 'Expand'}
+          onClick={handleStart}
+          className="control-btn start-btn"
+          disabled={isRunning}
         >
-          {isExpanded ? '▼' : '▶'}
+          <span className="btn-icon">▶</span>
+          <span className="btn-text">Start</span>
+        </button>
+        
+        <button 
+          onClick={() => onSimulationControl('stop')}
+          className="control-btn stop-btn"
+          disabled={!isRunning}
+        >
+          <span className="btn-icon">⏸</span>
+          <span className="btn-text">Stop</span>
+        </button>
+        
+        <button 
+          onClick={() => onSimulationControl('reset')}
+          className="control-btn reset-btn"
+        >
+          <span className="btn-icon">🔄</span>
+          <span className="btn-text">Reset</span>
+        </button>
+        
+        <button 
+          onClick={() => setIsExpanded(!isExpanded)}
+          className="control-btn expand-btn"
+        >
+          <span className="btn-icon">{isExpanded ? '▲' : '▼'}</span>
+          <span className="btn-text">Settings</span>
         </button>
       </div>
       
       {isExpanded && (
-        <div className="panel-content">
-          <div className="param-group">
-            <label className="param-label">
-              <span>Node Count</span>
-              <div className="param-input-group">
-                <input
-                  type="range"
-                  min="3"
-                  max="7"
-                  value={params.nodeCount}
-                  onChange={(e) => handleParamChange('nodeCount', parseInt(e.target.value))}
-                  className="param-range"
-                  disabled={isRunning}
-                />
-                <span className="param-value">{params.nodeCount}</span>
-              </div>
-            </label>
-            
-            <label className="param-label">
-              <span>Simulation Time (seconds)</span>
-              <div className="param-input-group">
-                <input
-                  type="range"
-                  min="10"
-                  max="300"
-                  step="10"
-                  value={params.maxTime}
-                  onChange={(e) => handleParamChange('maxTime', parseInt(e.target.value))}
-                  className="param-range"
-                  disabled={isRunning}
-                />
-                <span className="param-value">{params.maxTime}s</span>
-              </div>
-            </label>
-            
-            <label className="param-label">
-              <span>Message Drop Rate</span>
-              <div className="param-input-group">
-                <input
-                  type="range"
-                  min="0"
-                  max="0.5"
-                  step="0.01"
-                  value={params.messageDropRate}
-                  onChange={(e) => handleParamChange('messageDropRate', parseFloat(e.target.value))}
-                  className="param-range"
-                />
-                <span className="param-value">{(params.messageDropRate * 100).toFixed(0)}%</span>
-              </div>
-            </label>
+        <div className="expanded-controls">
+          <div className="param-row">
+            <label className="param-label">Nodes: {params.nodeCount}</label>
+            <input
+              type="range"
+              min="3"
+              max="7"
+              value={params.nodeCount}
+              onChange={(e) => setParams(prev => ({ ...prev, nodeCount: parseInt(e.target.value) }))}
+              className="param-slider"
+              disabled={isRunning}
+            />
+          </div>
+          
+          <div className="param-row">
+            <label className="param-label">Time: {params.maxTime}s</label>
+            <input
+              type="range"
+              min="30"
+              max="180"
+              step="10"
+              value={params.maxTime}
+              onChange={(e) => setParams(prev => ({ ...prev, maxTime: parseInt(e.target.value) }))}
+              className="param-slider"
+              disabled={isRunning}
+            />
+          </div>
+          
+          <div className="param-row">
+            <label className="param-label">Speed: {params.animationSpeed.toFixed(1)}x</label>
+            <input
+              type="range"
+              min="0.5"
+              max="3"
+              step="0.1"
+              value={params.animationSpeed}
+              onChange={(e) => setParams(prev => ({ ...prev, animationSpeed: parseFloat(e.target.value) }))}
+              className="param-slider"
+            />
           </div>
         </div>
       )}
       
-      <div className="button-group">
-        <button 
-          onClick={() => handleAction('start')} 
-          className="control-button start-button"
-          disabled={isRunning || isLoading}
-        >
-          <span>▶</span> Start
-        </button>
-        <button 
-          onClick={() => handleAction('stop')} 
-          className="control-button stop-button"
-          disabled={!isRunning || isLoading}
-        >
-          <span>⏸</span> Stop
-        </button>
-        <button 
-          onClick={() => handleAction('reset')} 
-          className="control-button reset-button"
-          disabled={isLoading}
-        >
-          <span>🔄</span> Reset
-        </button>
-      </div>
-      
-      <div className="chaos-section">
-        <h4>🌪️ Chaos Engineering</h4>
-        <div className="chaos-grid">
+      <div className="chaos-controls">
+        <h4 className="chaos-title">🌪️ Chaos Engineering</h4>
+        <div className="chaos-buttons">
           <button 
             onClick={() => handleChaos('KILL_NODE')}
-            className="chaos-button danger"
+            className="chaos-btn kill-btn"
             disabled={!isRunning}
           >
-            <span>💀</span> Kill Random Node
+            <span className="btn-icon">💀</span>
+            <span className="btn-text">Kill Node</span>
           </button>
-          <button 
-            onClick={() => handleChaos('PARTITION')}
-            className="chaos-button warning"
-            disabled={!isRunning}
-          >
-            <span>🔌</span> Network Partition
-          </button>
-          <button 
-            onClick={() => handleChaos('NETWORK_DELAY')}
-            className="chaos-button warning"
-            disabled={!isRunning}
-          >
-            <span>⏱️</span> Add Latency
-          </button>
+          
           <button 
             onClick={() => handleChaos('RESTORE_ALL')}
-            className="chaos-button success"
+            className="chaos-btn restore-btn"
             disabled={!isRunning}
           >
-            <span>🔧</span> Restore All
+            <span className="btn-icon">🔧</span>
+            <span className="btn-text">Restore All</span>
           </button>
         </div>
       </div>
-      
-      {isLoading && (
-        <div className="panel-loading">
-          <div className="spinner-small"></div>
-        </div>
-      )}
     </div>
   );
 };
@@ -168,7 +128,8 @@ const ControlPanel = ({ onSimulationControl, onChaosEvent, isRunning }) => {
 ControlPanel.propTypes = {
   onSimulationControl: PropTypes.func.isRequired,
   onChaosEvent: PropTypes.func.isRequired,
-  isRunning: PropTypes.bool.isRequired
+  isRunning: PropTypes.bool.isRequired,
+  animationSpeed: PropTypes.number
 };
 
 export default ControlPanel;

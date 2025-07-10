@@ -1,99 +1,142 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 
-const Node = ({ id, role, term, status, style, onClick }) => {
+const EnhancedNode = ({ 
+  id, 
+  state, 
+  term, 
+  status, 
+  style, 
+  isLeader,
+  is_transitioning,
+  animationSpeed = 1.0,
+  onClick,
+  onHover
+}) => {
   const [isAnimating, setIsAnimating] = useState(false);
-  const [lastRole, setLastRole] = useState(role);
+  const [lastState, setLastState] = useState(state);
+  const [isHovered, setIsHovered] = useState(false);
+  const nodeRef = useRef(null);
 
-  // Trigger animation on role change
+  // Handle state transitions
   useEffect(() => {
-    if (role !== lastRole) {
+    if (state !== lastState || is_transitioning) {
       setIsAnimating(true);
-      const timer = setTimeout(() => setIsAnimating(false), 1000);
-      setLastRole(role);
+      const duration = 1000 / animationSpeed;
+      const timer = setTimeout(() => setIsAnimating(false), duration);
+      setLastState(state);
       return () => clearTimeout(timer);
     }
-  }, [role, lastRole]);
+  }, [state, lastState, is_transitioning, animationSpeed]);
 
   const getNodeClasses = () => {
-    const classes = ['node'];
-
-    if (typeof role === 'string') {
-      classes.push(`node-${role.toLowerCase()}`);
-    } else {
-      classes.push('node-unknown');
-    }
-
-    if (typeof status === 'string' && status !== 'HEALTHY') {
+    const classes = ['enhanced-node'];
+    
+    // State-based classes
+    classes.push(`node-${state.toLowerCase()}`);
+    
+    // Status-based classes
+    if (status !== 'HEALTHY') {
       classes.push(`node-${status.toLowerCase()}`);
     }
-
-    if (isAnimating) {
+    
+    // Animation classes
+    if (isAnimating || is_transitioning) {
       classes.push('node-transitioning');
     }
-
+    if (isHovered) {
+      classes.push('node-hovered');
+    }
+    if (isLeader) {
+      classes.push('node-is-leader');
+    }
+    
     return classes.join(' ');
   };
 
-  const getRoleEmoji = () => {
+  const getStateEmoji = () => {
     if (status === 'FAILED') return '💀';
     if (status === 'PARTITIONED') return '🔌';
-
-    switch (role) {
-      case 'LEADER':
-        return '👑';
-      case 'CANDIDATE':
-        return '🗳️';
-      default:
-        return '🖥️';
+    
+    switch (state) {
+      case 'LEADER': return '👑';
+      case 'CANDIDATE': return '🗳️';
+      case 'FOLLOWER': return '🖥️';
+      default: return '🖥️';
     }
   };
 
-  const getStatusText = () => {
-    switch (status) {
-      case 'FAILED':
-        return 'CRASHED';
-      case 'PARTITIONED':
-        return 'ISOLATED';
-      default:
-        return typeof role === 'string' ? role : 'UNKNOWN';
+  const getStateColour = () => {
+    if (status === 'FAILED') return '#ef4444';
+    
+    switch (state) {
+      case 'LEADER': return '#22c55e';
+      case 'CANDIDATE': return '#f59e0b';
+      case 'FOLLOWER': return '#3b82f6';
+      default: return '#666666';
     }
   };
 
   return (
     <div
+      ref={nodeRef}
       className={getNodeClasses()}
-      style={style}
+      style={{
+        ...style,
+        '--node-colour': getStateColour(),
+        '--animation-speed': `${animationSpeed}s`
+      }}
       onClick={() => onClick && onClick(id)}
-      title={`Node ${id} – ${getStatusText()} (Term ${term})`}
+      onMouseEnter={() => {
+        setIsHovered(true);
+        onHover && onHover(id, true);
+      }}
+      onMouseLeave={() => {
+        setIsHovered(false);
+        onHover && onHover(id, false);
+      }}
+      title={`Node ${id} - ${state} (Term ${term})`}
     >
       <div className="node-content">
-        <div className="node-emoji">{getRoleEmoji()}</div>
+        <div className="node-emoji">{getStateEmoji()}</div>
         <div className="node-id">#{id}</div>
         <div className="node-term">T{term}</div>
-        <div className="node-status">{getStatusText()}</div>
+        <div className="node-state-label">{state}</div>
       </div>
-
-      {role === 'LEADER' && <div className="node-glow"></div>}
-      {role === 'CANDIDATE' && <div className="node-pulse"></div>}
+      
+      {isLeader && (
+        <div className="leader-crown">
+          <span>👑</span>
+        </div>
+      )}
+      
+      {state === 'CANDIDATE' && (
+        <div className="candidate-rings">
+          <div className="ring ring-1"></div>
+          <div className="ring ring-2"></div>
+        </div>
+      )}
+      
+      {(isAnimating || is_transitioning) && (
+        <div className="transition-effect">
+          <div className="pulse-ring"></div>
+        </div>
+      )}
     </div>
   );
 };
 
-Node.propTypes = {
+EnhancedNode.propTypes = {
   id: PropTypes.number.isRequired,
-  role: PropTypes.string,
+  state: PropTypes.oneOf(['LEADER', 'FOLLOWER', 'CANDIDATE']).isRequired,
   term: PropTypes.number.isRequired,
-  status: PropTypes.string,
+  status: PropTypes.oneOf(['HEALTHY', 'FAILED', 'PARTITIONED']).isRequired,
   style: PropTypes.object,
+  isLeader: PropTypes.bool,
+  is_transitioning: PropTypes.bool,
+  animationSpeed: PropTypes.number,
   onClick: PropTypes.func,
+  onHover: PropTypes.func
 };
 
-Node.defaultProps = {
-  role: 'UNKNOWN',
-  status: 'HEALTHY',
-  style: {},
-  onClick: null,
-};
-
-export default Node;
+export default EnhancedNode;
