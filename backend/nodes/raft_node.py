@@ -362,7 +362,7 @@ class RaftNode(Node):
         self.log.append(entry)
         self.logger.info(f"Added command to log at index {len(self.log) - 1}")
         
-        # Replicate immediately
+        #replicate immediately
         self._send_heartbeats()
         return True
 
