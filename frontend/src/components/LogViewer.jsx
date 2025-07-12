@@ -49,7 +49,6 @@ const LogViewer = ({ events, isRunning }) => {
   });
 
   const handleClearLogs = () => {
-    // This would typically call a parent method to clear logs
     console.log('Clear logs requested');
   };
 
