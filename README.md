@@ -110,8 +110,10 @@ Node.js 14 or higher (includes npm)
 Git (for cloning the repository)
 
 Backend Setup and Running Instructions
+
 Step 1: Navigate to the Backend Directory
 bashCopycd DSS/backend
+
 Step 2: Create a Python Virtual Environment
 It's best practice to use a virtual environment to avoid package conflicts:
 On Windows:
@@ -127,6 +129,7 @@ python3 -m venv venv
 # Activate virtual environment
 source venv/bin/activate
 You should see (venv) in your terminal prompt when the virtual environment is activated.
+
 Step 3: Install Python Dependencies
 First, create a requirements.txt file in the backend directory with the following content:
 txtCopyFlask==2.3.2
@@ -134,150 +137,9 @@ flask-cors==4.0.0
 werkzeug==2.3.6
 Then install the dependencies:
 bashCopypip install -r requirements.txt
+
 Step 4: Create Missing Backend Files
-The backend needs some additional files. Create these in the backend directory:
-backend/config.py:
-pythonCopyclass Config:
-    """Configuration settings for the RAFT simulator"""
-    def __init__(self):
-        self.node_count = 5
-        self.message_drop_rate = 0.1
-        self.election_timeout_min = 150  # milliseconds
-        self.election_timeout_max = 300  # milliseconds
-        self.heartbeat_interval = 50     # milliseconds
-        self.debug = True
-backend/simulation/__init__.py:
-pythonCopy# Empty file to make simulation a package
-backend/simulation/simulation.py:
-pythonCopyimport time
-import random
-from typing import Dict, Any, Optional
-import threading
 
-class Simulation:
-    """Main simulation engine for RAFT consensus"""
-    
-    def __init__(self, config):
-        self.config = config
-        self.nodes = {}
-        self.current_time = 0.0
-        self.start_time = time.time()
-        self.running = False
-        self.messages = []
-        self.events = []
-        
-    def add_node(self, node):
-        """Add a node to the simulation"""
-        self.nodes[node.node_id] = node
-        
-    def inject_failure(self, failure_type: str, node_id: str, recovery_time: float = 10.0):
-        """Inject a failure into the simulation"""
-        if node_id in self.nodes:
-            node = self.nodes[node_id]
-            if failure_type == 'crash':
-                node.crash()
-                # Schedule recovery
-                threading.Timer(recovery_time, lambda: node.recover()).start()
-                
-    def run(self, max_time: float = 60.0):
-        """Run the simulation for a specified duration"""
-        self.running = True
-        self.start_time = time.time()
-        
-        while self.running and self.current_time < max_time:
-            self.current_time = time.time() - self.start_time
-            
-            # Process node operations
-            for node in self.nodes.values():
-                if hasattr(node, 'step'):
-                    node.step(self.current_time)
-            
-            # Small sleep to prevent CPU spinning
-            time.sleep(0.1)
-            
-        self.running = False
-backend/nodes/__init__.py:
-pythonCopy# Empty file to make nodes a package
-backend/nodes/raft_node.py:
-pythonCopyimport random
-import time
-from enum import Enum
-
-class NodeState(Enum):
-    FOLLOWER = "FOLLOWER"
-    CANDIDATE = "CANDIDATE"
-    LEADER = "LEADER"
-
-class RaftNode:
-    """RAFT consensus node implementation"""
-    
-    def __init__(self, node_id: str, simulation):
-        self.node_id = node_id
-        self.simulation = simulation
-        self.state = NodeState.FOLLOWER
-        self.current_term = 0
-        self.voted_for = None
-        self.alive = True
-        self.last_heartbeat = time.time()
-        
-        # Add this node to the simulation
-        simulation.add_node(self)
-        
-    def get_state_info(self):
-        """Get current state information"""
-        return {
-            'state': self.state.value,
-            'current_term': self.current_term,
-            'voted_for': self.voted_for,
-            'alive': self.alive
-        }
-        
-    def is_alive(self):
-        """Check if node is alive"""
-        return self.alive
-        
-    def crash(self):
-        """Simulate node crash"""
-        self.alive = False
-        self.state = NodeState.FOLLOWER
-        
-    def recover(self):
-        """Recover from crash"""
-        self.alive = True
-        self.last_heartbeat = time.time()
-        
-    def step(self, current_time):
-        """Execute one step of the RAFT algorithm"""
-        if not self.alive:
-            return
-            
-        # Simple state machine - for demo purposes
-        if self.state == NodeState.FOLLOWER:
-            # Check for election timeout
-            if current_time - self.last_heartbeat > random.uniform(0.15, 0.3):
-                self.start_election()
-                
-        elif self.state == NodeState.CANDIDATE:
-            # Simulate election
-            if random.random() > 0.7:  # 30% chance to become leader
-                self.become_leader()
-            else:
-                self.state = NodeState.FOLLOWER
-                
-        elif self.state == NodeState.LEADER:
-            # Send heartbeats
-            self.last_heartbeat = current_time
-            
-    def start_election(self):
-        """Start leader election"""
-        self.state = NodeState.CANDIDATE
-        self.current_term += 1
-        self.voted_for = self.node_id
-        
-    def become_leader(self):
-        """Become the leader"""
-        self.state = NodeState.LEADER
-        self.last_heartbeat = time.time()
 Step 5: Create a .env File (Optional)
 Create a .env file in the backend directory for any environment-specific settings:
 bashCopyFLASK_ENV=development
@@ -294,6 +156,7 @@ Copy🚀 Starting RAFT Distributed Systems Simulator Backend...
  * Running on all addresses (0.0.0.0)
  * Running on http://127.0.0.1:5000
  * Running on http://[your-ip]:5000
+
 Step 7: Verify the Backend is Running
 Open a new terminal and test the API:
 bashCopy# Check health endpoint
@@ -303,10 +166,13 @@ curl http://localhost:5000/health
 curl http://localhost:5000/raft/status
 You should get JSON responses confirming the backend is working.
 Frontend Setup and Running Instructions
+
 Step 1: Open a New Terminal
 Keep the backend running and open a new terminal window.
+
 Step 2: Navigate to Frontend Directory
 bashCopycd DSS/frontend
+
 Step 3: Install Node Dependencies
 bashCopynpm install
 This will install all packages listed in package.json. If you encounter any issues:
@@ -318,9 +184,11 @@ rm -rf node_modules package-lock.json
 
 # Reinstall
 npm install
+
 Step 4: Verify Environment Configuration
 Ensure the .env file in the frontend directory contains:
 CopyREACT_APP_API_URL=http://localhost:5000
+
 Step 5: Start the Frontend Development Server
 bashCopynpm start
 The React development server will start and automatically open your browser to http://localhost:3000.
@@ -333,11 +201,13 @@ You can now view raft-frontend in the browser.
   On Your Network:  http://[your-ip]:3000
 Troubleshooting Guide
 Backend Issues
+
 1. ModuleNotFoundError:
 bashCopy# Ensure you're in the backend directory and venv is activated
 cd DSS/backend
 source venv/bin/activate  # or venv\Scripts\activate on Windows
 pip install -r requirements.txt
+
 2. Port 5000 Already in Use:
 bashCopy# Find process using port 5000
 # On Windows:
@@ -464,33 +334,4 @@ jsonCopy{
 }
 
 
-Directory Structure Verification
-Your complete directory structure should look like:
-CopyDSS/
-├── backend/
-│   ├── venv/              # (created by you)
-│   ├── app.py
-│   ├── config.py          # (created by you)
-│   ├── requirements.txt   # (created by you)
-│   ├── .env              # (optional)
-│   ├── simulation/
-│   │   ├── __init__.py   # (created by you)
-│   │   └── simulation.py # (created by you)
-│   └── nodes/
-│       ├── __init__.py   # (created by you)
-│       └── raft_node.py  # (created by you)
-├── frontend/
-│   ├── node_modules/     # (created by npm)
-│   ├── public/
-│   ├── src/
-│   │   ├── components/
-│   │   ├── contexts/     # (create this)
-│   │   ├── hooks/        # (create this)
-│   │   ├── App.js
-│   │   ├── index.js
-│   │   └── index.css
-│   ├── package.json
-│   ├── package-lock.json # (created by npm)
-│   └── .env
-└── README.md
 Now you should have a fully functional RAFT Distributed Systems Simulator running! The backend will handle the simulation logic whilst the frontend provides a beautiful visualisation of the consensus algorithm in action.
