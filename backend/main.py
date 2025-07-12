@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 import argparse
 import logging
 import sys
@@ -6,7 +5,7 @@ import os
 import time
 from typing import Dict, Any
 
-# Add project root to path
+#add project root to path
 project_root = os.path.dirname(os.path.abspath(__file__))
 if project_root not in sys.path:
     sys.path.append(project_root)
@@ -18,7 +17,6 @@ from failure.failure_injector import FailureInjector
 
 
 def setup_logging(verbose: bool = False) -> None:
-    """Setup logging configuration"""
     level = logging.DEBUG if verbose else logging.INFO
     logging.basicConfig(
         level=level,
@@ -28,7 +26,7 @@ def setup_logging(verbose: bool = False) -> None:
 
 
 def create_simulation_config(args) -> Config:
-    """Create simulation configuration from command line arguments"""
+    #from command line arguments
     config = Config()
     config.node_count = args.nodes
     config.message_drop_rate = args.message_drop_rate
@@ -39,10 +37,10 @@ def create_simulation_config(args) -> Config:
 
 
 def inject_test_commands(sim: Simulation) -> None:
-    """Inject some test commands to demonstrate log replication"""
+    #to demonstrate log replication
     import time
     
-    # Wait a bit for leader election to stabilize
+    #wait a bit for leader election to stabilise
     def delayed_commands():
         # Find current leader
         leaders = [node for node in sim.nodes.values() 
@@ -61,7 +59,7 @@ def inject_test_commands(sim: Simulation) -> None:
                 leader.submit_command(cmd)
                 print(f"Submitted command {i+1}: {cmd}")
     
-    # Schedule command injection after 5 seconds of simulation time
+    #injection after 5 seconds of simulation time
     from simulation.simulation_events import Event, EventType
     command_event = Event(
         timestamp=5.0,
@@ -72,7 +70,6 @@ def inject_test_commands(sim: Simulation) -> None:
 
 
 def inject_chaos_scenarios(sim: Simulation, injector: FailureInjector, args) -> None:
-    """Inject chaos testing scenarios based on arguments"""
     if not args.chaos:
         return
         
@@ -80,31 +77,28 @@ def inject_chaos_scenarios(sim: Simulation, injector: FailureInjector, args) -> 
     
     if args.chaos_scenario == 'network_partition':
         logger.info("Injecting network partition scenario")
-        # Crash nodes to simulate partition
+        #crash nodes to simulate partition
         injector.inject_node_crash("0", recovery_time=args.chaos_duration)
         injector.inject_node_crash("1", recovery_time=args.chaos_duration)
         
     elif args.chaos_scenario == 'leader_failure':
         logger.info("Injecting leader failure scenario")
-        # Crash the first node (likely to become leader)
+        #crash the first node (likely to become leader)
         injector.inject_node_crash("0", recovery_time=args.chaos_duration)
         
     elif args.chaos_scenario == 'rolling_failures':
         logger.info("Injecting rolling failures scenario")
-        # Crash nodes in sequence
+        #crash nodes in sequence
         for i in range(min(2, args.nodes)):
             delay = i * (args.chaos_duration / 3)
             recovery_time = args.chaos_duration - delay
-            # Schedule crash with delay
             def delayed_crash(node_id: str, recovery: float):
                 injector.inject_node_crash(node_id, recovery_time=recovery)
             
-            # This is a simplified version - in real implementation you'd schedule this properly
             injector.inject_node_crash(str(i), recovery_time=recovery_time)
 
 
 def print_simulation_results(sim: Simulation) -> None:
-    """Print detailed simulation results"""
     print("\n" + "="*60)
     print("SIMULATION RESULTS")
     print("="*60)
@@ -121,7 +115,7 @@ def print_simulation_results(sim: Simulation) -> None:
         else:
             print(f"{node_id:<8} {'UNKNOWN':<10} {'?':<6} {node.is_alive():<6} {'?':<10}")
     
-    # Find leader
+    #finds leader
     leaders = [node for node in sim.nodes.values() 
               if hasattr(node, 'state') and node.state.name == 'LEADER']
     
@@ -132,7 +126,6 @@ def print_simulation_results(sim: Simulation) -> None:
         print(f"Leader log size: {len(leader.log)}")
         print(f"Leader commit index: {leader.commit_index}")
     
-    # Event summary - FIX: Use the correct counter
     statistics = sim.get_statistics()
     print(f"\nSimulation Statistics:")
     print(f"Events processed: {statistics['events_processed']}")  # this is gonna be better to see what's actualliy going thorugh
@@ -141,7 +134,7 @@ def print_simulation_results(sim: Simulation) -> None:
     print(f"Node states: {statistics['node_states']}")
     print(f"Alive nodes: {statistics['alive_nodes']}/{statistics['node_count']}")
     
-    # Show recent significant events only
+    #show recent significant events only
     significant_events = [e for e in sim.event_log if e['type'] in 
                          ['NODE_CRASH', 'NODE_RECOVER', 'LEADER_ELECTED']]
     if significant_events:
@@ -152,7 +145,6 @@ def print_simulation_results(sim: Simulation) -> None:
         print(f"\nNo significant events recorded (normal operation)")
 
 def main():
-    """Main entry point for the Raft simulator"""
     parser = argparse.ArgumentParser(description='Raft consensus simulator')
     parser.add_argument('--max_time', type=float, default=60.0,
                        help='Maximum simulation time in seconds')
@@ -175,7 +167,6 @@ def main():
     
     args = parser.parse_args()
     
-    # Setup logging
     def setup_logging(verbose: bool = False, quiet: bool = False) -> None:
     #Setup logging configuration
         if quiet:
@@ -195,28 +186,23 @@ def main():
     logger = logging.getLogger(__name__)
     
     try:
-        # Validate configuration
         validate_config()
         
-        # Create simulation configuration
         config = create_simulation_config(args)
         
-        # Create simulation
         sim = Simulation(config)
         
-        # Create Raft nodes
+        #create Raft nodes
         logger.info(f"Creating {args.nodes} Raft nodes")
         for i in range(args.nodes):
             node = RaftNode(str(i), sim)
             logger.debug(f"Created node {i}")
         
-        # Create failure injector
         injector = FailureInjector(sim)
         
-        # Inject chaos scenarios
         inject_chaos_scenarios(sim, injector, args)
         
-        # Run simulation
+        #run simulation
         logger.info(f"Starting simulation for {args.max_time} seconds")
         start_time = time.time()
         
@@ -228,7 +214,6 @@ def main():
         end_time = time.time()
         logger.info(f"Simulation completed in {end_time - start_time:.2f} real seconds")
         
-        # Print results
         print_simulation_results(sim)
         
     except Exception as e:
