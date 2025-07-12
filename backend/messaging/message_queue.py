@@ -20,9 +20,7 @@ class MessageData(TypedDict):
     payload: Dict[str, Any]
 
 
-class MessageQueue:
-    """Manages message delivery with realistic network behavior."""
-    
+class MessageQueue:    
     def __init__(self, config: 'Config', simulation: 'Simulation') -> None:
         self.config = config
         self.simulation = simulation
@@ -36,12 +34,11 @@ class MessageQueue:
         payload: Dict[str, Any],
         current_time: float
     ) -> None:
-        """Send a message with potential network delays and failures."""
-        # Validate inputs
+        #validate inputs
         if not isinstance(current_time, (int, float)):
             raise ValueError(f"current_time must be numeric, got {type(current_time)}")
         
-        # Create message structure
+        #create message structure
         data: MessageData = {
             'src': src,
             'dst': dst,
@@ -49,23 +46,20 @@ class MessageQueue:
             'payload': payload
         }
 
-        # Log send event
         self._log_send_event(current_time, data)
         
-        # Randomly drop message based on config
+        #randomly drop message based on config
         if self._should_drop_message():
             self._log_drop_event(current_time, data)
             return
         
-        # Schedule delivery with random latency
+        #with random latency
         self._schedule_delivery(current_time, data)
 
     def _should_drop_message(self) -> bool:
-        """Determine if message should be dropped based on network conditions."""
         return random.random() < self.config.drop_rate
 
     def _log_send_event(self, timestamp: float, data: MessageData) -> None:
-        """Log message send event."""
         self.logger.debug(f"Sending {data['type']} from {data['src']} to {data['dst']}")
         send_event = Event(
             timestamp=timestamp,
@@ -75,8 +69,7 @@ class MessageQueue:
         self.simulation.schedule_event(send_event)
 
     def _log_drop_event(self, timestamp: float, data: MessageData) -> None:
-        """Log message drop event."""
-        self.logger.debug(f"Dropping {data['type']} from {data['src']} to {data['dst']}")  # Changed from warning
+        self.logger.debug(f"Dropping {data['type']} from {data['src']} to {data['dst']}")
         drop_event = Event(
             timestamp=timestamp,
             event_type=EventType.MESSAGE_DROPPED,
@@ -85,8 +78,7 @@ class MessageQueue:
         self.simulation.schedule_event(drop_event)
 
     def _schedule_delivery(self, send_time: float, data: MessageData) -> None:
-        """Schedule message delivery with realistic network latency."""
-        # Validate send_time
+        #validate send_time
         if send_time < 0:
             raise ValueError(f"send_time cannot be negative: {send_time}")
         
@@ -96,7 +88,7 @@ class MessageQueue:
         delivery_event = Event(
             timestamp=delivery_time,
             event_type=EventType.MESSAGE_RECEIVED,
-            data=dict(data)  # Convert TypedDict to regular dict
+            data=dict(data)  #convert TypedDict to regular dict
         )
         self.simulation.schedule_event(delivery_event)
         
