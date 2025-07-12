@@ -2,30 +2,29 @@ from typing import Final
 import random
 from dataclasses import dataclass
 
-# === Simulation Core Parameters ===
+#simulation core paramters
 NODE_COUNT: Final[int] = 5
 NODE_IDS: Final[list[str]] = [f"node_{i}" for i in range(NODE_COUNT)]
-RANDOM_SEED: Final[int] = 42  # For reproducible simulations
+RANDOM_SEED: Final[int] = 42  #good for reproduction
 
-# === Timing Configuration ===
+#timing configuration
 HEARTBEAT_INTERVAL: Final[float] = 0.5  # seconds
 ELECTION_TIMEOUT_RANGE: Final[tuple[float, float]] = (1.0, 2.0)  # min/max seconds
 
-# === Failure Injection Settings ===
+#failure injection settings
 MESSAGE_LOSS_RATE: Final[float] = 0.05  # 5% packet loss
 NODE_FAILURE_RATE: Final[float] = 0.01  # 1% chance of node failure per heartbeat
 MESSAGE_DELAY_RANGE: Final[tuple[float, float]] = (0.01, 0.1)  # min/max seconds
 
-# === Debug/Logging Configuration ===
+#debug/Logging configuration
 VERBOSE_LOGGING: Final[bool] = True
 DEBUG_MODE: Final[bool] = False
 
-# Initialize random generator with fixed seed for reproducibility
+#initialise random generator with fixed seed for reproducibility
 random.seed(RANDOM_SEED)
 
 @dataclass
 class Config:
-    """Configuration class for the simulation."""
     node_count: int = NODE_COUNT
     message_drop_rate: float = MESSAGE_LOSS_RATE
     node_failure_rate: float = NODE_FAILURE_RATE
@@ -37,13 +36,12 @@ class Config:
     verbose_logging: bool = VERBOSE_LOGGING
     debug_mode: bool = DEBUG_MODE
     
-    # Add alias for compatibility
+    #alias for compatibility
     @property
     def drop_rate(self) -> float:
         return self.message_drop_rate
 
 def validate_config() -> None:
-    """Validate configuration parameters."""
     if not (0 <= MESSAGE_LOSS_RATE <= 1):
         raise ValueError("MESSAGE_LOSS_RATE must be between 0 and 1")
     if not (0 <= NODE_FAILURE_RATE <= 1):
