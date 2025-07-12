@@ -29,7 +29,7 @@ class FailureInjector:
         self.active_failures: Dict[str, Any] = {}
         self.logger = logging.getLogger(f"{__name__}.FailureInjector")
         
-        self.logger.info(f"Failure injector initialized with config: {self.config}")
+        self.logger.info(f"Failure injector initialised with config: {self.config}")
 
     def inject_message_failure(self, message: Any) -> Optional[Any]:
         """Potentially alter or drop a message based on configured probabilities"""

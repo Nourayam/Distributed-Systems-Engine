@@ -56,7 +56,7 @@ class RaftNode(Node):
         # Schedule initial election timeout
         self.schedule_timeout(self.election_timeout, "election")
         
-        self.logger.info(f"Raft node initialized in {self.state.name} state")
+        self.logger.info(f"Raft node initialised in {self.state.name} state")
 
     def _random_election_timeout(self) -> float:
         """Generate random election timeout within configured bounds"""

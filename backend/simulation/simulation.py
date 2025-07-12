@@ -28,7 +28,7 @@ class Simulation:
         from messaging.message_queue import MessageQueue
         self.message_queue = MessageQueue(config, self)
         
-        self.logger.info("Simulation initialized")
+        self.logger.info("Simulation initialised")
 
     def register_node(self, node: 'Node') -> None:
         self.nodes[node.node_id] = node

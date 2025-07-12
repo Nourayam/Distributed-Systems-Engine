@@ -20,7 +20,7 @@ class Node(ABC):
         
         # Register node with simulation engine
         self.simulation.register_node(self)
-        self.logger.info("Node initialized and registered")
+        self.logger.info("Node initialised and registered")
     
     def __repr__(self) -> str:
         return f"<Node {self.node_id} alive={self.alive}>"
