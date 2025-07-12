@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 
 
 class Simulation:
-    """Main simulation engine for distributed systems."""
+    #main simulation engine
     
     def __init__(self, config: 'Config'):
         self.config = config
@@ -23,30 +23,27 @@ class Simulation:
         self.event_log: List[Dict[str, Any]] = []
         self.running = False
         self.logger = logging.getLogger(f"{__name__}.Simulation")
-        self._event_sequence_counter = 0  # For unique event sequencing
+        self._event_sequence_counter = 0  #for unique event sequencing
         
-        # Initialize message queue
         from messaging.message_queue import MessageQueue
         self.message_queue = MessageQueue(config, self)
         
         self.logger.info("Simulation initialized")
 
     def register_node(self, node: 'Node') -> None:
-        """Register a node with the simulation."""
         self.nodes[node.node_id] = node
         self.logger.info(f"Registered node {node.node_id}")
 
-    def node_exists(self, node_id: str) -> bool:
-        """Check if a node exists in the simulation."""
+    def node_exists(self, node_id: str) -> bool: #checking if it exists
         return node_id in self.nodes
 
     def schedule_event(self, event: Event) -> None:
-        """Schedule an event for future processing."""
-        # Assign unique sequence ID for proper ordering
+        #for future processing
+        #assigns unique sequence ID for proper ordering
         event._sequence_id = self._event_sequence_counter
         self._event_sequence_counter += 1
         
-        # Validate event before scheduling
+        #validate before scheduling
         if not isinstance(event.timestamp, (int, float)):
             raise ValueError(f"Event timestamp must be numeric, got {type(event.timestamp)}")
         
@@ -61,7 +58,6 @@ class Simulation:
             raise
 
     def log_event(self, event_type: str, data: Dict[str, Any]) -> None:
-        """Log an event to the simulation log."""
         log_entry = {
             'timestamp': self.current_time,
             'type': event_type,
@@ -71,7 +67,6 @@ class Simulation:
         self.logger.debug(f"Logged event: {event_type}")
 
     def process_event(self, event: Event) -> None:
-        """Process a single event."""
         try:
             if event.event_type == EventType.MESSAGE_RECEIVED:
                 self._handle_message_received(event)
@@ -99,7 +94,6 @@ class Simulation:
             self.logger.error(f"Error processing event {event}: {e}", exc_info=True)
 
     def _handle_message_received(self, event: Event) -> None:
-        """Handle message delivery to target node."""
         try:
             data = event.data
             dst_node_id = data.get('dst')
@@ -122,7 +116,7 @@ class Simulation:
             self.logger.error(f"Error handling message received: {e}", exc_info=True)
 
     def _handle_timeout(self, event: Event) -> None:
-        """Handle generic timeout event."""
+        #generic timeout events
         try:
             node_id = event.data.get('node_id')
             if node_id and node_id in self.nodes:
@@ -136,7 +130,6 @@ class Simulation:
             self.logger.error(f"Error handling timeout: {e}", exc_info=True)
 
     def _handle_election_timeout(self, event: Event) -> None:
-        """Handle election timeout event."""
         try:
             node_id = event.data.get('node_id')
             if node_id and node_id in self.nodes:
@@ -150,7 +143,6 @@ class Simulation:
             self.logger.error(f"Error handling election timeout: {e}", exc_info=True)
 
     def _handle_heartbeat_timeout(self, event: Event) -> None:
-        """Handle heartbeat timeout event."""
         try:
             node_id = event.data.get('node_id')
             if node_id and node_id in self.nodes:
@@ -164,7 +156,6 @@ class Simulation:
             self.logger.error(f"Error handling heartbeat timeout: {e}", exc_info=True)
 
     def _handle_node_crash(self, event: Event) -> None:
-        """Handle node crash event."""
         try:
             node_id = event.data.get('node_id')
             if node_id and node_id in self.nodes:
@@ -180,7 +171,6 @@ class Simulation:
             self.logger.error(f"Error handling node crash: {e}", exc_info=True)
 
     def _handle_node_recover(self, event: Event) -> None:
-        """Handle node recovery event."""
         try:
             node_id = event.data.get('node_id')
             if node_id and node_id in self.nodes:
@@ -196,7 +186,7 @@ class Simulation:
             self.logger.error(f"Error handling node recovery: {e}", exc_info=True)
 
     def run(self, max_time: float = 100.0) -> None:
-        """Run the simulation until max_time is reached."""
+        #runs simulation until the max time is reached
         self.running = True
         self.logger.info(f"Starting simulation for {max_time} seconds")
         
@@ -213,23 +203,21 @@ class Simulation:
                 event = heapq.heappop(self.event_queue)
                 event_count += 1
                 
-                # Validate event timestamp
                 if event.timestamp < self.current_time:
                     self.logger.warning(f"Event timestamp {event.timestamp:.3f} is in the past "
                                       f"(current: {self.current_time:.3f})")
                 
                 self.current_time = event.timestamp
                 
-                # Skip events that are too far in the future
+                #skips events that are too far in the future
                 if self.current_time > max_time:
                     self.logger.debug(f"Reached max time {max_time}, stopping simulation")
                     break
                 
-                # Process the event
                 self.process_event(event)
                 
-                # Let nodes tick (but not too frequently to avoid overhead)
-                if self.current_time - last_progress_time >= 0.1:  # Every 100ms of sim time
+                #lets nodes tick (but not too frequently to avoid overhead)
+                if self.current_time - last_progress_time >= 0.1:  #every 100ms of sim time
                     for node in self.nodes.values():
                         if node.is_alive():
                             try:
@@ -238,7 +226,7 @@ class Simulation:
                                 self.logger.error(f"Error in node {node.node_id} tick: {e}", exc_info=True)
                     last_progress_time = self.current_time
                 
-                # Periodic progress logging for long simulations
+                #periodic progress logging for long simulations
                 if event_count % 10000 == 0:
                     self.logger.debug(f"Processed {event_count} events, sim time: {self.current_time:.2f}s")
         
@@ -252,7 +240,7 @@ class Simulation:
             self.logger.info(f"Simulation completed. Processed {event_count} events in {self.current_time:.2f}s sim time")
 
     def get_state(self) -> Dict[str, Any]:
-        """Get current simulation state."""
+        #get current simulation state
         return {
             'current_time': self.current_time,
             'running': self.running,
@@ -272,24 +260,22 @@ class Simulation:
         }
 
     def get_next_event_time(self) -> Optional[float]:
-        """Get the timestamp of the next event to be processed."""
+        #gets the timestamp of next event to be processed
         if self.event_queue:
             return self.event_queue[0].timestamp
         return None
 
     def pause(self) -> None:
-        """Pause the simulation."""
         self.running = False
         self.logger.info("Simulation paused")
 
     def resume(self, max_time: float = 100.0) -> None:
-        """Resume a paused simulation."""
         if not self.running:
             self.logger.info("Resuming simulation")
             self.run(max_time)
 
     def step(self) -> bool:
-        """Execute the next event and return True if an event was processed."""
+        #executes the next event and returns True if an event was processed
         if not self.event_queue:
             return False
         
@@ -297,7 +283,6 @@ class Simulation:
         self.current_time = event.timestamp
         self.process_event(event)
         
-        # Let nodes tick
         for node in self.nodes.values():
             if node.is_alive():
                 try:
@@ -308,7 +293,6 @@ class Simulation:
         return True
 
     def inject_failure(self, failure_type: str, **kwargs) -> None:
-        """Inject a failure into the system."""
         if failure_type == 'crash':
             node_id = kwargs.get('node_id')
             recovery_time = kwargs.get('recovery_time')
@@ -322,7 +306,6 @@ class Simulation:
                 )
                 self.schedule_event(crash_event)
                 
-                # Schedule recovery if specified
                 if recovery_time:
                     recovery_event = Event(
                         timestamp=self.current_time + recovery_time,
@@ -339,7 +322,6 @@ class Simulation:
             self.logger.warning(f"Unknown failure type: {failure_type}")
 
     def get_statistics(self) -> Dict[str, Any]:
-    #Get simulation statistics.
         node_states = {}
         for node_id, node in self.nodes.items():
             if hasattr(node, 'state'):
@@ -348,8 +330,8 @@ class Simulation:
         
         return {
             'simulation_time': self.current_time,
-            'total_events': len(self.event_log),  # This should work
-            'events_processed': self._event_sequence_counter,  # Add this line for total processed
+            'total_events': len(self.event_log),
+            'events_processed': self._event_sequence_counter,
             'pending_events': len(self.event_queue),
             'node_count': len(self.nodes),
             'node_states': node_states,
@@ -358,5 +340,5 @@ class Simulation:
         }
 
 
-# Alias for backward compatibility
+#for backward compatibility
 EventDrivenSimulator = Simulation
