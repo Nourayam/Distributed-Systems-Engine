@@ -8,11 +8,11 @@ const ClusterCanvas = ({ nodes, messages, leaderId, animationSpeed = 1.0 }) => {
   const animationRef = useRef(null);
   const [dimensions, setDimensions] = useState({ width: 800, height: 600 });
 
-  // Calculate optimal positions for nodes in a circle
+  //calculates optimal positions for nodes in a circle
   const calculatePositions = useCallback((count, width, height) => {
     const centerX = width / 2;
     const centerY = height / 2;
-    const radius = Math.min(width, height) * 0.3; // Increased spacing
+    const radius = Math.min(width, height) * 0.3;
     
     return Array.from({ length: count }, (_, i) => {
       const angle = (2 * Math.PI * i) / count - Math.PI / 2;
@@ -23,7 +23,6 @@ const ClusterCanvas = ({ nodes, messages, leaderId, animationSpeed = 1.0 }) => {
     });
   }, []);
 
-  // Handle container resize
   useEffect(() => {
     const handleResize = () => {
       if (containerRef.current) {
@@ -37,7 +36,7 @@ const ClusterCanvas = ({ nodes, messages, leaderId, animationSpeed = 1.0 }) => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Enhanced message animation
+  //message animation
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -51,7 +50,7 @@ const ClusterCanvas = ({ nodes, messages, leaderId, animationSpeed = 1.0 }) => {
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
-      // Draw connection network (faded)
+      //draw connection network (faded)
       ctx.save();
       ctx.globalAlpha = 0.08;
       ctx.strokeStyle = '#333333';
@@ -67,7 +66,7 @@ const ClusterCanvas = ({ nodes, messages, leaderId, animationSpeed = 1.0 }) => {
       }
       ctx.restore();
       
-      // Draw animated messages
+      //draw animated messages
       const currentTime = Date.now();
       
       messages.forEach(msg => {
@@ -78,24 +77,23 @@ const ClusterCanvas = ({ nodes, messages, leaderId, animationSpeed = 1.0 }) => {
         const fromPos = positions[fromNode.id];
         const toPos = positions[toNode.id];
         
-        // Calculate animation progress
+        //calculates animation progress
         const elapsed = (currentTime - msg.timestamp * 1000) * animationSpeed;
         const duration = (msg.travel_time || 1000) / animationSpeed;
         const progress = Math.min(elapsed / duration, 1);
         
         if (progress < 1) {
-          // Smooth easing function
           const easeProgress = 1 - Math.pow(1 - progress, 3);
           
-          // Calculate current position
+          //calculates the current position
           const currentX = fromPos.x + (toPos.x - fromPos.x) * easeProgress;
           const currentY = fromPos.y + (toPos.y - fromPos.y) * easeProgress;
           
-          // Draw message trail
+          //draws message trail
           ctx.save();
           ctx.globalAlpha = 0.8 * (1 - progress * 0.5);
           
-          // Different colours for different message types
+          //diff colours for different message types
           const messageColours = {
             'HEARTBEAT': '#22c55e',
             'VOTE_REQUEST': '#f59e0b',
@@ -105,7 +103,7 @@ const ClusterCanvas = ({ nodes, messages, leaderId, animationSpeed = 1.0 }) => {
           
           const colour = messageColours[msg.type] || '#666666';
           
-          // Draw animated dashed line
+          //draw animated dashed line
           ctx.beginPath();
           ctx.setLineDash([8, 4]);
           ctx.lineDashOffset = -((currentTime * animationSpeed) / 30) % 12;
@@ -115,7 +113,7 @@ const ClusterCanvas = ({ nodes, messages, leaderId, animationSpeed = 1.0 }) => {
           ctx.lineWidth = 3;
           ctx.stroke();
           
-          // Draw message packet
+          //draw message packet
           ctx.beginPath();
           ctx.arc(currentX, currentY, 8, 0, 2 * Math.PI);
           ctx.fillStyle = colour;
@@ -123,7 +121,7 @@ const ClusterCanvas = ({ nodes, messages, leaderId, animationSpeed = 1.0 }) => {
           ctx.shadowBlur = 10;
           ctx.fill();
           
-          // Draw message type indicator
+          //draw message type indicator
           ctx.fillStyle = '#ffffff';
           ctx.font = '8px Inter';
           ctx.textAlign = 'center';

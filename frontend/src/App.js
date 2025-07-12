@@ -39,7 +39,7 @@ const App = () => {
       
       const data = response.data;
       
-      // Update cluster state
+      //update
       setClusterState({
         nodes: data.nodes || [],
         leader: data.leader,
@@ -47,7 +47,7 @@ const App = () => {
         messages: data.messages || []
       });
       
-      // Update simulation state
+      //update
       setSimulationState(prev => ({
         isRunning: data.running || false,
         time: data.simulation_time || 0,
@@ -55,7 +55,7 @@ const App = () => {
         animationSpeed: data.animation_speed || 1.0
       }));
       
-      // Process new events
+      //for new events
       if (data.events && data.events.length > 0) {
         const newEvents = data.events.filter(
           e => e.timestamp > lastEventTimestamp.current
@@ -83,7 +83,7 @@ const App = () => {
     }
   }, [connectionRetries]);
 
-  // Faster polling for smoother animations
+  //fast polling for smooth animations
   useInterval(fetchClusterStatus, loading || error ? null : 250);
 
   useEffect(() => {

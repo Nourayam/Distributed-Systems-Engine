@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
-  /* Enhanced Color Palette */
+  /* The colour palette */
   --bg-primary: #0a0a0a;
   --bg-secondary: #141414;
   --bg-tertiary: #1f1f1f;
@@ -19,7 +19,7 @@
   --candidate-color: #f59e0b;
   --failed-color: #ef4444;
   
-  /* Enhanced Font Sizes */
+  /* font sizes, had to make them bigger since the page is more spacious than i thought */
   --font-xs: 0.75rem;
   --font-sm: 0.875rem;
   --font-md: 1rem;
@@ -27,14 +27,12 @@
   --font-xl: 1.375rem;
   --font-2xl: 1.75rem;
   
-  /* Spacing */
   --spacing-xs: 0.25rem;
   --spacing-sm: 0.5rem;
   --spacing-md: 1rem;
   --spacing-lg: 1.5rem;
   --spacing-xl: 2rem;
   
-  /* Transitions */
   --transition-fast: 150ms ease;
   --transition-base: 250ms ease;
   --transition-slow: 500ms ease;
@@ -54,7 +52,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* App Layout */
+/* app layout */
 .app-container {
   display: flex;
   flex-direction: column;
@@ -114,7 +112,6 @@ body {
   overflow: hidden;
 }
 
-/* Enhanced Loading States */
 .app-loading, .app-error {
   display: flex;
   flex-direction: column;
@@ -137,7 +134,7 @@ body {
   to { transform: rotate(360deg); }
 }
 
-/* Enhanced Cluster Canvas */
+/* cluster canvas apprnc */
 .cluster-canvas {
   position: relative;
   background: rgba(20, 20, 20, 0.6);
@@ -207,7 +204,7 @@ body {
   text-transform: uppercase;
 }
 
-/* Enhanced Node Styles */
+/* node style */
 .enhanced-node {
   width: 120px;
   height: 120px;
@@ -223,7 +220,7 @@ body {
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
-.enhanced-node:hover {
+.node:hover {
   transform: scale(1.1) translateY(-4px);
   box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4);
 }
@@ -261,7 +258,7 @@ body {
   letter-spacing: 0.5px;
 }
 
-/* Node State Animations */
+/* node state animationss */
 .node-leader {
   animation: leader-glow 2s ease-in-out infinite;
 }
@@ -315,7 +312,7 @@ body {
   }
 }
 
-/* Leader Crown */
+/* leader crown */
 .leader-crown {
   position: absolute;
   top: -15px;
@@ -330,7 +327,6 @@ body {
   50% { transform: translateX(-50%) translateY(-3px); }
 }
 
-/* Candidate Rings */
 .candidate-rings {
   position: absolute;
   top: 50%;
@@ -371,7 +367,6 @@ body {
   }
 }
 
-/* Transition Effect */
 .transition-effect {
   position: absolute;
   top: 50%;
@@ -400,7 +395,6 @@ body {
   }
 }
 
-/* Control Panel */
 .control-panel {
   background: rgba(20, 20, 20, 0.8);
   backdrop-filter: blur(20px);
@@ -545,7 +539,6 @@ body {
   cursor: not-allowed;
 }
 
-/* Status Bar */
 .status-bar {
   display: flex;
   align-items: center;
@@ -650,7 +643,7 @@ body {
   flex: 1;
 }
 
-/* Responsive Design */
+/* responsive Design */
 @media (max-width: 1024px) {
   .app-main {
     flex-direction: column;
@@ -660,7 +653,7 @@ body {
     flex: 0 0 300px;
   }
   
-  .enhanced-node {
+  .node {
     width: 100px;
     height: 100px;
   }
@@ -687,13 +680,13 @@ body {
     min-width: 80px;
   }
   
-  .enhanced-node {
+  .node {
     width: 80px;
     height: 80px;
   }
 }
 
-/* Custom Scrollbar */
+/* custom scrollbar when the activity ont he right hand side is looking long */
 ::-webkit-scrollbar {
   width: 6px;
 }
