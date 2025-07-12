@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 
-const EnhancedNode = ({ 
+const Node = ({ 
   id, 
   state, 
   term, 
@@ -18,7 +18,6 @@ const EnhancedNode = ({
   const [isHovered, setIsHovered] = useState(false);
   const nodeRef = useRef(null);
 
-  // Handle state transitions
   useEffect(() => {
     if (state !== lastState || is_transitioning) {
       setIsAnimating(true);
@@ -30,17 +29,14 @@ const EnhancedNode = ({
   }, [state, lastState, is_transitioning, animationSpeed]);
 
   const getNodeClasses = () => {
-    const classes = ['enhanced-node'];
+    const classes = ['node'];
     
-    // State-based classes
     classes.push(`node-${state.toLowerCase()}`);
     
-    // Status-based classes
     if (status !== 'HEALTHY') {
       classes.push(`node-${status.toLowerCase()}`);
     }
     
-    // Animation classes
     if (isAnimating || is_transitioning) {
       classes.push('node-transitioning');
     }
@@ -126,7 +122,7 @@ const EnhancedNode = ({
   );
 };
 
-EnhancedNode.propTypes = {
+Node.propTypes = {
   id: PropTypes.number.isRequired,
   state: PropTypes.oneOf(['LEADER', 'FOLLOWER', 'CANDIDATE']).isRequired,
   term: PropTypes.number.isRequired,
@@ -139,4 +135,4 @@ EnhancedNode.propTypes = {
   onHover: PropTypes.func
 };
 
-export default EnhancedNode;
+export default Node;
