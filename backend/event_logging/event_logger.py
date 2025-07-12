@@ -11,9 +11,7 @@ class LogLevel(Enum):
     DEBUG = 3
 
 
-class EventLogger:
-    """Event Logger for distributed system simulation"""
-    
+class EventLogger:    
     def __init__(
         self,
         level: LogLevel = LogLevel.BASIC,
@@ -42,7 +40,7 @@ class EventLogger:
         details: Optional[Dict] = None,
         level: LogLevel = LogLevel.BASIC
     ):
-        """Log an event with specified level and details"""
+        #with specified level and details
         if level.value > self.level.value:
             return
 
@@ -62,18 +60,15 @@ class EventLogger:
         self._write_output(output)
 
     def _get_timestamp(self) -> float:
-        """Get current timestamp"""
         return time.time()
 
     def _format_plaintext(self, entry: Dict) -> str:
-        """Format log entry as plaintext"""
         return (
             f"[{entry['timestamp']:.6f}] {entry['node']} - {entry['event']}: "
             f"{entry['message'] or ''}"
         )
 
     def _write_output(self, text: str):
-        """Write output to file or stdout"""
         if self._file_handle:
             self._file_handle.write(text + '\n')
             self._file_handle.flush()
