@@ -1,11 +1,11 @@
 # RAFT DSS — A Production-Grade Distributed Systems Engine
 
 ## Problem
-Understanding distributed consensus algorithms like RAFT requires hands-on experimentation with leader election, log replication, and network partition scenarios—but most educational resources offer only theoretical explanations.  
-Real-world distributed systems engineers need practical experience with fault-tolerance, message-passing semantics, and consensus behaviour under realistic network conditions.
+Understanding distributed consensus algorithms like RAFT needs hands-on experimentation with leader election, log replication, and network partition scenarios, but most educational resources only offer theoretical explanations.  
+Real-world distributed systems engineers need practical experience with fault-tolerance, message-passing semantics, and consensus behaviour under realistic network conditions. Understanding is key, if we can understand exactly how DSs work, we'll be able to maintain them better too.
 
 ## Solution
-This RAFT simulator provides a comprehensive, event-driven environment for exploring distributed consensus from the ground up:
+This RAFT simulator provides a comprehensive, event-driven environment for exploring distributed consensus from square 1:
 
 - **Pure Python Implementation:** RAFT consensus algorithm built from scratch with full state machine semantics  
 - **Realistic Network Simulation:** configurable latency, packet loss, and partition injection  
@@ -31,7 +31,7 @@ The simulator follows a clean event-driven pipeline:
 - `failure/` — chaos engineering toolkit for testing fault-tolerance  
 - `config.py` — centralised tuning for network conditions and cluster behaviour  
 
-Each layer operates independently, enabling modular testing and algorithm experimentation.
+Each layer operates independently which enables modular testing and algorithm experimentation.
 
 ## Setup & Running
 
